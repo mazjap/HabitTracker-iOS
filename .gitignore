@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/osx,swift,xcode,macos,firebase,cocoapods,objective-c
 # Edit at https://www.gitignore.io/?templates=osx,swift,xcode,macos,firebase,cocoapods,objective-c
 
@@ -84,7 +83,7 @@ xcuserdata/
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 # Pods/
 # Add this line if you want to avoid checking in source code from the Xcode workspace
-# *.xcworkspace
+*.xcworkspace
 
 # Carthage
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
