@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E24729823833E0000791524 /* PieCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E24729723833DE900791524 /* PieCharts.framework */; };
+		0E24729923833E0000791524 /* PieCharts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E24729723833DE900791524 /* PieCharts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0E24729A23833E0500791524 /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E24728E23833DDB00791524 /* JTAppleCalendar.framework */; };
+		0E24729B23833E0500791524 /* JTAppleCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E24728E23833DDB00791524 /* JTAppleCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0EFF26CC23832C1200487B00 /* ChartTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CB23832C1200487B00 /* ChartTab.storyboard */; };
 		0EFF26CE23832C3100487B00 /* CalendarTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CD23832C3100487B00 /* CalendarTab.storyboard */; };
 		0EFF26D023832E2800487B00 /* HabitInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CF23832E2800487B00 /* HabitInformation.storyboard */; };
@@ -22,13 +26,30 @@
 		FBEE1C092383321700F22C57 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C082383321700F22C57 /* Constants.swift */; };
 		FBEE1C0B2383322D00F22C57 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C0A2383322D00F22C57 /* CoreDataStack.swift */; };
 		FBEE1C0D238332FB00F22C57 /* HabitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C0C238332FB00F22C57 /* HabitController.swift */; };
-		FBEE1C152383367A00F22C57 /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBEE1C142383365300F22C57 /* JTAppleCalendar.framework */; };
-		FBEE1C162383367A00F22C57 /* JTAppleCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FBEE1C142383365300F22C57 /* JTAppleCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FBEE1C2123833B3000F22C57 /* PieCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBEE1C2023833B0700F22C57 /* PieCharts.framework */; };
-		FBEE1C2223833B3000F22C57 /* PieCharts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FBEE1C2023833B0700F22C57 /* PieCharts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0E24728D23833DDB00791524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E24728923833DDB00791524 /* JTAppleCalendar.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3BE7994F233A346B00A37CA8;
+			remoteInfo = JTAppleCalendar;
+		};
+		0E24729423833DE900791524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E24728F23833DE900791524 /* PieCharts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6AFF22B71E16DF520001B0A4;
+			remoteInfo = PieChartsDemo;
+		};
+		0E24729623833DE900791524 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E24728F23833DE900791524 /* PieCharts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6AC1CD431E1C013900120720;
+			remoteInfo = PieCharts;
+		};
 		FB14DCDB237F66C600ED67E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FB14DCB9237F66C000ED67E2 /* Project object */;
@@ -43,27 +64,6 @@
 			remoteGlobalIDString = FB14DCC0237F66C000ED67E2;
 			remoteInfo = "Habit Tracker";
 		};
-		FBEE1C132383365300F22C57 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FBEE1C0F2383365300F22C57 /* JTAppleCalendar.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3BE7994F233A346B00A37CA8;
-			remoteInfo = JTAppleCalendar;
-		};
-		FBEE1C1D23833B0700F22C57 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FBEE1C1823833B0700F22C57 /* PieCharts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6AFF22B71E16DF520001B0A4;
-			remoteInfo = PieChartsDemo;
-		};
-		FBEE1C1F23833B0700F22C57 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FBEE1C1823833B0700F22C57 /* PieCharts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6AC1CD431E1C013900120720;
-			remoteInfo = PieCharts;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -73,8 +73,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FBEE1C2223833B3000F22C57 /* PieCharts.framework in Embed Frameworks */,
-				FBEE1C162383367A00F22C57 /* JTAppleCalendar.framework in Embed Frameworks */,
+				0E24729923833E0000791524 /* PieCharts.framework in Embed Frameworks */,
+				0E24729B23833E0500791524 /* JTAppleCalendar.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,6 +82,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E24728923833DDB00791524 /* JTAppleCalendar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JTAppleCalendar.xcodeproj; path = ../../../JTAppleCalendar/JTAppleCalendar.xcodeproj; sourceTree = "<group>"; };
+		0E24728F23833DE900791524 /* PieCharts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PieCharts.xcodeproj; path = ../../../PieCharts/PieCharts.xcodeproj; sourceTree = "<group>"; };
 		0EFF26CB23832C1200487B00 /* ChartTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChartTab.storyboard; sourceTree = "<group>"; };
 		0EFF26CD23832C3100487B00 /* CalendarTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarTab.storyboard; sourceTree = "<group>"; };
 		0EFF26CF23832E2800487B00 /* HabitInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitInformation.storyboard; sourceTree = "<group>"; };
@@ -103,8 +105,6 @@
 		FBEE1C082383321700F22C57 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FBEE1C0A2383322D00F22C57 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FBEE1C0C238332FB00F22C57 /* HabitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitController.swift; sourceTree = "<group>"; };
-		FBEE1C0F2383365300F22C57 /* JTAppleCalendar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JTAppleCalendar.xcodeproj; path = ../../JTAppleCalendar/JTAppleCalendar.xcodeproj; sourceTree = "<group>"; };
-		FBEE1C1823833B0700F22C57 /* PieCharts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PieCharts.xcodeproj; path = ../../PieCharts/PieCharts.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +112,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBEE1C2123833B3000F22C57 /* PieCharts.framework in Frameworks */,
-				FBEE1C152383367A00F22C57 /* JTAppleCalendar.framework in Frameworks */,
+				0E24729823833E0000791524 /* PieCharts.framework in Frameworks */,
+				0E24729A23833E0500791524 /* JTAppleCalendar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +134,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E24728A23833DDB00791524 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0E24728E23833DDB00791524 /* JTAppleCalendar.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0E24729023833DE900791524 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0E24729523833DE900791524 /* PieChartsDemo.app */,
+				0E24729723833DE900791524 /* PieCharts.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		FB14DCB8237F66C000ED67E2 = {
 			isa = PBXGroup;
 			children = (
@@ -245,27 +262,11 @@
 		FBEE1C0E2383362A00F22C57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FBEE1C1823833B0700F22C57 /* PieCharts.xcodeproj */,
-				FBEE1C0F2383365300F22C57 /* JTAppleCalendar.xcodeproj */,
+				0E24728F23833DE900791524 /* PieCharts.xcodeproj */,
+				0E24728923833DDB00791524 /* JTAppleCalendar.xcodeproj */,
 			);
-			path = Frameworks;
-			sourceTree = "<group>";
-		};
-		FBEE1C102383365300F22C57 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FBEE1C142383365300F22C57 /* JTAppleCalendar.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		FBEE1C1923833B0700F22C57 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FBEE1C1E23833B0700F22C57 /* PieChartsDemo.app */,
-				FBEE1C2023833B0700F22C57 /* PieCharts.framework */,
-			);
-			name = Products;
+			name = Frameworks;
+			path = "Habit Tracker/Frameworks";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,12 +362,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = FBEE1C102383365300F22C57 /* Products */;
-					ProjectRef = FBEE1C0F2383365300F22C57 /* JTAppleCalendar.xcodeproj */;
+					ProductGroup = 0E24728A23833DDB00791524 /* Products */;
+					ProjectRef = 0E24728923833DDB00791524 /* JTAppleCalendar.xcodeproj */;
 				},
 				{
-					ProductGroup = FBEE1C1923833B0700F22C57 /* Products */;
-					ProjectRef = FBEE1C1823833B0700F22C57 /* PieCharts.xcodeproj */;
+					ProductGroup = 0E24729023833DE900791524 /* Products */;
+					ProjectRef = 0E24728F23833DE900791524 /* PieCharts.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -379,25 +380,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		FBEE1C142383365300F22C57 /* JTAppleCalendar.framework */ = {
+		0E24728E23833DDB00791524 /* JTAppleCalendar.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = JTAppleCalendar.framework;
-			remoteRef = FBEE1C132383365300F22C57 /* PBXContainerItemProxy */;
+			remoteRef = 0E24728D23833DDB00791524 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		FBEE1C1E23833B0700F22C57 /* PieChartsDemo.app */ = {
+		0E24729523833DE900791524 /* PieChartsDemo.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = PieChartsDemo.app;
-			remoteRef = FBEE1C1D23833B0700F22C57 /* PBXContainerItemProxy */;
+			remoteRef = 0E24729423833DE900791524 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		FBEE1C2023833B0700F22C57 /* PieCharts.framework */ = {
+		0E24729723833DE900791524 /* PieCharts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = PieCharts.framework;
-			remoteRef = FBEE1C1F23833B0700F22C57 /* PBXContainerItemProxy */;
+			remoteRef = 0E24729623833DE900791524 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
