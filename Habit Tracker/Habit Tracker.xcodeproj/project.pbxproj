@@ -11,6 +11,8 @@
 		0E24729923833E0000791524 /* PieCharts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E24729723833DE900791524 /* PieCharts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0E24729A23833E0500791524 /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E24728E23833DDB00791524 /* JTAppleCalendar.framework */; };
 		0E24729B23833E0500791524 /* JTAppleCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E24728E23833DDB00791524 /* JTAppleCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0E2472A12383442900791524 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2472A02383442900791524 /* DateCell.swift */; };
+		0E2472A7238344CF00791524 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2472A6238344CF00791524 /* CalenderViewController.swift */; };
 		0EFF26CC23832C1200487B00 /* ChartTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CB23832C1200487B00 /* ChartTab.storyboard */; };
 		0EFF26CE23832C3100487B00 /* CalendarTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CD23832C3100487B00 /* CalendarTab.storyboard */; };
 		0EFF26D023832E2800487B00 /* HabitInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CF23832E2800487B00 /* HabitInformation.storyboard */; };
@@ -84,6 +86,8 @@
 /* Begin PBXFileReference section */
 		0E24728923833DDB00791524 /* JTAppleCalendar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JTAppleCalendar.xcodeproj; path = ../../../JTAppleCalendar/JTAppleCalendar.xcodeproj; sourceTree = "<group>"; };
 		0E24728F23833DE900791524 /* PieCharts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PieCharts.xcodeproj; path = ../../../PieCharts/PieCharts.xcodeproj; sourceTree = "<group>"; };
+		0E2472A02383442900791524 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
+		0E2472A6238344CF00791524 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		0EFF26CB23832C1200487B00 /* ChartTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChartTab.storyboard; sourceTree = "<group>"; };
 		0EFF26CD23832C3100487B00 /* CalendarTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarTab.storyboard; sourceTree = "<group>"; };
 		0EFF26CF23832E2800487B00 /* HabitInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitInformation.storyboard; sourceTree = "<group>"; };
@@ -151,6 +155,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		0E2472A52383442F00791524 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0E2472A02383442900791524 /* DateCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		FB14DCB8237F66C000ED67E2 = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +193,7 @@
 				FB14DCF7237F670700ED67E2 /* Resources */,
 				FB14DCF8237F6B4A00ED67E2 /* View Controllers */,
 				FB14DCF9237F6B8D00ED67E2 /* Storyboards */,
+				0E2472A52383442F00791524 /* Views */,
 			);
 			path = "Habit Tracker";
 			sourceTree = "<group>";
@@ -218,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				FB14DCC8237F66C000ED67E2 /* ViewController.swift */,
+				0E2472A6238344CF00791524 /* CalenderViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -442,7 +456,9 @@
 				FB14DCC9237F66C000ED67E2 /* ViewController.swift in Sources */,
 				FB14DCCF237F66C100ED67E2 /* Habit_Tracker.xcdatamodeld in Sources */,
 				FBEE1C0B2383322D00F22C57 /* CoreDataStack.swift in Sources */,
+				0E2472A12383442900791524 /* DateCell.swift in Sources */,
 				FB14DCC5237F66C000ED67E2 /* AppDelegate.swift in Sources */,
+				0E2472A7238344CF00791524 /* CalenderViewController.swift in Sources */,
 				FB14DCC7237F66C000ED67E2 /* SceneDelegate.swift in Sources */,
 				FBEE1C0D238332FB00F22C57 /* HabitController.swift in Sources */,
 			);
