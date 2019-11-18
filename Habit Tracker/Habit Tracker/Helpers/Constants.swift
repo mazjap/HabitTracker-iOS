@@ -9,6 +9,7 @@
 import Foundation
 import CoreGraphics
 
+
 typealias CompletionWithError = (_ error: Error?) -> Void
 
 let coreDataModelName: String   = "Habit_Tracker"

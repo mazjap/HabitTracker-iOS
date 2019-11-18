@@ -4,3 +4,6 @@
 [submodule "JTAppleCalendar"]
 	path = JTAppleCalendar
 	url = https://github.com/patchthecode/JTAppleCalendar.git
+[submodule "PieCharts"]
+	path = PieCharts
+	url = https://github.com/IOS9BW4/PieCharts.git
