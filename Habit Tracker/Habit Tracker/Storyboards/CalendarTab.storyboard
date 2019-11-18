@@ -4,17 +4,65 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Calender-->
         <scene sceneID="did-gu-Stb">
             <objects>
-                <viewController id="U2J-aq-mKk" sceneMemberID="viewController">
+                <viewController id="U2J-aq-mKk" customClass="CalenderViewController" customModule="Habit_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bTQ-fz-QqC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sGT-Kb-Idn" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
+                                <rect key="frame" x="20" y="64" width="374" height="331"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="dj0-5O-eyu">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dateCell" id="xo9-4e-wYe" customClass="DateCell" customModule="Habit_Tracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="h8Z-Fj-rpY">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udt-Xu-laB">
+                                                    <rect key="frame" x="7" y="14.5" width="36" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="udt-Xu-laB" firstAttribute="centerY" secondItem="h8Z-Fj-rpY" secondAttribute="centerY" id="487-Kf-Wfj"/>
+                                                <constraint firstItem="udt-Xu-laB" firstAttribute="centerX" secondItem="h8Z-Fj-rpY" secondAttribute="centerX" id="ucg-7P-Acv"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="udt-Xu-laB" id="h9B-eh-sPO"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="U2J-aq-mKk" id="Zzb-ao-Qgy"/>
+                                    <outlet property="delegate" destination="U2J-aq-mKk" id="QVm-7D-8Dj"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="sGT-Kb-Idn" firstAttribute="top" secondItem="xJq-s7-HVV" secondAttribute="top" constant="20" id="LSz-vK-5T5"/>
+                            <constraint firstItem="xJq-s7-HVV" firstAttribute="trailing" secondItem="sGT-Kb-Idn" secondAttribute="trailing" constant="20" id="XbW-UJ-YPc"/>
+                            <constraint firstItem="sGT-Kb-Idn" firstAttribute="height" secondItem="bTQ-fz-QqC" secondAttribute="width" multiplier="0.8" id="euX-e2-u7f"/>
+                            <constraint firstItem="sGT-Kb-Idn" firstAttribute="leading" secondItem="xJq-s7-HVV" secondAttribute="leading" constant="20" id="uwZ-2i-6B9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="xJq-s7-HVV"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Calender" image="calendar" catalog="system" id="WEe-Ht-6F3"/>
