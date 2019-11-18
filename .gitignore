@@ -192,3 +192,5 @@ Dependencies/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.gitignore.io/api/osx,swift,xcode,macos,firebase,cocoapods,objective-c
+
+Habit Tracker/Habit Tracker.xcodeproj/project.pbxproj
