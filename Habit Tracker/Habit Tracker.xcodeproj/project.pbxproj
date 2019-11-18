@@ -19,6 +19,13 @@
 		FB14DCD4237F66C600ED67E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB14DCD2237F66C600ED67E2 /* LaunchScreen.storyboard */; };
 		FB14DCDF237F66C600ED67E2 /* Habit_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB14DCDE237F66C600ED67E2 /* Habit_TrackerTests.swift */; };
 		FB14DCEA237F66C700ED67E2 /* Habit_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB14DCE9237F66C700ED67E2 /* Habit_TrackerUITests.swift */; };
+		FBEE1C092383321700F22C57 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C082383321700F22C57 /* Constants.swift */; };
+		FBEE1C0B2383322D00F22C57 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C0A2383322D00F22C57 /* CoreDataStack.swift */; };
+		FBEE1C0D238332FB00F22C57 /* HabitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C0C238332FB00F22C57 /* HabitController.swift */; };
+		FBEE1C152383367A00F22C57 /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBEE1C142383365300F22C57 /* JTAppleCalendar.framework */; };
+		FBEE1C162383367A00F22C57 /* JTAppleCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FBEE1C142383365300F22C57 /* JTAppleCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FBEE1C2123833B3000F22C57 /* PieCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBEE1C2023833B0700F22C57 /* PieCharts.framework */; };
+		FBEE1C2223833B3000F22C57 /* PieCharts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FBEE1C2023833B0700F22C57 /* PieCharts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +43,43 @@
 			remoteGlobalIDString = FB14DCC0237F66C000ED67E2;
 			remoteInfo = "Habit Tracker";
 		};
+		FBEE1C132383365300F22C57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBEE1C0F2383365300F22C57 /* JTAppleCalendar.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3BE7994F233A346B00A37CA8;
+			remoteInfo = JTAppleCalendar;
+		};
+		FBEE1C1D23833B0700F22C57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBEE1C1823833B0700F22C57 /* PieCharts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6AFF22B71E16DF520001B0A4;
+			remoteInfo = PieChartsDemo;
+		};
+		FBEE1C1F23833B0700F22C57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBEE1C1823833B0700F22C57 /* PieCharts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6AC1CD431E1C013900120720;
+			remoteInfo = PieCharts;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FBEE1C172383367A00F22C57 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FBEE1C2223833B3000F22C57 /* PieCharts.framework in Embed Frameworks */,
+				FBEE1C162383367A00F22C57 /* JTAppleCalendar.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0EFF26CB23832C1200487B00 /* ChartTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChartTab.storyboard; sourceTree = "<group>"; };
@@ -57,6 +100,11 @@
 		FB14DCE5237F66C700ED67E2 /* Habit TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Habit TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB14DCE9237F66C700ED67E2 /* Habit_TrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_TrackerUITests.swift; sourceTree = "<group>"; };
 		FB14DCEB237F66C700ED67E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBEE1C082383321700F22C57 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FBEE1C0A2383322D00F22C57 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		FBEE1C0C238332FB00F22C57 /* HabitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitController.swift; sourceTree = "<group>"; };
+		FBEE1C0F2383365300F22C57 /* JTAppleCalendar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JTAppleCalendar.xcodeproj; path = ../../JTAppleCalendar/JTAppleCalendar.xcodeproj; sourceTree = "<group>"; };
+		FBEE1C1823833B0700F22C57 /* PieCharts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PieCharts.xcodeproj; path = ../../PieCharts/PieCharts.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +112,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBEE1C2123833B3000F22C57 /* PieCharts.framework in Frameworks */,
+				FBEE1C152383367A00F22C57 /* JTAppleCalendar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				FB14DCC3237F66C000ED67E2 /* Habit Tracker */,
+				FBEE1C0E2383362A00F22C57 /* Frameworks */,
 				FB14DCDD237F66C600ED67E2 /* Habit TrackerTests */,
 				FB14DCE8237F66C700ED67E2 /* Habit TrackerUITests */,
 				FB14DCC2237F66C000ED67E2 /* Products */,
@@ -107,6 +158,7 @@
 		FB14DCC3237F66C000ED67E2 /* Habit Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				FBEE1C072383320500F22C57 /* Helpers */,
 				FB14DCFA237F6EF600ED67E2 /* Models */,
 				FB14DCFB237F6F0F00ED67E2 /* Model Controllers */,
 				FB14DCF7237F670700ED67E2 /* Resources */,
@@ -176,8 +228,44 @@
 		FB14DCFB237F6F0F00ED67E2 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FBEE1C0A2383322D00F22C57 /* CoreDataStack.swift */,
+				FBEE1C0C238332FB00F22C57 /* HabitController.swift */,
 			);
 			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		FBEE1C072383320500F22C57 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FBEE1C082383321700F22C57 /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FBEE1C0E2383362A00F22C57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FBEE1C1823833B0700F22C57 /* PieCharts.xcodeproj */,
+				FBEE1C0F2383365300F22C57 /* JTAppleCalendar.xcodeproj */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		FBEE1C102383365300F22C57 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FBEE1C142383365300F22C57 /* JTAppleCalendar.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FBEE1C1923833B0700F22C57 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FBEE1C1E23833B0700F22C57 /* PieChartsDemo.app */,
+				FBEE1C2023833B0700F22C57 /* PieCharts.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +278,7 @@
 				FB14DCBD237F66C000ED67E2 /* Sources */,
 				FB14DCBE237F66C000ED67E2 /* Frameworks */,
 				FB14DCBF237F66C000ED67E2 /* Resources */,
+				FBEE1C172383367A00F22C57 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -270,6 +359,16 @@
 			mainGroup = FB14DCB8237F66C000ED67E2;
 			productRefGroup = FB14DCC2237F66C000ED67E2 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FBEE1C102383365300F22C57 /* Products */;
+					ProjectRef = FBEE1C0F2383365300F22C57 /* JTAppleCalendar.xcodeproj */;
+				},
+				{
+					ProductGroup = FBEE1C1923833B0700F22C57 /* Products */;
+					ProjectRef = FBEE1C1823833B0700F22C57 /* PieCharts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				FB14DCC0237F66C000ED67E2 /* Habit Tracker */,
@@ -278,6 +377,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		FBEE1C142383365300F22C57 /* JTAppleCalendar.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JTAppleCalendar.framework;
+			remoteRef = FBEE1C132383365300F22C57 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FBEE1C1E23833B0700F22C57 /* PieChartsDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = PieChartsDemo.app;
+			remoteRef = FBEE1C1D23833B0700F22C57 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FBEE1C2023833B0700F22C57 /* PieCharts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PieCharts.framework;
+			remoteRef = FBEE1C1F23833B0700F22C57 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FB14DCBF237F66C000ED67E2 /* Resources */ = {
@@ -314,10 +437,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBEE1C092383321700F22C57 /* Constants.swift in Sources */,
 				FB14DCC9237F66C000ED67E2 /* ViewController.swift in Sources */,
 				FB14DCCF237F66C100ED67E2 /* Habit_Tracker.xcdatamodeld in Sources */,
+				FBEE1C0B2383322D00F22C57 /* CoreDataStack.swift in Sources */,
 				FB14DCC5237F66C000ED67E2 /* AppDelegate.swift in Sources */,
 				FB14DCC7237F66C000ED67E2 /* SceneDelegate.swift in Sources */,
+				FBEE1C0D238332FB00F22C57 /* HabitController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
