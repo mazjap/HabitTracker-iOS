@@ -37,6 +37,8 @@
 		FBEE1C602383782200F22C57 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C5F2383782200F22C57 /* Date+Extension.swift */; };
 		FBEE1C62238378B000F22C57 /* Habit_Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C61238378B000F22C57 /* Habit_Convenience.swift */; };
 		FBEE1C6423837ECE00F22C57 /* Day_Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C6323837ECE00F22C57 /* Day_Convenience.swift */; };
+		FBEE1C682384A20500F22C57 /* DayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C672384A20500F22C57 /* DayTableViewCell.swift */; };
+		FBEE1C6D2384A28D00F22C57 /* DaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C6C2384A28D00F22C57 /* DaysTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +129,8 @@
 		FBEE1C5F2383782200F22C57 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		FBEE1C61238378B000F22C57 /* Habit_Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_Convenience.swift; sourceTree = "<group>"; };
 		FBEE1C6323837ECE00F22C57 /* Day_Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day_Convenience.swift; sourceTree = "<group>"; };
+		FBEE1C672384A20500F22C57 /* DayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewCell.swift; sourceTree = "<group>"; };
+		FBEE1C6C2384A28D00F22C57 /* DaysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +182,7 @@
 			children = (
 				0E2472A02383442900791524 /* DateCell.swift */,
 				0E2472AE238462A000791524 /* DateHeader.swift */,
+				FBEE1C672384A20500F22C57 /* DayTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 				FBEE1C5B23835D3F00F22C57 /* HabitDetailViewController.swift */,
 				FBEE1C5723835A0A00F22C57 /* HabitsTableViewController.swift */,
 				FB14DCC8237F66C000ED67E2 /* ViewController.swift */,
+				FBEE1C6C2384A28D00F22C57 /* DaysTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -479,6 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBEE1C6D2384A28D00F22C57 /* DaysTableViewController.swift in Sources */,
 				0E2472B4238467A500791524 /* LocalNotificationManager.swift in Sources */,
 				0E2472AF238462A000791524 /* DateHeader.swift in Sources */,
 				FBEE1C5C23835D3F00F22C57 /* HabitDetailViewController.swift in Sources */,
@@ -494,6 +501,7 @@
 				FBEE1C6423837ECE00F22C57 /* Day_Convenience.swift in Sources */,
 				0E2472A7238344CF00791524 /* CalenderViewController.swift in Sources */,
 				FB14DCC7237F66C000ED67E2 /* SceneDelegate.swift in Sources */,
+				FBEE1C682384A20500F22C57 /* DayTableViewCell.swift in Sources */,
 				FBEE1C5923835A0A00F22C57 /* HabitsTableViewController.swift in Sources */,
 				FBEE1C62238378B000F22C57 /* Habit_Convenience.swift in Sources */,
 				FBEE1C0D238332FB00F22C57 /* HabitController.swift in Sources */,
