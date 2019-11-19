@@ -9,15 +9,15 @@
 import UIKit
 import JTAppleCalendar
 
-class CalenderViewController: UIViewController {
+class CalenderViewController: UIViewController, HabitHandlerProtocol {
     
+    var habit: Habit?
     let formatter = DateFormatter()
 
     @IBOutlet weak var habitMonthView: JTACMonthView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         habitMonthView.scrollingMode = .stopAtEachCalendarFrame
         habitMonthView.scrollDirection = .horizontal
         habitMonthView.showsHorizontalScrollIndicator = false
@@ -72,11 +72,12 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
         cell.dateLabel.text = cellState.text
         handleCellTextColor(cell: cell, cellState: cellState)
         handleCellSelected(cell: cell, cellState: cellState)
+        handleCellStatus(cell: cell)
     }
         
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
         if cellState.dateBelongsTo == .thisMonth {
-            cell.dateLabel.textColor = UIColor.black
+            cell.dateLabel.textColor = UIColor.white
         } else {
             cell.dateLabel.textColor = UIColor.gray
         }
@@ -84,6 +85,7 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
     
     func handleCellSelected(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
+            
             cell.selectedView.layer.cornerRadius =  13
             cell.selectedView.isHidden = false
         } else {
@@ -101,5 +103,18 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
 
     func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
         return MonthSize(defaultSize: 50)
+    }
+    
+    func handleCellStatus(cell: DateCell) {
+        cell.statusView.layer.cornerRadius =  13
+        guard let day = cell.day else { return }
+        switch day.status {
+        case .yes:
+            cell.statusView.backgroundColor = UIColor.green
+        case .no:
+            cell.statusView.backgroundColor = UIColor.red
+        default:
+            cell.statusView.backgroundColor = .darkGray
+        }
     }
 }
