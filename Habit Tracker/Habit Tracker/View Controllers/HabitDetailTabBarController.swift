@@ -19,32 +19,29 @@ class HabitDetailTabBarController: UITabBarController {
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        guard let controllers = tabBarController?.viewControllers else { return }
-//        for VC in controllers {
-//            if let vc = VC as? HabitHandlerProtocol {
-//                vc.habit = self.habit
-//            }
-//        }
-        myTabBar.delegate = self
-        let detailVC = tabBarController?.viewControllers?[0] as? HabitDetailTabBarController
-        if let vc = detailVC { vc.habit = self.habit }
+        if let vcs = self.viewControllers {
+            for vc in vcs {
+                print (vc)
+                if var vci = vc as? HabitHandlerProtocol {
+                    vci.habit = self.habit
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let detailVC = tabBarController?.viewControllers?[0] as? HabitDetailTabBarController
-        if let vc = detailVC { vc.habit = self.habit }
     }
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-
-//MARK: - Extensions
+    
+    //MARK: - Extensions
 }
 extension HabitDetailTabBarController: UITabBarControllerDelegate {
     
