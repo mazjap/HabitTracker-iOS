@@ -9,6 +9,12 @@
 import Foundation
 import CoreData
 
+enum DayStatus: Int16 {
+    case yes = 1
+    case no = -1
+    case unset = 0
+}
+
 class HabitController {
     static let shared = HabitController()
     
@@ -18,6 +24,7 @@ class HabitController {
     
     @discardableResult func add(title: String, desc: String, goalDays: Int) -> Habit{
         let habit = Habit(title: title, desc: desc, goalDays: goalDays)
+        //addDay(habit: habit)
         CoreDataStack.shared.save()
         return habit
     }
@@ -34,8 +41,8 @@ class HabitController {
         CoreDataStack.shared.save()
     }
     
-    func addDay (habit: Habit, day: Day) {
-        day.habit = habit
+    func addDay (habit: Habit) {
+        let _ = Day(habit: habit)
         CoreDataStack.shared.save()
     }
 }

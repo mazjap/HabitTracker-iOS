@@ -10,11 +10,7 @@ import UIKit
 
 class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     
-    var habit: Habit? {
-        didSet {
-            updateViews()
-        }
-    }
+    var habit: Habit?
     let pickerData: [String] = {
         return Array(21...365).map { String($0)}
     }()
@@ -35,11 +31,12 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
         guard let title = habitNameTF.text, !title.isEmpty,
             let desc = descriptionTV.text, !desc.isEmpty
             else { return }
-        let days = pickerView.selectedRow(inComponent: 0)
+        let days = pickerView.selectedRow(inComponent: 0) + 21
         if let habit = habit {
             HabitController.shared.update(habit: habit, title: title, desc: desc, goalDays: days)
         } else {
             self.habit = HabitController.shared.add(title: title, desc: desc, goalDays: days)
+            HabitController.shared.addDay(habit: self.habit!)
         }
         navigationController?.popViewController(animated: true)
     }
@@ -49,7 +46,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
             title = habit.title
             habitNameTF.text = habit.title
             descriptionTV.text = habit.desc
-            pickerView.selectedRow(inComponent: Int(habit.goalDays - 21))
+            pickerView.selectedRow(inComponent: (Int(habit.goalDays - 21)))
         }
         title = "Add New Habbit"
     }

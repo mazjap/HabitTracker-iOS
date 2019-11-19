@@ -10,9 +10,10 @@ import Foundation
 import CoreData
 
 extension Day {
-    convenience init (date: Date, status: Bool, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    convenience init (habit: Habit, date: Date = Date(), status: DayStatus = .unset, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
-        self.status = status
+        self.status = status.rawValue
         self.date = date
+        self.habit = habit
     }
 }
