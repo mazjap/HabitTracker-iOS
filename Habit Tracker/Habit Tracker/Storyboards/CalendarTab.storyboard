@@ -33,6 +33,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQc-a6-QS2">
+                                                    <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1NR-Vb-lZk">
                                                     <rect key="frame" x="5" y="5" width="40" height="40"/>
                                                     <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -40,14 +44,18 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udt-Xu-laB">
                                                     <rect key="frame" x="7" y="14.5" width="36" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="udt-Xu-laB" firstAttribute="centerY" secondItem="h8Z-Fj-rpY" secondAttribute="centerY" id="487-Kf-Wfj"/>
                                                 <constraint firstItem="1NR-Vb-lZk" firstAttribute="width" secondItem="h8Z-Fj-rpY" secondAttribute="width" multiplier="0.8" id="54X-De-C0f"/>
+                                                <constraint firstItem="dQc-a6-QS2" firstAttribute="top" secondItem="1NR-Vb-lZk" secondAttribute="top" id="8Id-Ja-SIv"/>
+                                                <constraint firstItem="dQc-a6-QS2" firstAttribute="trailing" secondItem="1NR-Vb-lZk" secondAttribute="trailing" id="NLE-xl-nTT"/>
                                                 <constraint firstItem="1NR-Vb-lZk" firstAttribute="centerY" secondItem="h8Z-Fj-rpY" secondAttribute="centerY" id="Tia-E1-sC5"/>
+                                                <constraint firstItem="dQc-a6-QS2" firstAttribute="leading" secondItem="1NR-Vb-lZk" secondAttribute="leading" id="Zez-8B-s81"/>
+                                                <constraint firstItem="dQc-a6-QS2" firstAttribute="bottom" secondItem="1NR-Vb-lZk" secondAttribute="bottom" id="jTy-en-WWv"/>
                                                 <constraint firstItem="udt-Xu-laB" firstAttribute="centerX" secondItem="h8Z-Fj-rpY" secondAttribute="centerX" id="ucg-7P-Acv"/>
                                                 <constraint firstItem="1NR-Vb-lZk" firstAttribute="centerX" secondItem="h8Z-Fj-rpY" secondAttribute="centerX" id="uow-C3-cYA"/>
                                                 <constraint firstItem="1NR-Vb-lZk" firstAttribute="height" secondItem="h8Z-Fj-rpY" secondAttribute="height" multiplier="0.8" id="yR2-fx-6Br"/>
@@ -56,6 +64,7 @@
                                         <connections>
                                             <outlet property="dateLabel" destination="udt-Xu-laB" id="h9B-eh-sPO"/>
                                             <outlet property="selectedView" destination="1NR-Vb-lZk" id="9zq-ql-gek"/>
+                                            <outlet property="statusView" destination="dQc-a6-QS2" id="NdK-NE-y8g"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

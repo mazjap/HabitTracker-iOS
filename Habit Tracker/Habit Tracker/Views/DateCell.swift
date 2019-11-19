@@ -10,6 +10,9 @@ import JTAppleCalendar
 import UIKit
 
 class DateCell: JTACDayCell {
+    var day: Day?
+    
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var selectedView: UIView!
+    @IBOutlet weak var statusView: UIView!
 }
