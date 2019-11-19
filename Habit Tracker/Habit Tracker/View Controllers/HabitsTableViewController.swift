@@ -11,6 +11,7 @@ import CoreData
 
 class HabitsTableViewController: UITableViewController {
 
+    //MARK: - Properties
     lazy var frc: NSFetchedResultsController<Habit>! = {
         let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
@@ -22,10 +23,16 @@ class HabitsTableViewController: UITableViewController {
         return frc
     }()
     
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        super.viewWillAppear(animated)
     }
 
     // MARK: - Table view data source
@@ -38,7 +45,7 @@ class HabitsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HibitCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HabitCell", for: indexPath)
         let habit = frc.object(at: indexPath)
         cell.textLabel?.text = habit.title
         return cell
@@ -66,8 +73,17 @@ class HabitsTableViewController: UITableViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        switch segue.identifier {
+        case "ShowHabitDetailSegue":
+            guard   let indexPath = tableView.indexPathForSelectedRow,
+                    let vc  = segue.destination as? HabitDetailTabBarController else { return }
+            let habit = frc.object(at: indexPath)
+            vc.habit = habit
+        case "AddHabitDetailSegue":
+            break
+        default:
+            break
+        }
     }
 }
 
