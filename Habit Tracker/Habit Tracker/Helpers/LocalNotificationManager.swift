@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+class LocalNotificationManager {
+    var notifications = [Notification]()
+
+}
+
+struct Notification {
+    var id: String
+    var title: String
+    var datetime: DateComponents
+}
