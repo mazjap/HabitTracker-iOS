@@ -14,7 +14,19 @@
                     <view key="view" contentMode="scaleToFill" id="btM-NA-JGO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z5k-gJ-pFC" customClass="PieChart" customModule="PieCharts">
+                                <rect key="frame" x="20" y="64" width="374" height="372.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="z5k-gJ-pFC" firstAttribute="height" secondItem="btM-NA-JGO" secondAttribute="width" multiplier="0.9" id="1vQ-O3-B4F"/>
+                            <constraint firstItem="z5k-gJ-pFC" firstAttribute="top" secondItem="er8-FJ-oZd" secondAttribute="top" constant="20" id="25F-15-Lzo"/>
+                            <constraint firstItem="er8-FJ-oZd" firstAttribute="trailing" secondItem="z5k-gJ-pFC" secondAttribute="trailing" constant="20" id="HKk-Kf-nVd"/>
+                            <constraint firstItem="z5k-gJ-pFC" firstAttribute="leading" secondItem="er8-FJ-oZd" secondAttribute="leading" constant="20" id="Pjf-f2-14p"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="er8-FJ-oZd"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chart" image="chart.pie" catalog="system" id="04A-9E-wfF"/>
