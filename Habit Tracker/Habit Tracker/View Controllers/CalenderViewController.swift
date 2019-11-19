@@ -11,9 +11,10 @@ import JTAppleCalendar
 
 class CalenderViewController: UIViewController {
 
+    @IBOutlet weak var habitMonthView: JTACMonthView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
     }
     
@@ -30,7 +31,7 @@ class CalenderViewController: UIViewController {
 
 }
 
-extension CalenderViewController: JTACMonthViewDataSource {
+extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate {
     func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy MM dd"
@@ -39,6 +40,13 @@ extension CalenderViewController: JTACMonthViewDataSource {
         let startDate = currentDate - difference
         let endDate = currentDate + difference
         return ConfigurationParameters(startDate: startDate, endDate: endDate)
+    }
+    func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
+        
+    }
+
+    func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
+        
     }
     
     func calendar(_ calendar: JTACMonthView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTACDayCell {
