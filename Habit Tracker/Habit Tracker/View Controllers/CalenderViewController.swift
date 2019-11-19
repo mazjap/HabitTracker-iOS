@@ -108,7 +108,7 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
     func handleCellStatus(cell: DateCell) {
         cell.statusView.layer.cornerRadius =  13
         guard let day = cell.day else { return }
-        switch day.status {
+        switch DayStatus(rawValue: day.status) {
         case .yes:
             cell.statusView.backgroundColor = UIColor.green
         case .no:
