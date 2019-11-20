@@ -66,14 +66,11 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
         guard let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "dateCell", for: indexPath) as? DateCell else { return JTACDayCell() }
         self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
         
-        let days = habit?.days?.allObjects as? [Day]
-        
         let time = Calendar.current.dateComponents([.day, .month, .year], from: cellState.date)
-        let arr = days?.filter { Calendar.current.dateComponents([.day, .month, .year], from: $0.date ?? Date(timeIntervalSince1970: 0)) == time }
-        
-        if arr?.first != nil {
-            cell.day = arr?.first
+        if let habit = habit {
+            cell.day = habit.getDay(with: time)
         }
+        cell.state = cellState
         
         return cell
     }
@@ -84,27 +81,14 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
     
     func configureCell(view: JTACDayCell?, cellState: CellState) {
         guard let cell = view as? DateCell  else { return }
-        cell.dateLabel.text = cellState.text
-        handleCellTextColor(cell: cell, cellState: cellState)
+        cell.setDate(date: cellState.text)
         handleCellSelected(cell: cell, cellState: cellState)
-        handleCellStatus(cell: cell)
-    }
-        
-    func handleCellTextColor(cell: DateCell, cellState: CellState) {
-        if cellState.dateBelongsTo == .thisMonth {
-            cell.dateLabel.textColor = UIColor.white
-        } else {
-            cell.dateLabel.textColor = UIColor.gray
-        }
+        cell.handleCellStatus()
     }
     
     func handleCellSelected(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
-            
-            cell.selectedView.layer.cornerRadius = 13
-            cell.selectedView.isHidden = false
-        } else {
-            cell.selectedView.isHidden = true
+            cell.toggleSelected()
         }
     }
     
@@ -119,18 +103,5 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
 
     func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
         return MonthSize(defaultSize: 50)
-    }
-    
-    func handleCellStatus(cell: DateCell) {
-        cell.statusView.layer.cornerRadius = 13
-        guard let day = cell.day else { return }
-        switch DayStatus(rawValue: day.status) {
-        case .yes:
-            cell.statusView.backgroundColor = UIColor.green
-        case .no:
-            cell.statusView.backgroundColor = UIColor.red
-        default:
-            cell.statusView.backgroundColor = .darkGray
-        }
     }
 }
