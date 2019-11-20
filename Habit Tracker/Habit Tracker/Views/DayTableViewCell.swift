@@ -57,7 +57,6 @@ class DayTableViewCell: UITableViewCell {
     
     //MARK: - Private Methods
     private func updateViews() {
-        
         guard let day = day else { return }
         habitName.text = day.habit?.title
         habitDate.text = day.date?.formatted()
@@ -65,13 +64,13 @@ class DayTableViewCell: UITableViewCell {
         switch dayStatus {
         case .no:
             noButton.backgroundColor = .systemBlue
-            yesButton.backgroundColor = .clear
+            yesButton.backgroundColor = .green
         case .yes:
-            noButton.backgroundColor = .clear
+            noButton.backgroundColor = .red
             yesButton.backgroundColor = .systemBlue
         case .unset:
-            yesButton.backgroundColor = .clear
-            noButton.backgroundColor = .clear
+            yesButton.backgroundColor = .green
+            noButton.backgroundColor = .red
         case .none:
             break
         }

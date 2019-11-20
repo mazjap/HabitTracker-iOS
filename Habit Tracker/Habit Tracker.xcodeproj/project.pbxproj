@@ -40,6 +40,7 @@
 		FBEE1C682384A20500F22C57 /* DayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C672384A20500F22C57 /* DayTableViewCell.swift */; };
 		FBEE1C6D2384A28D00F22C57 /* DaysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C6C2384A28D00F22C57 /* DaysTableViewController.swift */; };
 		FBEE1C702384BB2F00F22C57 /* Habit_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C6E2384BB2F00F22C57 /* Habit_Tracker.xcdatamodeld */; };
+		FBEE1C742384CE9700F22C57 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C732384CE9700F22C57 /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,7 @@
 		FBEE1C672384A20500F22C57 /* DayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewCell.swift; sourceTree = "<group>"; };
 		FBEE1C6C2384A28D00F22C57 /* DaysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysTableViewController.swift; sourceTree = "<group>"; };
 		FBEE1C6F2384BB2F00F22C57 /* Habit_Tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Habit_Tracker.xcdatamodel; sourceTree = "<group>"; };
+		FBEE1C732384CE9700F22C57 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = "../../../../../../../Downloads/SwiftDateExtension-master/DateExtension/DateExtension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +303,7 @@
 		FBEE1C072383320500F22C57 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				FBEE1C732384CE9700F22C57 /* DateExtension.swift */,
 				FBEE1C5F2383782200F22C57 /* Date+Extension.swift */,
 				FBEE1C082383321700F22C57 /* Constants.swift */,
 				FBEE1C5D238360CD00F22C57 /* HabitHandlerProtocol.swift */,
@@ -505,6 +508,7 @@
 				0E2472A7238344CF00791524 /* CalenderViewController.swift in Sources */,
 				FB14DCC7237F66C000ED67E2 /* SceneDelegate.swift in Sources */,
 				FBEE1C682384A20500F22C57 /* DayTableViewCell.swift in Sources */,
+				FBEE1C742384CE9700F22C57 /* DateExtension.swift in Sources */,
 				FBEE1C5923835A0A00F22C57 /* HabitsTableViewController.swift in Sources */,
 				FBEE1C702384BB2F00F22C57 /* Habit_Tracker.xcdatamodeld in Sources */,
 				FBEE1C62238378B000F22C57 /* Habit_Convenience.swift in Sources */,
