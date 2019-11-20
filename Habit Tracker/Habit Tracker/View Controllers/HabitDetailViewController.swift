@@ -37,8 +37,6 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
             HabitController.shared.update(habit: habit, title: title, desc: desc, goalDays: days)
         } else {
             self.habit = HabitController.shared.add(title: title, desc: desc, goalDays: days)
-            let day = HabitController.shared.addDay(habit: self.habit!)
-            self.habit?.addToDays(day)
         }
         navigationController?.popViewController(animated: true)
     }
