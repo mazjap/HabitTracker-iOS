@@ -13,6 +13,7 @@ class LocalNotificationManager {
     public static let shared = LocalNotificationManager()
     
     var notifications = [Notification]()
+    let reuseId = "habitNotification"
 
     func listScheduledNotifications() {
         UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
@@ -66,6 +67,7 @@ class LocalNotificationManager {
             content.subtitle = notification.subtitle ?? ""
             content.body = notification.body
             content.sound = .defaultCritical
+            content.categoryIdentifier = reuseId
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: false)
 //            let trigger = UNCalendarNotificationTrigger(dateMatching: notification.datetime, repeats: true)
             let request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)
@@ -81,7 +83,10 @@ class LocalNotificationManager {
         }
     }
 
-    private init() {}
+    private init() {
+        let habitNotificationCategory = UNNotificationCategory(identifier: reuseId, actions: [], intentIdentifiers: [], options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([habitNotificationCategory])
+    }
 }
 
 struct Notification {
