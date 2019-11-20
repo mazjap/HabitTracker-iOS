@@ -65,8 +65,15 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
     func calendar(_ calendar: JTACMonthView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTACDayCell {
         guard let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "dateCell", for: indexPath) as? DateCell else { return JTACDayCell() }
         self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
-//        let days = habit?.days?.allObjects as? [Day]
-//        cell.day = days?[indexPath.row]
+        
+        let days = habit?.days?.allObjects as? [Day]
+        
+        let time = Calendar.current.dateComponents([.day, .month, .year], from: cellState.date)
+        let arr = days?.filter { Calendar.current.dateComponents([.day, .month, .year], from: $0.date ?? Date(timeIntervalSince1970: 0)) == time }
+        
+        if arr?.first != nil {
+            cell.day = arr?.first
+        }
         
         return cell
     }
