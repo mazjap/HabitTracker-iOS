@@ -3,7 +3,7 @@
 	url = https://github.com/IOS9BW4/ios-build-sprint-project-proposal.git
 [submodule "JTAppleCalendar"]
 	path = JTAppleCalendar
-	url = https://github.com/patchthecode/JTAppleCalendar.git
+	url = https://github.com/IOS9BW4/JTAppleCalendar.git
 [submodule "PieCharts"]
 	path = PieCharts
 	url = https://github.com/IOS9BW4/PieCharts.git
