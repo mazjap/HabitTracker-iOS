@@ -43,9 +43,9 @@ class DayTableViewCell: UITableViewCell {
         guard let day = day else { return }
         switch sender.titleLabel?.text {
         case "Yes":
-            day.status = DayStatus.yes.rawValue
+            HabitController.shared.updateDayStatus(day: day, status: .yes)
         case "No":
-            day.status = DayStatus.no.rawValue
+            HabitController.shared.updateDayStatus(day: day, status: .no)
         case .none:
             break
         default:
