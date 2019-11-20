@@ -12,8 +12,8 @@ import CoreGraphics
 
 typealias CompletionWithError = (_ error: Error?) -> Void
 
-let coreDataModelName: String   = "Habit_Tracker"
-let debuging: Bool              = true
-let testing: Bool               = true
+let coreDataModelName: String = "Habit_Tracker"
+let debuging: Bool = true
+let testing: Bool = true
 
 //let cornerRadius:CGFloat        = 10

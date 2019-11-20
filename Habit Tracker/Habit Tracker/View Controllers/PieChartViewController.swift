@@ -12,10 +12,10 @@ import PieCharts
 class PieChartViewController: UIViewController, HabitHandlerProtocol {
     
     var habit: Habit?
-    @IBOutlet weak var habitsPieChart: PieChart!
-    @IBOutlet weak var completeColorView: UIView!
-    @IBOutlet weak var incompleteColorView: UIView!
-    @IBOutlet weak var unknownColorView: UIView!
+    @IBOutlet private weak var habitsPieChart: PieChart!
+    @IBOutlet private weak var completeColorView: UIView!
+    @IBOutlet private weak var incompleteColorView: UIView!
+    @IBOutlet private weak var unknownColorView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +53,7 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 1
         textLayerSettings.label.textGenerator = {slice in
-            return formatter.string(from: slice.data.percentage * 100 as NSNumber).map{"\($0)%"} ?? ""
+            formatter.string(from: slice.data.percentage * 100 as NSNumber).map { "\($0)%" } ?? ""
         }
 
         let textLayer = PieLineTextLayer()

@@ -11,19 +11,19 @@ import CoreData
 
 class DaysTableViewController: UITableViewController {
 
-    //MARK: - Properties
+    // MARK: - Properties
     lazy var frc: NSFetchedResultsController<Day>! = {
         let fetchRequest: NSFetchRequest<Day> = Day.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true),NSSortDescriptor(key: "habit.title", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true), NSSortDescriptor(key: "habit.title", ascending: true)]
         fetchRequest.predicate = NSPredicate(format: "status == 0")
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self
         do { try frc.performFetch() } catch { fatalError("NSFetchedResultsController failed: \(error)") }
-        print ("DaysTableViewController: Days fetched: \(String(describing: frc.fetchedObjects?.count))")
+        print("DaysTableViewController: Days fetched: \(String(describing: frc.fetchedObjects?.count))")
         return frc
     }()
     
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -44,13 +44,13 @@ class DaysTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DaysCell", for: indexPath) as? DayTableViewCell else { return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DaysCell", for: indexPath) as? DayTableViewCell else { return UITableViewCell() }
         cell.day = frc.object(at: indexPath)
         return cell
     }
 }
 
-//MARK: - NSFetchedResultsControllerDelegate
+// MARK: - NSFetchedResultsControllerDelegate
 extension DaysTableViewController: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
