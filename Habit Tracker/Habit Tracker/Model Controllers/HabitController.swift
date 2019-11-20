@@ -26,17 +26,27 @@ class HabitController {
         let habit = Habit(title: title, desc: desc, goalDays: goalDays, notify: notify, notifyTime: notifyTime)
         CoreDataStack.shared.save()
         addDays(habit: habit)
-        LocalNotificationManager.shared.scheduleNotification(for: habit)
+        
+        if notify {
+            LocalNotificationManager.shared.scheduleNotification(for: habit)
+        }
         return habit
     }
     
     func update(habit: Habit, title: String, desc: String, goalDays: Int, notify: Bool, notifyTime: Date) {
+        let previousHabitNotify = habit.notify
         habit.title = title
         habit.desc = desc
         habit.goalDays = Int64(goalDays)
         habit.notify = notify
         habit.notifyTime = notifyTime
         CoreDataStack.shared.save()
+        
+        if !previousHabitNotify && notify {
+            LocalNotificationManager.shared.scheduleNotification(for: habit)
+        } else if previousHabitNotify && !notify {
+            LocalNotificationManager.shared.deleteNotificiation(with: habit.id?.uuidString ?? "")
+        }
     }
     
     func delete(habit: Habit) {
@@ -61,7 +71,21 @@ class HabitController {
         return days
     }
     
-    func updateDayStatus (day: Day, status: DayStatus) {
+    @discardableResult func addDay(habit: Habit) -> Day {
+        let currentDate = Date()
+        let day = Day(date: currentDate)
+        habit.addToDays(day)
+        CoreDataStack.shared.save()
+        return day
+    }
+    
+    func updateDayStatus(day: Day, status: DayStatus) {
+        day.status = status.rawValue
+        CoreDataStack.shared.save()
+    }
+    
+    func updateNewDayStatus(habit: Habit, status: DayStatus) {
+        let day = addDay(habit: habit)
         day.status = status.rawValue
         CoreDataStack.shared.save()
     }
