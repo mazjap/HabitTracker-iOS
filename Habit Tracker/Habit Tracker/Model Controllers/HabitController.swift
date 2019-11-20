@@ -26,6 +26,7 @@ class HabitController {
         let habit = Habit(title: title, desc: desc, goalDays: goalDays)
         CoreDataStack.shared.save()
         addDays(habit: habit)
+        LocalNotificationManager.shared.scheduleNotification(for: habit)
         return habit
     }
     
@@ -39,6 +40,7 @@ class HabitController {
     func delete(habit: Habit) {
         CoreDataStack.shared.mainContext.delete(habit)
         CoreDataStack.shared.save()
+        LocalNotificationManager.shared.deleteNotificiation(with: habit.id?.uuidString ?? "")
     }
     
     @discardableResult func addDays (habit: Habit) -> [Day] {

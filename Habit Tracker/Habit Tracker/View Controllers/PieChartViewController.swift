@@ -53,7 +53,7 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 1
         textLayerSettings.label.textGenerator = {slice in
-            return formatter.string(from: slice.data.percentage * 100 as NSNumber).map{"\($0)%"} ?? ""
+            formatter.string(from: slice.data.percentage * 100 as NSNumber).map { "\($0)%" } ?? ""
         }
 
         let textLayer = PieLineTextLayer()
