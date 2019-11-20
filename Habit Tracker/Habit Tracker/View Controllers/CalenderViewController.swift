@@ -14,13 +14,18 @@ class CalenderViewController: UIViewController, HabitHandlerProtocol {
     var habit: Habit?
     let formatter = DateFormatter()
 
-    @IBOutlet weak var habitMonthView: JTACMonthView!
+    @IBOutlet private weak var habitMonthView: JTACMonthView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         habitMonthView.scrollingMode = .stopAtEachCalendarFrame
         habitMonthView.scrollDirection = .horizontal
         habitMonthView.showsHorizontalScrollIndicator = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateViews()
     }
     
     func updateViews() {
@@ -58,7 +63,7 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
     }
     
     func calendar(_ calendar: JTACMonthView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTACDayCell {
-        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "dateCell", for: indexPath) as! DateCell
+        guard let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "dateCell", for: indexPath) as? DateCell else { return JTACDayCell() }
         self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
 //        let days = habit?.days?.allObjects as? [Day]
 //        cell.day = days?[indexPath.row]
@@ -89,7 +94,7 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
     func handleCellSelected(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
             
-            cell.selectedView.layer.cornerRadius =  13
+            cell.selectedView.layer.cornerRadius = 13
             cell.selectedView.isHidden = false
         } else {
             cell.selectedView.isHidden = true
@@ -99,7 +104,8 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
     func calendar(_ calendar: JTACMonthView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTACMonthReusableView {
         formatter.dateFormat = "MMMM"
         
-        let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: "DateHeader", for: indexPath) as! DateHeader
+        guard let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: "DateHeader",
+                                                                            for: indexPath) as? DateHeader else { return JTACMonthReusableView() }
         header.monthLabel.text = formatter.string(from: range.start)
         return header
     }
@@ -109,7 +115,7 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
     }
     
     func handleCellStatus(cell: DateCell) {
-        cell.statusView.layer.cornerRadius =  13
+        cell.statusView.layer.cornerRadius = 13
         guard let day = cell.day else { return }
         switch DayStatus(rawValue: day.status) {
         case .yes:
