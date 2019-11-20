@@ -41,8 +41,9 @@ class HabitController {
         CoreDataStack.shared.save()
     }
     
-    func addDay (habit: Habit) {
-        let _ = Day(habit: habit)
+    func addDay (habit: Habit) -> Day {
+        let day = Day(habit: habit)
         CoreDataStack.shared.save()
+        return day
     }
 }

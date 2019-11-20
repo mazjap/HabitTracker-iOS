@@ -14,6 +14,6 @@ extension Day {
         self.init(context: context)
         self.status = status.rawValue
         self.date = date
-        self.habit = habit
+        //self.habit = habit
     }
 }
