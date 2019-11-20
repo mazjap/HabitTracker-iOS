@@ -58,4 +58,9 @@ class HabitController {
         CoreDataStack.shared.save()
         return days
     }
+    
+    func updateDayStatus (day: Day, status: DayStatus) {
+        day.status = status.rawValue
+        CoreDataStack.shared.save()
+    }
 }
