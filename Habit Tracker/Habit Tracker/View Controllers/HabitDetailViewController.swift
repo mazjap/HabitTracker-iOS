@@ -19,6 +19,8 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     @IBOutlet private weak var habitNameTF: UITextField!
     @IBOutlet private weak var pickerView: UIPickerView!
     @IBOutlet private weak var descriptionTV: UITextView!
+    @IBOutlet private weak var notifySwitch: UISwitch!
+    @IBOutlet private weak var notifyTime: UIDatePicker!
     
     
     override func viewDidLoad() {
@@ -33,20 +35,26 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
             let desc = descriptionTV.text, !desc.isEmpty
             else { return }
         let days = pickerView.selectedRow(inComponent: 0) + 21
+        let notify = notifySwitch.isOn
+        let time = notifyTime.date
         if let habit = habit {
-            HabitController.shared.update(habit: habit, title: title, desc: desc, goalDays: days)
+            HabitController.shared.update(habit: habit, title: title, desc: desc, goalDays: days, notify: notify, notifyTime: time)
         } else {
-            self.habit = HabitController.shared.add(title: title, desc: desc, goalDays: days)
+            self.habit = HabitController.shared.add(title: title, desc: desc, goalDays: days, notify: notify, notifyTime: time)
         }
         navigationController?.popViewController(animated: true)
     }
     
     private func updateViews() {
         if let habit = habit {
-            title = habit.title
+            title = "Editing: \(habit.title ?? "")"
             habitNameTF.text = habit.title
             descriptionTV.text = habit.desc
             pickerView.selectedRow(inComponent: (Int(habit.goalDays - 21)))
+            notifySwitch.isOn = habit.notify
+            if let time = habit.notifyTime {
+                notifyTime.date = time
+            }
         }
         title = "Add New Habbit"
     }

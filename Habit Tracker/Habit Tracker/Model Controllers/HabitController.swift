@@ -22,18 +22,20 @@ class HabitController {
         
     }
     
-    @discardableResult func add(title: String, desc: String, goalDays: Int) -> Habit {
-        let habit = Habit(title: title, desc: desc, goalDays: goalDays)
+    @discardableResult func add(title: String, desc: String, goalDays: Int, notify: Bool, notifyTime: Date) -> Habit {
+        let habit = Habit(title: title, desc: desc, goalDays: goalDays, notify: notify, notifyTime: notifyTime)
         CoreDataStack.shared.save()
         addDays(habit: habit)
         LocalNotificationManager.shared.scheduleNotification(for: habit)
         return habit
     }
     
-    func update(habit: Habit, title: String, desc: String, goalDays: Int) {
+    func update(habit: Habit, title: String, desc: String, goalDays: Int, notify: Bool, notifyTime: Date) {
         habit.title = title
         habit.desc = desc
         habit.goalDays = Int64(goalDays)
+        habit.notify = notify
+        habit.notifyTime = notifyTime
         CoreDataStack.shared.save()
     }
     
