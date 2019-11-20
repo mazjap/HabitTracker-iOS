@@ -8,13 +8,14 @@
 
 import Foundation
 import UserNotifications
+import CoreData
 
 class LocalNotificationManager {
     public static let shared = LocalNotificationManager()
     
     var notifications = [Notification]()
-    let reuseId = "habitNotification"
-
+    let reuseId = "HABIT_ACTION"
+    
     func listScheduledNotifications() {
         UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
             for notification in notifications {
@@ -37,9 +38,8 @@ class LocalNotificationManager {
     }
     
     func scheduleNotification(for habit: Habit) {
-        guard let id = habit.id, let title = habit.title else { return }
-        var datetime = DateComponents()
-        datetime.hour = 20
+        guard let id = habit.id, let title = habit.title, let notifyTime = habit.notifyTime else { return }
+        let datetime = Calendar.current.dateComponents([.hour, .minute, .second], from: notifyTime)
         notifications.append(Notification(id: id.uuidString, title: "Habit Reminder", body: "Have you completed your \(title) habit today?", subtitle: nil, datetime: datetime))
         schedule()
     }
@@ -62,17 +62,35 @@ class LocalNotificationManager {
     
     private func scheduleNotifications() {
         for notification in notifications {
+            let notificationCenter = UNUserNotificationCenter.current()
+            let completeAction = UNNotificationAction(identifier: "COMPLETE_ACTION",
+                                                      title: "Mark as completed",
+                                                      options: UNNotificationActionOptions(rawValue: 0))
+            let failAction = UNNotificationAction(identifier: "FAIL_ACTION",
+                                                  title: "Mark as failed",
+                                                  options: UNNotificationActionOptions(rawValue: 0))
+            let meetingInviteCategory =
+                UNNotificationCategory(identifier: reuseId,
+                                       actions: [completeAction, failAction],
+                                       intentIdentifiers: [],
+                                       hiddenPreviewsBodyPlaceholder: "",
+                                       options: .customDismissAction)
+            
+            notificationCenter.setNotificationCategories([meetingInviteCategory])
+            
             let content = UNMutableNotificationContent()
             content.title = notification.title
             content.subtitle = notification.subtitle ?? ""
             content.body = notification.body
             content.sound = .defaultCritical
             content.categoryIdentifier = reuseId
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: false)
+            content.userInfo = ["HABBIT_ID": notification.id]
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false) // For presentation
 //            let trigger = UNCalendarNotificationTrigger(dateMatching: notification.datetime, repeats: true)
             let request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)
             
-            UNUserNotificationCenter.current().add(request) { error in
+            notificationCenter.add(request) { error in
                 if let error = error {
                     NSLog("Error adding notification: \(error)")
                     return
@@ -82,10 +100,46 @@ class LocalNotificationManager {
             }
         }
     }
-
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler:
+        @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        
+        let request: NSFetchRequest<Habit> = Habit.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        let frc = NSFetchedResultsController(fetchRequest: request,
+                                             managedObjectContext: CoreDataStack.shared.mainContext,
+                                             sectionNameKeyPath: nil,
+                                             cacheName: nil)
+        frc.delegate = self as? NSFetchedResultsControllerDelegate
+        do {
+            try frc.performFetch()
+        } catch {
+            fatalError("Unable to fetch object: \(error)")
+        }
+        
+        let habitID = userInfo["HABBIT_ID"] as? String
+        let arr = frc.fetchedObjects?.filter { $0.id?.uuidString == habitID }
+        
+        guard let habit = arr?.first else { return }
+        
+        switch response.actionIdentifier {
+        case "ACCEPT_ACTION":
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .yes)
+        case "DECLINE_ACTION":
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .no)
+        default:
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .unset)
+        }
+        
+        completionHandler()
+    }
+    
     private init() {
-        let habitNotificationCategory = UNNotificationCategory(identifier: reuseId, actions: [], intentIdentifiers: [], options: [])
-        UNUserNotificationCenter.current().setNotificationCategories([habitNotificationCategory])
+        //        let habitNotificationCategory = UNNotificationCategory(identifier: reuseId, actions: [], intentIdentifiers: [], options: [])
+        //        UNUserNotificationCenter.current().setNotificationCategories([habitNotificationCategory])
     }
 }
 
