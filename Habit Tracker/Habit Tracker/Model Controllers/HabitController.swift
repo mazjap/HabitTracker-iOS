@@ -22,7 +22,7 @@ class HabitController {
         
     }
     
-    @discardableResult func add(title: String, desc: String, goalDays: Int) -> Habit{
+    @discardableResult func add(title: String, desc: String, goalDays: Int) -> Habit {
         let habit = Habit(title: title, desc: desc, goalDays: goalDays)
         CoreDataStack.shared.save()
         addDays(habit: habit)
@@ -46,7 +46,7 @@ class HabitController {
         let startDate = habit.startDate ?? Date()
         let currentDate = Date()
         let numDays = Date.daysBetween(date1: startDate, date2: currentDate)
-        if debuging { print ("Start: \(startDate)  Now: \(currentDate) = \(numDays)") }
+        if debuging { print("Start: \(startDate)  Now: \(currentDate) = \(numDays)") }
         for lcv in 0...numDays {
             let setDate = startDate.plus(days: UInt(lcv))
             let day = Day(date: setDate)

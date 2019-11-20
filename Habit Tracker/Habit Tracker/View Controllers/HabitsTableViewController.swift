@@ -11,7 +11,7 @@ import CoreData
 
 class HabitsTableViewController: UITableViewController {
 
-    //MARK: - Properties
+    // MARK: - Properties
     lazy var frc: NSFetchedResultsController<Habit>! = {
         let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
@@ -19,11 +19,11 @@ class HabitsTableViewController: UITableViewController {
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self
         do { try frc.performFetch() } catch { fatalError("NSFetchedResultsController failed: \(error)") }
-        print ("HabitsTableViewController: Habits fetched: \(String(describing: frc.fetchedObjects?.count))")
+        print("HabitsTableViewController: Habits fetched: \(String(describing: frc.fetchedObjects?.count))")
         return frc
     }()
     
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -66,7 +66,7 @@ class HabitsTableViewController: UITableViewController {
             //tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
 
     // MARK: - Navigation
@@ -74,7 +74,7 @@ class HabitsTableViewController: UITableViewController {
         switch segue.identifier {
         case "ShowHabitDetailSegue":
             guard   let indexPath = tableView.indexPathForSelectedRow,
-                    let vc  = segue.destination as? HabitDetailTabBarController else { return }
+                    let vc = segue.destination as? HabitDetailTabBarController else { return }
             let habit = frc.object(at: indexPath)
             vc.habit = habit
         case "AddHabitDetailSegue":
@@ -85,7 +85,7 @@ class HabitsTableViewController: UITableViewController {
     }
 }
 
-//MARK: - NSFetchedResultsControllerDelegate
+// MARK: - NSFetchedResultsControllerDelegate
 extension HabitsTableViewController: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

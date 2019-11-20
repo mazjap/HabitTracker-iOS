@@ -131,7 +131,7 @@ public extension Date {
         return Calendar.current.date(from: dc)!
     }
     
-    static func secondsBetween(date1 d1:Date, date2 d2:Date) -> Int {
+    static func secondsBetween(date1 d1: Date, date2 d2: Date) -> Int {
         let dc = Calendar.current.dateComponents([.second], from: d1, to: d2)
         return dc.second!
     }
@@ -166,7 +166,7 @@ public extension Date {
         return dc.year!
     }
     
-    //MARK- Comparison Methods
+    // MARK: - Comparison Methods
     
     func isGreaterThan(_ date: Date) -> Bool {
         return (self.compare(date) == .orderedDescending)
@@ -176,7 +176,7 @@ public extension Date {
         return (self.compare(date) == .orderedAscending)
     }
     
-    //MARK- Computed Properties
+    // MARK: - Computed Properties
     
     var day: UInt {
         return UInt(Calendar.current.component(.day, from: self))
