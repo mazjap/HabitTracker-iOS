@@ -42,7 +42,6 @@ class HabitController {
     }
     
     @discardableResult func addDays (habit: Habit) -> [Day] {
-        //TODO: Determine how many days missing and add them all
         var days: [Day] = []
         let startDate = habit.startDate ?? Date()
         let currentDate = Date()

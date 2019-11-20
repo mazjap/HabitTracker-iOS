@@ -14,7 +14,7 @@ class DaysTableViewController: UITableViewController {
     //MARK: - Properties
     lazy var frc: NSFetchedResultsController<Day>! = {
         let fetchRequest: NSFetchRequest<Day> = Day.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "habit.title", ascending: true), NSSortDescriptor(key: "date", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true),NSSortDescriptor(key: "habit.title", ascending: true)]
         fetchRequest.predicate = NSPredicate(format: "status == 0")
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self
