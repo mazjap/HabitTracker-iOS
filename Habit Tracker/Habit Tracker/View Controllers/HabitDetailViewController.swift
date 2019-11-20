@@ -18,7 +18,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     
     @IBOutlet private weak var habitNameTF: UITextField!
     @IBOutlet private weak var pickerView: UIPickerView!
-    @IBOutlet private weak var descriptionTV: UITextView!
+    @IBOutlet private weak var descriptionTV: UITextField!
     @IBOutlet private weak var notifySwitch: UISwitch!
     @IBOutlet private weak var notifyTime: UIDatePicker!
     
@@ -45,6 +45,14 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func switchChanged(_ sender: Any) {
+        
+        updateViews()
+    }
+    
+    
+    // MARK: - Private Methods
+    
     private func updateViews() {
         if let habit = habit {
             title = "Editing: \(habit.title ?? "")"
@@ -52,6 +60,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
             descriptionTV.text = habit.desc
             pickerView.selectedRow(inComponent: (Int(habit.goalDays - 21)))
             notifySwitch.isOn = habit.notify
+            notifyTime.isHidden = !habit.notify
             if let time = habit.notifyTime {
                 notifyTime.date = time
             }
