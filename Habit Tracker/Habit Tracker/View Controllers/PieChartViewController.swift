@@ -41,9 +41,9 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
             }
         }
         
-        let completeValue = PieSliceModel(value: 0.7 /* complete/total */, color: UIColor.green)
-        let incompleteValue = PieSliceModel(value: 0.05 /* incomplete/total */, color: UIColor.darkGray)
-        let unchecked = PieSliceModel(value: 0.25 /* unknown/total */, color: UIColor.red)
+        let completeValue = PieSliceModel(value: complete / total, color: UIColor.green)
+        let incompleteValue = PieSliceModel(value: incomplete / total, color: UIColor.darkGray)
+        let unchecked = PieSliceModel(value: unknown / total, color: UIColor.red)
         
         habitsPieChart.models = [completeValue, incompleteValue, unchecked]
         
