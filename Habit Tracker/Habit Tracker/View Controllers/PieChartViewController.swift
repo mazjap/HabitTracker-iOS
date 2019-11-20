@@ -57,7 +57,6 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
         }
 
         let textLayer = PieLineTextLayer()
-//        textLayer.animator = AlphaPieViewLayerAnimator()
         textLayer.settings = textLayerSettings
         
         habitsPieChart.layers = [textLayer]
