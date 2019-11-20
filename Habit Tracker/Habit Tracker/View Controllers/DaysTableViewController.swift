@@ -15,16 +15,22 @@ class DaysTableViewController: UITableViewController {
     lazy var frc: NSFetchedResultsController<Day>! = {
         let fetchRequest: NSFetchRequest<Day> = Day.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "habit.title", ascending: true), NSSortDescriptor(key: "date", ascending: true)]
-        fetchRequest.predicate = NSPredicate(format: "status == %i", 0)
+        fetchRequest.predicate = NSPredicate(format: "status == 0")
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         frc.delegate = self
         do { try frc.performFetch() } catch { fatalError("NSFetchedResultsController failed: \(error)") }
-        print ("HabitsTableViewController: Habits fetched: \(String(describing: frc.fetchedObjects?.count))")
+        print ("DaysTableViewController: Days fetched: \(String(describing: frc.fetchedObjects?.count))")
         return frc
     }()
     
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
