@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 extension Habit {
-    convenience init (title: String, desc: String, goalDays: Int, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    convenience init (title: String, desc: String, goalDays: Int, notify: Bool, notifyTime: Date, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         self.id = UUID()
         self.title = title
@@ -21,7 +21,8 @@ extension Habit {
         } else {
             self.startDate = Date()
         }
-        
+        self.notify = notify
+        self.notifyTime = notifyTime
     }
     
     func getDay(with date: DateComponents) -> Day? {
