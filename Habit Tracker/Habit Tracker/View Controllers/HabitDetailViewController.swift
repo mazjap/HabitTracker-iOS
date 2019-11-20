@@ -13,12 +13,12 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     
     var habit: Habit?
     let pickerData: [String] = {
-        return Array(21...365).map { String($0)}
+        Array(21...365).map { String($0) }
     }()
     
-    @IBOutlet weak var habitNameTF: UITextField!
-    @IBOutlet weak var pickerView: UIPickerView!
-    @IBOutlet weak var descriptionTV: UITextView!
+    @IBOutlet private weak var habitNameTF: UITextField!
+    @IBOutlet private weak var pickerView: UIPickerView!
+    @IBOutlet private weak var descriptionTV: UITextView!
     
     
     override func viewDidLoad() {

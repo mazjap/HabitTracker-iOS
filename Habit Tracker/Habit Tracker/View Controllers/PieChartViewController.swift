@@ -12,10 +12,10 @@ import PieCharts
 class PieChartViewController: UIViewController, HabitHandlerProtocol {
     
     var habit: Habit?
-    @IBOutlet weak var habitsPieChart: PieChart!
-    @IBOutlet weak var completeColorView: UIView!
-    @IBOutlet weak var incompleteColorView: UIView!
-    @IBOutlet weak var unknownColorView: UIView!
+    @IBOutlet private weak var habitsPieChart: PieChart!
+    @IBOutlet private weak var completeColorView: UIView!
+    @IBOutlet private weak var incompleteColorView: UIView!
+    @IBOutlet private weak var unknownColorView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

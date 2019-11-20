@@ -10,18 +10,18 @@ import UIKit
 
 class HabitDetailTabBarController: UITabBarController {
     
-    //MARK: - Properties
+    // MARK: - Properties
     var habit: Habit?
     
-    //MARK: - IBOutlets
-    @IBOutlet weak var myTabBar: UITabBar!
+    // MARK: - IBOutlets
+    @IBOutlet private weak var myTabBar: UITabBar!
     
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         if let vcs = self.viewControllers {
             for vc in vcs {
-                print (vc)
+                print(vc)
                 if var vci = vc as? HabitHandlerProtocol {
                     vci.habit = self.habit
                 }
@@ -41,7 +41,7 @@ class HabitDetailTabBarController: UITabBarController {
         // Pass the selected object to the new view controller.
     }
     
-    //MARK: - Extensions
+    // MARK: - Extensions
 }
 extension HabitDetailTabBarController: UITabBarControllerDelegate {
     

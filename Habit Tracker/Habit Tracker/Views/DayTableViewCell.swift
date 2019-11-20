@@ -11,21 +11,21 @@ import CoreData
 
 class DayTableViewCell: UITableViewCell {
 
-    //MARK: - Properties
+    // MARK: - Properties
     var day: Day? {
-        didSet{
+        didSet {
             updateViews()
         }
     }
     
-    //MARK: - IBOutlets
-    @IBOutlet weak var habitName: UILabel!
-    @IBOutlet weak var habitDate: UILabel!
-    @IBOutlet weak var yesButton: UIButton!
-    @IBOutlet weak var noButton: UIButton!
+    // MARK: - IBOutlets
+    @IBOutlet private weak var habitName: UILabel!
+    @IBOutlet private weak var habitDate: UILabel!
+    @IBOutlet private weak var yesButton: UIButton!
+    @IBOutlet private weak var noButton: UIButton!
     
     
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -37,7 +37,7 @@ class DayTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    //MARK: - IBActions
+    // MARK: - IBActions
     
     @IBAction func buttonsTapped(_ sender: UIButton) {
         guard let day = day else { return }
@@ -48,14 +48,14 @@ class DayTableViewCell: UITableViewCell {
             day.status = DayStatus.no.rawValue
         case .none:
             break
-        case .some(_):
+        default:
             break
         }
         updateViews()
     }
     
     
-    //MARK: - Private Methods
+    // MARK: - Private Methods
     private func updateViews() {
         guard let day = day else { return }
         habitName.text = day.habit?.title
