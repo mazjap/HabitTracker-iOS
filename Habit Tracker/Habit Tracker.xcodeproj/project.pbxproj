@@ -134,7 +134,7 @@
 		FBEE1C672384A20500F22C57 /* DayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTableViewCell.swift; sourceTree = "<group>"; };
 		FBEE1C6C2384A28D00F22C57 /* DaysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysTableViewController.swift; sourceTree = "<group>"; };
 		FBEE1C6F2384BB2F00F22C57 /* Habit_Tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Habit_Tracker.xcdatamodel; sourceTree = "<group>"; };
-		FBEE1C732384CE9700F22C57 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = "../../../../../../../Downloads/SwiftDateExtension-master/DateExtension/DateExtension.swift"; sourceTree = "<group>"; };
+		FBEE1C732384CE9700F22C57 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +333,7 @@
 				FB14DCBE237F66C000ED67E2 /* Frameworks */,
 				FB14DCBF237F66C000ED67E2 /* Resources */,
 				FBEE1C172383367A00F22C57 /* Embed Frameworks */,
+				FBEE1C772385A62B00F22C57 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -485,6 +486,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FBEE1C772385A62B00F22C57 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FB14DCBD237F66C000ED67E2 /* Sources */ = {
