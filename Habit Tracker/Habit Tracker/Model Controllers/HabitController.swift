@@ -24,8 +24,8 @@ class HabitController {
     
     @discardableResult func add(title: String, desc: String, goalDays: Int) -> Habit{
         let habit = Habit(title: title, desc: desc, goalDays: goalDays)
-        //addDay(habit: habit)
         CoreDataStack.shared.save()
+        addDays(habit: habit)
         return habit
     }
     
@@ -41,9 +41,20 @@ class HabitController {
         CoreDataStack.shared.save()
     }
     
-    func addDay (habit: Habit) -> Day {
-        let day = Day(habit: habit)
+    @discardableResult func addDays (habit: Habit) -> [Day] {
+        //TODO: Determine how many days missing and add them all
+        var days: [Day] = []
+        let startDate = habit.startDate ?? Date()
+        let currentDate = Date()
+        let numDays = Date.daysBetween(date1: startDate, date2: currentDate)
+        if debuging { print ("Start: \(startDate)  Now: \(currentDate) = \(numDays)") }
+        for lcv in 0...numDays {
+            let setDate = startDate.plus(days: UInt(lcv))
+            let day = Day(date: setDate)
+            habit.addToDays(day)
+            days.append(day)
+        }
         CoreDataStack.shared.save()
-        return day
+        return days
     }
 }
