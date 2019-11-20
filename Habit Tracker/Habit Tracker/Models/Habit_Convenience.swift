@@ -24,4 +24,10 @@ extension Habit {
         self.notify = notify
         self.notifyTime = notifyTime
     }
+    
+    func getDay(with date: DateComponents) -> Day? {
+        guard let daysArr = self.days?.allObjects as? [Day] else { return nil }
+        let arr = daysArr.filter({ Calendar.current.dateComponents([.day, .month, .year], from: $0.date ?? Date(timeIntervalSince1970: 0)) == date })
+        return arr.first
+    }
 }
