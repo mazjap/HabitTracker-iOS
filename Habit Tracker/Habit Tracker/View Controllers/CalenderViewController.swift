@@ -45,7 +45,7 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
         formatter.dateFormat = "yyyy MM dd"
         let currentDate = Date()
         let difference = TimeInterval(exactly: 15552000)!
-        let startDate = currentDate - difference
+        let startDate = habit?.startDate ?? currentDate - difference
         let endDate = currentDate + difference
         return ConfigurationParameters(startDate: startDate, endDate: endDate)
     }
@@ -60,6 +60,9 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
     func calendar(_ calendar: JTACMonthView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTACDayCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "dateCell", for: indexPath) as! DateCell
         self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
+//        let days = habit?.days?.allObjects as? [Day]
+//        cell.day = days?[indexPath.row]
+        
         return cell
     }
     

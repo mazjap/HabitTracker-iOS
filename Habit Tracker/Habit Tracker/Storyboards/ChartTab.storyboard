@@ -10,7 +10,7 @@
         <!--Chart-->
         <scene sceneID="xPe-o9-tjk">
             <objects>
-                <viewController id="e0F-lc-rP5" sceneMemberID="viewController">
+                <viewController id="e0F-lc-rP5" customClass="PieChartViewController" customModule="Habit_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="btM-NA-JGO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,22 +23,90 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="outerRadius">
-                                        <real key="value" value="100"/>
+                                        <real key="value" value="140"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="kdg-8x-1sx">
+                                <rect key="frame" x="52.5" y="476.5" width="309.5" height="75.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3N8-bY-dEk">
+                                        <rect key="frame" x="0.0" y="0.0" width="309.5" height="20.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wpu-ux-d7L">
+                                                <rect key="frame" x="0.0" y="0.5" width="20" height="20"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="IZc-8K-R6H"/>
+                                                    <constraint firstAttribute="width" secondItem="Wpu-ux-d7L" secondAttribute="height" multiplier="1:1" id="pEP-yy-IAl"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days where habit was completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKD-LU-HaA">
+                                                <rect key="frame" x="28" y="0.0" width="281.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2V9-Ar-LBg">
+                                        <rect key="frame" x="0.0" y="27.5" width="309.5" height="20.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ECS-Qw-le1">
+                                                <rect key="frame" x="0.0" y="0.5" width="20" height="20"/>
+                                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days where habit was not completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sh4-FZ-uYG">
+                                                <rect key="frame" x="28" y="0.0" width="281.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="g5E-xs-8Xv">
+                                        <rect key="frame" x="0.0" y="55" width="309.5" height="20.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="igI-xG-uLu">
+                                                <rect key="frame" x="0.0" y="0.5" width="20" height="20"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days where no response was given" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYN-Q4-5O0">
+                                                <rect key="frame" x="28" y="0.0" width="281.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ECS-Qw-le1" firstAttribute="height" secondItem="Wpu-ux-d7L" secondAttribute="height" id="7vw-DT-VL9"/>
+                                    <constraint firstItem="ECS-Qw-le1" firstAttribute="width" secondItem="Wpu-ux-d7L" secondAttribute="width" id="iZK-9b-8Dc"/>
+                                    <constraint firstItem="igI-xG-uLu" firstAttribute="height" secondItem="Wpu-ux-d7L" secondAttribute="height" id="u9c-Pz-JFI"/>
+                                    <constraint firstItem="igI-xG-uLu" firstAttribute="width" secondItem="Wpu-ux-d7L" secondAttribute="width" id="ujI-Tj-51J"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="z5k-gJ-pFC" firstAttribute="height" secondItem="btM-NA-JGO" secondAttribute="width" multiplier="0.9" id="1vQ-O3-B4F"/>
                             <constraint firstItem="z5k-gJ-pFC" firstAttribute="top" secondItem="er8-FJ-oZd" secondAttribute="top" constant="20" id="25F-15-Lzo"/>
+                            <constraint firstItem="kdg-8x-1sx" firstAttribute="centerX" secondItem="z5k-gJ-pFC" secondAttribute="centerX" id="7RI-3c-UCn"/>
                             <constraint firstItem="er8-FJ-oZd" firstAttribute="trailing" secondItem="z5k-gJ-pFC" secondAttribute="trailing" constant="20" id="HKk-Kf-nVd"/>
                             <constraint firstItem="z5k-gJ-pFC" firstAttribute="leading" secondItem="er8-FJ-oZd" secondAttribute="leading" constant="20" id="Pjf-f2-14p"/>
+                            <constraint firstItem="kdg-8x-1sx" firstAttribute="top" secondItem="z5k-gJ-pFC" secondAttribute="bottom" constant="40" id="ejj-bE-Oxs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="er8-FJ-oZd"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chart" image="chart.pie" catalog="system" id="04A-9E-wfF"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="completeColorView" destination="Wpu-ux-d7L" id="vWX-NV-0rD"/>
+                        <outlet property="habitsPieChart" destination="z5k-gJ-pFC" id="oVk-VR-NZm"/>
+                        <outlet property="incompleteColorView" destination="ECS-Qw-le1" id="cek-1f-l0D"/>
+                        <outlet property="unknownColorView" destination="igI-xG-uLu" id="JN5-rj-p60"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9q-Ne-vWF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
