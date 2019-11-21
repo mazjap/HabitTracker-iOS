@@ -14,7 +14,18 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="QwJ-c2-nw9">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QwJ-c2-nw9" secondAttribute="trailing" id="3cW-Fe-jPE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QwJ-c2-nw9" secondAttribute="bottom" id="7Yo-vP-8bj"/>
+                            <constraint firstItem="QwJ-c2-nw9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="J8F-Cp-Pmy"/>
+                            <constraint firstItem="QwJ-c2-nw9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="taa-DH-8vs"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -23,4 +34,7 @@
             <point key="canvasLocation" x="-19" y="295"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Splash" width="1024" height="1024"/>
+    </resources>
 </document>
