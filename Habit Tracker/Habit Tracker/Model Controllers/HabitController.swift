@@ -22,7 +22,11 @@ class HabitController {
         
     }
     
-    @discardableResult func add(title: String, desc: String, goalDays: Int, notify: Bool, notifyTime: Date) -> Habit {
+    @discardableResult func add(title: String,
+                                desc: String,
+                                goalDays: Int,
+                                notify: Bool,
+                                notifyTime: Date) -> Habit {
         let habit = Habit(title: title, desc: desc, goalDays: goalDays, notify: notify, notifyTime: notifyTime)
         CoreDataStack.shared.save()
         addDays(habit: habit)
@@ -33,7 +37,12 @@ class HabitController {
         return habit
     }
     
-    func update(habit: Habit, title: String, desc: String, goalDays: Int, notify: Bool, notifyTime: Date) {
+    func update(habit: Habit,
+                title: String,
+                desc: String,
+                goalDays: Int,
+                notify: Bool,
+                notifyTime: Date) {
         let previousHabitNotify = habit.notify
         habit.title = title
         habit.desc = desc

@@ -21,7 +21,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     @IBOutlet private weak var descriptionTV: UITextField!
     @IBOutlet private weak var notifySwitch: UISwitch!
     @IBOutlet private weak var notifyTime: UIDatePicker!
-    @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet private weak var navBar: UINavigationItem!
     
     
     override func viewDidLoad() {
