@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="S9j-ZX-seY">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -140,10 +140,10 @@
             </objects>
             <point key="canvasLocation" x="-227" y="574"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Template Tab Bar Controller-->
         <scene sceneID="hTs-4M-GKM">
             <objects>
-                <tabBarController id="S9j-ZX-seY" sceneMemberID="viewController">
+                <tabBarController id="S9j-ZX-seY" customClass="TemplateTabBarController" customModule="Habit_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="eAT-Av-aMJ"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SiN-UF-3VS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>

@@ -11,11 +11,13 @@ import CoreData
 
 class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     
+    // MARK: - Properties
     var habit: Habit?
     let pickerData: [String] = {
         Array(21...365).map { String($0) }
     }()
     
+    // MARK: - IBOutlets
     @IBOutlet private weak var habitNameTF: UITextField!
     @IBOutlet private weak var pickerView: UIPickerView!
     @IBOutlet private weak var descriptionTV: UITextField!
@@ -23,7 +25,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     @IBOutlet private weak var notifyTime: UIDatePicker!
     @IBOutlet private weak var navBar: UINavigationItem!
     
-    
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Habit Details"
@@ -32,6 +34,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
         pickerView.delegate = self
     }
     
+    // MARK: - IBActions
     @IBAction func saveTapped(_ sender: Any) {
         guard let title = habitNameTF.text, !title.isEmpty,
             let desc = descriptionTV.text, !desc.isEmpty
@@ -52,8 +55,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
         HabitController.shared.updateHabitNotifications(habit: habit, notify: notifySwitch.isOn)
         updateViews()
     }
-    
-    
+        
     // MARK: - Private Methods
     
     private func updateViews() {
@@ -71,19 +73,9 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
             navBar.title = "Add New Habit"
         }
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
+// MARK: - Extensions
 extension HabitDetailViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1

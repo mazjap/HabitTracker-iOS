@@ -1,5 +1,5 @@
 //
-//  TableViewControllerTemplate.swift
+//  TemplateTabBarController.swift
 //  Habit Tracker
 //
 //  Created by Lambda_School_Loaner_214 on 11/20/19.
@@ -8,9 +8,10 @@
 
 import UIKit
 
-class TableViewControllerTemplate: UITableViewController {
+class TemplateTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBar.backgroundColor = UIColor.htBarBackground
     }
 }

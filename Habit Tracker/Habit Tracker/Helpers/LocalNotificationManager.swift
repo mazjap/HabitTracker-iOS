@@ -10,12 +10,24 @@ import Foundation
 import UserNotifications
 import CoreData
 
+struct Notification {
+    var id: String
+    var title: String
+    var body: String
+    var subtitle: String?
+    var datetime: DateComponents
+}
+
 class LocalNotificationManager {
+    // MARK: - Properties
     public static let shared = LocalNotificationManager()
     
     var notifications = [Notification]()
     let reuseId = "HABIT_ACTION"
     
+    private init() {}
+    
+    // MARK: - Public Methods
     func listScheduledNotifications() {
         UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
             for notification in notifications {
@@ -48,6 +60,41 @@ class LocalNotificationManager {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
     }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        
+        let request: NSFetchRequest<Habit> = Habit.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        let frc = NSFetchedResultsController(fetchRequest: request,
+                                             managedObjectContext: CoreDataStack.shared.mainContext,
+                                             sectionNameKeyPath: nil,
+                                             cacheName: nil)
+        frc.delegate = self as? NSFetchedResultsControllerDelegate
+        do {
+            try frc.performFetch()
+        } catch {
+            fatalError("Unable to fetch object: \(error)")
+        }
+        
+        let habitID = userInfo["HABBIT_ID"] as? String
+        let arr = frc.fetchedObjects?.filter { $0.id?.uuidString == habitID }
+        
+        guard let habit = arr?.first else { return }
+        
+        switch response.actionIdentifier {
+        case "ACCEPT_ACTION":
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .yes)
+        case "DECLINE_ACTION":
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .no)
+        default:
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .unset)
+        }
+        completionHandler()
+    }
+    
+    // MARK: - Private Methods
     private func requestAuthorization() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { didAllow, error in
             if let error = error {
@@ -104,49 +151,4 @@ class LocalNotificationManager {
             }
         }
     }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        
-        let request: NSFetchRequest<Habit> = Habit.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-        let frc = NSFetchedResultsController(fetchRequest: request,
-                                             managedObjectContext: CoreDataStack.shared.mainContext,
-                                             sectionNameKeyPath: nil,
-                                             cacheName: nil)
-        frc.delegate = self as? NSFetchedResultsControllerDelegate
-        do {
-            try frc.performFetch()
-        } catch {
-            fatalError("Unable to fetch object: \(error)")
-        }
-        
-        let habitID = userInfo["HABBIT_ID"] as? String
-        let arr = frc.fetchedObjects?.filter { $0.id?.uuidString == habitID }
-        
-        guard let habit = arr?.first else { return }
-        
-        switch response.actionIdentifier {
-        case "ACCEPT_ACTION":
-            HabitController.shared.updateNewDayStatus(habit: habit, status: .yes)
-        case "DECLINE_ACTION":
-            HabitController.shared.updateNewDayStatus(habit: habit, status: .no)
-        default:
-            HabitController.shared.updateNewDayStatus(habit: habit, status: .unset)
-        }
-        
-        completionHandler()
-    }
-    
-    private init() {}
-}
-
-struct Notification {
-    var id: String
-    var title: String
-    var body: String
-    var subtitle: String?
-    var datetime: DateComponents
 }

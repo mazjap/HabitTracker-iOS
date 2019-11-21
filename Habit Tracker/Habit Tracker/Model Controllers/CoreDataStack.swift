@@ -10,10 +10,8 @@ import Foundation
 import CoreData
 
 class CoreDataStack {
+    // MARK: - Properties
     static let shared = CoreDataStack()
-    
-    private init() {
-    }
     
     lazy var container: NSPersistentContainer = {
         let container = NSPersistentContainer(name: coreDataModelName)
@@ -30,6 +28,10 @@ class CoreDataStack {
         return container.viewContext
     }
     
+    private init() {
+    }
+    
+    // MARK: - Public Methods
     func save(context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         context.performAndWait {
             do {

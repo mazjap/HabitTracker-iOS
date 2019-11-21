@@ -10,6 +10,8 @@ import JTAppleCalendar
 import UIKit
 
 class DateCell: JTACDayCell {
+    
+    // MARK: - Properties
     var state: CellState? {
         didSet {
             handleCellTextColor()
@@ -21,11 +23,13 @@ class DateCell: JTACDayCell {
         }
     }
     
+    // MARK: - IBOutlets
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var selectedView: UIView!
     @IBOutlet private weak var statusView: UIView!
     
-    func updateViews() {
+    // MARK: - Private Methods
+    private func updateViews() {
         selectedView.isHidden = true
         statusView.backgroundColor = .darkGray
         statusView.layer.cornerRadius = 13
@@ -33,6 +37,7 @@ class DateCell: JTACDayCell {
         handleCellStatus()
     }
     
+    // MARK: - Public Methods
     func setTextColor(color: UIColor) {
         dateLabel.textColor = color
     }
@@ -45,7 +50,8 @@ class DateCell: JTACDayCell {
         dateLabel.text = date
     }
     
-    func handleCellStatus() {
+    // MARK: - Private Methods
+    private func handleCellStatus() {
         guard let day = day else {
             statusView.backgroundColor = .clear
             handleCellTextColor()
@@ -54,16 +60,16 @@ class DateCell: JTACDayCell {
         dateLabel.textColor = .white
         switch DayStatus(rawValue: day.status) {
         case .yes:
-            statusView.backgroundColor = UIColor.green
+            statusView.backgroundColor = UIColor.htCalendarYes
             
         case .no:
-            statusView.backgroundColor = UIColor.red
+            statusView.backgroundColor = UIColor.htCalendarNo
         default:
-            statusView.backgroundColor = .darkGray
+            statusView.backgroundColor = UIColor.htCalendarUnk
         }
     }
     
-    func handleCellTextColor() {
+    private func handleCellTextColor() {
         guard let state = state else {
             setTextColor(color: .black)
             return

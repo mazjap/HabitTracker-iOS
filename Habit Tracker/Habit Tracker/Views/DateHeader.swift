@@ -10,6 +10,7 @@ import UIKit
 import JTAppleCalendar
 
 class DateHeader: JTACMonthReusableView {
+    //TODO: Make this private and fix what that breaks
     @IBOutlet weak var monthLabel: UILabel!
     
 }

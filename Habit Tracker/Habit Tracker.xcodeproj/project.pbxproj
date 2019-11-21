@@ -26,8 +26,7 @@
 		FB14DCD4237F66C600ED67E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB14DCD2237F66C600ED67E2 /* LaunchScreen.storyboard */; };
 		FB14DCDF237F66C600ED67E2 /* Habit_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB14DCDE237F66C600ED67E2 /* Habit_TrackerTests.swift */; };
 		FB14DCEA237F66C700ED67E2 /* Habit_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB14DCE9237F66C700ED67E2 /* Habit_TrackerUITests.swift */; };
-		FBA6400A238621150003082A /* TableViewControllerTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA64009238621150003082A /* TableViewControllerTemplate.swift */; };
-		FBA6400C2386212B0003082A /* ViewControllerTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA6400B2386212B0003082A /* ViewControllerTemplate.swift */; };
+		FBA6400E238638F60003082A /* TemplateTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA6400D238638F60003082A /* TemplateTabBarController.swift */; };
 		FBEE1C092383321700F22C57 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C082383321700F22C57 /* Constants.swift */; };
 		FBEE1C0B2383322D00F22C57 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C0A2383322D00F22C57 /* CoreDataStack.swift */; };
 		FBEE1C0D238332FB00F22C57 /* HabitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEE1C0C238332FB00F22C57 /* HabitController.swift */; };
@@ -121,8 +120,7 @@
 		FB14DCE5237F66C700ED67E2 /* Habit TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Habit TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB14DCE9237F66C700ED67E2 /* Habit_TrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_TrackerUITests.swift; sourceTree = "<group>"; };
 		FB14DCEB237F66C700ED67E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FBA64009238621150003082A /* TableViewControllerTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerTemplate.swift; sourceTree = "<group>"; };
-		FBA6400B2386212B0003082A /* ViewControllerTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTemplate.swift; sourceTree = "<group>"; };
+		FBA6400D238638F60003082A /* TemplateTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateTabBarController.swift; sourceTree = "<group>"; };
 		FBEE1C082383321700F22C57 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FBEE1C0A2383322D00F22C57 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FBEE1C0C238332FB00F22C57 /* HabitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitController.swift; sourceTree = "<group>"; };
@@ -305,8 +303,7 @@
 		FBA64005238620A20003082A /* View Templates */ = {
 			isa = PBXGroup;
 			children = (
-				FBA64009238621150003082A /* TableViewControllerTemplate.swift */,
-				FBA6400B2386212B0003082A /* ViewControllerTemplate.swift */,
+				FBA6400D238638F60003082A /* TemplateTabBarController.swift */,
 			);
 			path = "View Templates";
 			sourceTree = "<group>";
@@ -532,7 +529,6 @@
 				0E2472A12383442900791524 /* DateCell.swift in Sources */,
 				FB14DCC5237F66C000ED67E2 /* AppDelegate.swift in Sources */,
 				FBEE1C5E238360CD00F22C57 /* HabitHandlerProtocol.swift in Sources */,
-				FBA6400A238621150003082A /* TableViewControllerTemplate.swift in Sources */,
 				FBEE1C5A23835A0A00F22C57 /* HabitDetailTabBarController.swift in Sources */,
 				FBEE1C602383782200F22C57 /* Date+Extension.swift in Sources */,
 				0E5C3CCB2384C31800CAE47C /* PieChartViewController.swift in Sources */,
@@ -543,7 +539,7 @@
 				FBEE1C742384CE9700F22C57 /* DateExtension.swift in Sources */,
 				FBEE1C5923835A0A00F22C57 /* HabitsTableViewController.swift in Sources */,
 				FBEE1C702384BB2F00F22C57 /* Habit_Tracker.xcdatamodeld in Sources */,
-				FBA6400C2386212B0003082A /* ViewControllerTemplate.swift in Sources */,
+				FBA6400E238638F60003082A /* TemplateTabBarController.swift in Sources */,
 				FBEE1C62238378B000F22C57 /* Habit_Convenience.swift in Sources */,
 				FBEE1C0D238332FB00F22C57 /* HabitController.swift in Sources */,
 			);

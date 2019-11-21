@@ -33,12 +33,9 @@ class DayTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     // MARK: - IBActions
-    
     @IBAction func buttonsTapped(_ sender: UIButton) {
         guard let day = day else { return }
         switch sender.titleLabel?.text {
@@ -54,7 +51,6 @@ class DayTableViewCell: UITableViewCell {
         updateViews()
     }
     
-    
     // MARK: - Private Methods
     private func updateViews() {
         guard let day = day else { return }
@@ -64,13 +60,13 @@ class DayTableViewCell: UITableViewCell {
         switch dayStatus {
         case .no:
             noButton.backgroundColor = .systemBlue
-            yesButton.backgroundColor = .green
+            yesButton.backgroundColor = UIColor.htCalendarYes
         case .yes:
-            noButton.backgroundColor = .red
+            noButton.backgroundColor = UIColor.htCalendarNo
             yesButton.backgroundColor = .systemBlue
         case .unset:
-            yesButton.backgroundColor = .green
-            noButton.backgroundColor = .red
+            yesButton.backgroundColor = UIColor.htCalendarYes
+            noButton.backgroundColor = UIColor.htCalendarNo
         case .none:
             break
         }

@@ -30,9 +30,9 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
     func updateViews() {
         habitsPieChart.clear()
         
-        completeColorView.backgroundColor = .green
-        incompleteColorView.backgroundColor = .red
-        unknownColorView.backgroundColor = .darkGray
+        completeColorView.backgroundColor = UIColor.htCalendarYes
+        incompleteColorView.backgroundColor = UIColor.htCalendarNo
+        unknownColorView.backgroundColor = UIColor.htCalendarUnk
         
         guard let habit = habit, let days = habit.days?.allObjects as? [Day] else { return }
         let total = Double(habit.days?.allObjects.count ?? 1)
@@ -48,9 +48,9 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
             }
         }
         
-        let completeValue = PieSliceModel(value: complete / total, color: UIColor.green)
-        let incompleteValue = PieSliceModel(value: incomplete / total, color: UIColor.red)
-        let unchecked = PieSliceModel(value: unknown / total, color: UIColor.darkGray)
+        let completeValue = PieSliceModel(value: complete / total, color: UIColor.htCalendarYes)
+        let incompleteValue = PieSliceModel(value: incomplete / total, color: UIColor.htCalendarNo)
+        let unchecked = PieSliceModel(value: unknown / total, color: UIColor.htCalendarUnk)
         
         habitsPieChart.models = [completeValue, incompleteValue, unchecked]
         

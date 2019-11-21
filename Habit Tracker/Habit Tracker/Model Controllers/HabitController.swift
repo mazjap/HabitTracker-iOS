@@ -16,12 +16,15 @@ enum DayStatus: Int16 {
 }
 
 class HabitController {
+    
+    // MARK: - Properties
     static let shared = HabitController()
     
     private init() {
         
     }
     
+    // MARK: - Public Methods
     @discardableResult func add(title: String,
                                 desc: String,
                                 goalDays: Int,
@@ -62,6 +65,7 @@ class HabitController {
         let previousHabitNotify = habit.notify
         habit.notify = notify
         CoreDataStack.shared.save()
+        
         if !previousHabitNotify && notify {
             LocalNotificationManager.shared.scheduleNotification(for: habit)
         } else if previousHabitNotify && !notify {

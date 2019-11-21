@@ -11,11 +11,14 @@ import JTAppleCalendar
 
 class CalenderViewController: UIViewController, HabitHandlerProtocol {
     
+    // MARK: - Properties
     var habit: Habit?
     let formatter = DateFormatter()
 
+    // MARK: - IBOutlets
     @IBOutlet private weak var habitMonthView: JTACMonthView!
     
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         habitMonthView.scrollingMode = .stopAtEachCalendarFrame
@@ -28,23 +31,13 @@ class CalenderViewController: UIViewController, HabitHandlerProtocol {
         updateViews()
     }
     
-    func updateViews() {
+    // MARK: - Private Methods
+    private func updateViews() {
         habitMonthView.reloadData()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
+// MARK: - Extensions
 extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate {
     func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
         formatter.dateFormat = "yyyy MM dd"
@@ -54,6 +47,7 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
         let endDate = currentDate + difference
         return ConfigurationParameters(startDate: startDate, endDate: endDate)
     }
+    
     func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
         configureCell(view: cell, cellState: cellState)
     }

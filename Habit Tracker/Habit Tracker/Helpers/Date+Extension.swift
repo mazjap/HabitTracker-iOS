@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - Extensions
 extension Date {
     func formatted () -> String {
         let formatter = DateFormatter()
@@ -90,7 +91,7 @@ extension Date {
     
 }
 
-// MARK: Helper methods
+// MARK: - Helper methods
 extension Date {
     func getWeekDaysInEnglish() -> [String] {
         var calendar = Calendar(identifier: .gregorian)

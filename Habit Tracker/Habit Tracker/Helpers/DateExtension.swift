@@ -51,6 +51,7 @@ https://github.com/al7/SwiftDateExtension
 
 import Foundation
 
+// MARK: - Extensions
 public extension Date {
         
     func plus(seconds s: UInt) -> Date {
