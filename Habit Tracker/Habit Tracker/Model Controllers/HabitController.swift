@@ -21,7 +21,6 @@ class HabitController {
     static let shared = HabitController()
     
     private init() {
-        
     }
     
     // MARK: - Public Methods
