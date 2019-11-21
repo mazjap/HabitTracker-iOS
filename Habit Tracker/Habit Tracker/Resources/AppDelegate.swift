@@ -8,20 +8,22 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UNUserNotificationCenter.current().delegate = self
         return true
     }
 
     // MARK: UISceneSession Lifecycle
 
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+    func application(_ application: UIApplication,
+                     configurationForConnecting connectingSceneSession: UISceneSession,
+                      options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
@@ -43,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          error conditions that could cause the creation of the store to fail.
         */
         let container = NSPersistentCloudKitContainer(name: "Habit_Tracker")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { _ /*storeDescription*/, error in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -78,5 +80,78 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        let habitID = userInfo["HABBIT_ID"] as? String
+        if habitID != "COMPLETE_ACTION" && habitID != "FAIL_ACTION" {
+            return
+        }
+        let frc = fetchHabits()
+        
+        
+        let arr = frc.fetchedObjects?.filter { $0.id?.uuidString == habitID }
+        guard let habit = arr?.first else { return }
+        let today = Calendar.current.dateComponents([.day, .month, .year], from: Date())
+        if let days = habit.days?.allObjects as? [Day] {
+            let arr = days.filter({ Calendar.current.dateComponents([.day, .month, .year], from: $0.date ?? Date(timeIntervalSince1970: 0)) == today })
+            if arr.isEmpty {
+                performSwitchWithoutDay(with: response, habit: habit)
+            } else {
+                guard let day = arr.first else {
+                    NSLog("Error, day existed but was invalid!")
+                    return
+                }
+                performSwitchWithDay(with: response, habit: habit, day: day)
+            }
+        }
+        
+        completionHandler()
+    }
+    
+    func fetchHabits() -> NSFetchedResultsController<Habit> {
+        let request: NSFetchRequest<Habit> = Habit.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        let frc = NSFetchedResultsController(fetchRequest: request,
+                                             managedObjectContext: CoreDataStack.shared.mainContext,
+                                             sectionNameKeyPath: nil,
+                                             cacheName: nil)
+        frc.delegate = self as? NSFetchedResultsControllerDelegate
+        do {
+            try frc.performFetch()
+        } catch {
+            fatalError("Unable to fetch object: \(error)")
+        }
+        
+        return frc
+    }
+    
+    func performSwitchWithoutDay(with response: UNNotificationResponse, habit: Habit) {
+        switch response.actionIdentifier {
+        case "COMPLETE_ACTION":
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .yes)
+            NSLog("Notification was marked as complete")
+        case "FAIL_ACTION":
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .no)
+            NSLog("Notification was marked as failed")
+        default:
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .unset)
+            NSLog("No response was given from notification")
+        }
+    }
+    
+    func performSwitchWithDay(with response: UNNotificationResponse, habit: Habit, day: Day) {
+        switch response.actionIdentifier {
+        case "COMPLETE_ACTION":
+            HabitController.shared.updateDayStatus(day: day, status: .yes)
+            NSLog("Notification was marked as complete")
+        case "FAIL_ACTION":
+            HabitController.shared.updateDayStatus(day: day, status: .no)
+            NSLog("Error, day existed but was invalid!")
+        default:
+            HabitController.shared.updateDayStatus(day: day, status: .unset)
+            NSLog("Error, day existed but was invalid!")
+        }
+    }
 }
-

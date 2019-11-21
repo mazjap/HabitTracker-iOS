@@ -16,14 +16,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z5k-gJ-pFC" customClass="PieChart" customModule="PieCharts">
-                                <rect key="frame" x="20" y="64" width="374" height="372.5"/>
+                                <rect key="frame" x="20.5" y="64" width="373" height="372.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="z5k-gJ-pFC" secondAttribute="height" multiplier="1:1" id="zmb-dM-ylB"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="innerRadius">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="outerRadius">
-                                        <real key="value" value="140"/>
+                                        <real key="value" value="110"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="animDuration">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="selectedOffset">
+                                        <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -93,8 +102,7 @@
                             <constraint firstItem="z5k-gJ-pFC" firstAttribute="height" secondItem="btM-NA-JGO" secondAttribute="width" multiplier="0.9" id="1vQ-O3-B4F"/>
                             <constraint firstItem="z5k-gJ-pFC" firstAttribute="top" secondItem="er8-FJ-oZd" secondAttribute="top" constant="20" id="25F-15-Lzo"/>
                             <constraint firstItem="kdg-8x-1sx" firstAttribute="centerX" secondItem="z5k-gJ-pFC" secondAttribute="centerX" id="7RI-3c-UCn"/>
-                            <constraint firstItem="er8-FJ-oZd" firstAttribute="trailing" secondItem="z5k-gJ-pFC" secondAttribute="trailing" constant="20" id="HKk-Kf-nVd"/>
-                            <constraint firstItem="z5k-gJ-pFC" firstAttribute="leading" secondItem="er8-FJ-oZd" secondAttribute="leading" constant="20" id="Pjf-f2-14p"/>
+                            <constraint firstItem="z5k-gJ-pFC" firstAttribute="centerX" secondItem="btM-NA-JGO" secondAttribute="centerX" id="AT0-Sp-x7m"/>
                             <constraint firstItem="kdg-8x-1sx" firstAttribute="top" secondItem="z5k-gJ-pFC" secondAttribute="bottom" constant="40" id="ejj-bE-Oxs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="er8-FJ-oZd"/>

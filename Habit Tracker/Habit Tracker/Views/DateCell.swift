@@ -25,11 +25,19 @@ class DateCell: JTACDayCell {
     @IBOutlet private weak var selectedView: UIView!
     @IBOutlet private weak var statusView: UIView!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.updateViews()
+    }
+    
     func updateViews() {
         selectedView.isHidden = true
-        statusView.backgroundColor = .darkGray
         statusView.layer.cornerRadius = 13
         selectedView.layer.cornerRadius = 13
+        selectedView.layer.borderWidth = 2
+        selectedView.layer.borderColor = UIColor.blue.cgColor
+        statusView.layer.borderWidth = 2
+        statusView.layer.borderColor = UIColor.borderColor.cgColor
         handleCellStatus()
     }
     
@@ -37,8 +45,12 @@ class DateCell: JTACDayCell {
         dateLabel.textColor = color
     }
     
-    func toggleSelected() {
-        selectedView.isHidden.toggle()
+    func setNotSelected() {
+        selectedView.isHidden = true
+    }
+    
+    func setSelected() {
+        selectedView.isHidden = false
     }
     
     func setDate(date: String) {
@@ -47,19 +59,19 @@ class DateCell: JTACDayCell {
     
     func handleCellStatus() {
         guard let day = day else {
-            statusView.backgroundColor = .clear
+            statusView.backgroundColor = .htCalenderCell
             handleCellTextColor()
             return
         }
         dateLabel.textColor = .white
         switch DayStatus(rawValue: day.status) {
         case .yes:
-            statusView.backgroundColor = UIColor.green
+            statusView.backgroundColor = .htCalendarYes
             
         case .no:
-            statusView.backgroundColor = UIColor.red
+            statusView.backgroundColor = .htCalendarNo
         default:
-            statusView.backgroundColor = .darkGray
+            statusView.backgroundColor = .htCalendarUnk
         }
     }
     
@@ -69,11 +81,14 @@ class DateCell: JTACDayCell {
             return
         }
         if state.dateBelongsTo == .thisMonth {
-            setTextColor(color: .black)
-        } else if day != nil && day?.status != -1 {
             setTextColor(color: .white)
         } else {
             setTextColor(color: .gray)
         }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        statusView.layer.borderColor = UIColor.borderColor.cgColor
     }
 }
