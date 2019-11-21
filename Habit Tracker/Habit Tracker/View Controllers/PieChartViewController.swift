@@ -22,7 +22,14 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
         updateViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateViews()
+    }
+    
     func updateViews() {
+        habitsPieChart.clear()
+        
         completeColorView.backgroundColor = .green
         incompleteColorView.backgroundColor = .red
         unknownColorView.backgroundColor = .darkGray
