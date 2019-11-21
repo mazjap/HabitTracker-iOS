@@ -13,11 +13,19 @@ class CalenderViewController: UIViewController, HabitHandlerProtocol {
     
     var habit: Habit?
     let formatter = DateFormatter()
+    var selectedCell: DateCell?
 
     @IBOutlet private weak var habitMonthView: JTACMonthView!
+    @IBOutlet private weak var completedLabel: UILabel!
+    @IBOutlet private weak var isCompletedSwitch: UISwitch!
+    @IBOutlet private weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        habitMonthView.layer.borderColor = UIColor.borderColor.cgColor
+        habitMonthView.layer.borderWidth = 2
+        habitMonthView.layer.cornerRadius = 6
+        
         habitMonthView.scrollingMode = .stopAtEachCalendarFrame
         habitMonthView.scrollDirection = .horizontal
         habitMonthView.showsHorizontalScrollIndicator = false
@@ -30,9 +38,26 @@ class CalenderViewController: UIViewController, HabitHandlerProtocol {
     
     func updateViews() {
         habitMonthView.reloadData()
+        completedLabel.isHidden = true
+        isCompletedSwitch.isHidden = true
+        saveButton.isHidden = true
     }
     
-
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        habitMonthView.layer.borderColor = UIColor.borderColor.cgColor
+    }
+    
+    @IBAction func toggleDayStatus(_ sender: UISwitch) {
+        
+    }
+    
+    @IBAction func saveTapped(_ sender: UIButton) {
+        guard let cell = selectedCell, let day = cell.day else { return }
+        HabitController.shared.updateDayStatus(day: day, status: isCompletedSwitch?.isOn == true ? DayStatus.yes : DayStatus.no)
+        updateViews()
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -81,6 +106,7 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
     
     func configureCell(view: JTACDayCell?, cellState: CellState) {
         guard let cell = view as? DateCell  else { return }
+        cell.setNotSelected()
         cell.setDate(date: cellState.text)
         handleCellSelected(cell: cell, cellState: cellState)
         cell.handleCellStatus()
@@ -88,7 +114,24 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
     
     func handleCellSelected(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
-            cell.toggleSelected()
+            cell.setSelected()
+            guard let day = cell.day, let date = day.date else {
+                completedLabel.isHidden = true
+                isCompletedSwitch.isHidden = true
+                saveButton.isHidden = true
+                selectedCell = nil
+                return
+            }
+            selectedCell = cell
+            formatter.dateFormat = "MM/dd/yyyy"
+            completedLabel.isHidden = false
+            completedLabel.text = "\(formatter.string(from: date)): Was \(habit?.title ?? "habit") completed?"
+            isCompletedSwitch.isHidden = false
+            isCompletedSwitch.isOn = day.status == 1 ? true : false
+            saveButton.isHidden = false
+        } else {
+            cell.setNotSelected()
+            selectedCell = nil
         }
     }
     
@@ -97,7 +140,7 @@ extension CalenderViewController: JTACMonthViewDataSource, JTACMonthViewDelegate
         
         guard let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: "DateHeader",
                                                                             for: indexPath) as? DateHeader else { return JTACMonthReusableView() }
-        header.monthLabel.text = formatter.string(from: range.start)
+        header.setMonthLabel(with: formatter.string(from: range.start))
         return header
     }
 

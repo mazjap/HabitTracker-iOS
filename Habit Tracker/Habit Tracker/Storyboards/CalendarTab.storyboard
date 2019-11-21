@@ -42,7 +42,7 @@
                                                     <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udt-Xu-laB">
-                                                    <rect key="frame" x="7" y="14.5" width="36" height="21"/>
+                                                    <rect key="frame" x="7" y="15" width="36" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -92,20 +92,56 @@
                                     <outlet property="ibCalendarDelegate" destination="U2J-aq-mKk" id="NpY-sA-ApY"/>
                                 </connections>
                             </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kgH-18-ans">
+                                <rect key="frame" x="20" y="435" width="374" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date: Was \(habit) Completed?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrq-VU-qmj">
+                                        <rect key="frame" x="0.0" y="0.0" width="305" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Po-XJ-G6o">
+                                        <rect key="frame" x="325" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="toggleDayStatus:" destination="U2J-aq-mKk" eventType="valueChanged" id="dcr-LR-rCm"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rA-eh-BZz">
+                                <rect key="frame" x="137" y="478" width="140" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="05R-OJ-SqO"/>
+                                    <constraint firstAttribute="height" constant="42" id="g41-qm-mmP"/>
+                                </constraints>
+                                <state key="normal" title="Save Changes"/>
+                                <connections>
+                                    <action selector="saveTapped:" destination="U2J-aq-mKk" eventType="touchUpInside" id="Rth-oQ-R8t"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="xJq-s7-HVV" firstAttribute="trailing" secondItem="kgH-18-ans" secondAttribute="trailing" constant="20" id="0r1-RZ-P3t"/>
+                            <constraint firstItem="0rA-eh-BZz" firstAttribute="top" secondItem="kgH-18-ans" secondAttribute="bottom" constant="12" id="8sI-k0-Idn"/>
                             <constraint firstItem="sGT-Kb-Idn" firstAttribute="top" secondItem="xJq-s7-HVV" secondAttribute="top" constant="20" id="LSz-vK-5T5"/>
                             <constraint firstItem="xJq-s7-HVV" firstAttribute="trailing" secondItem="sGT-Kb-Idn" secondAttribute="trailing" constant="20" id="XbW-UJ-YPc"/>
                             <constraint firstItem="sGT-Kb-Idn" firstAttribute="height" secondItem="bTQ-fz-QqC" secondAttribute="width" multiplier="0.8" id="euX-e2-u7f"/>
+                            <constraint firstItem="kgH-18-ans" firstAttribute="top" secondItem="sGT-Kb-Idn" secondAttribute="bottom" constant="40" id="i2a-np-x2X"/>
+                            <constraint firstItem="kgH-18-ans" firstAttribute="leading" secondItem="xJq-s7-HVV" secondAttribute="leading" constant="20" id="twW-34-nHQ"/>
                             <constraint firstItem="sGT-Kb-Idn" firstAttribute="leading" secondItem="xJq-s7-HVV" secondAttribute="leading" constant="20" id="uwZ-2i-6B9"/>
+                            <constraint firstItem="0rA-eh-BZz" firstAttribute="centerX" secondItem="kgH-18-ans" secondAttribute="centerX" id="yby-Bl-hyF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xJq-s7-HVV"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Calendar" image="calendar" catalog="system" id="WEe-Ht-6F3"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="completedLabel" destination="nrq-VU-qmj" id="Pdb-8e-ExL"/>
                         <outlet property="habitMonthView" destination="sGT-Kb-Idn" id="Yer-er-lVG"/>
+                        <outlet property="isCompletedSwitch" destination="0Po-XJ-G6o" id="p7x-tk-Bep"/>
+                        <outlet property="saveButton" destination="0rA-eh-BZz" id="gcy-Oe-Jt0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPR-JS-sXP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

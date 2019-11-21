@@ -30,9 +30,9 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
     func updateViews() {
         habitsPieChart.clear()
         
-        completeColorView.backgroundColor = .green
-        incompleteColorView.backgroundColor = .red
-        unknownColorView.backgroundColor = .darkGray
+        completeColorView.backgroundColor = .htCalendarYes
+        incompleteColorView.backgroundColor = .htCalendarNo
+        unknownColorView.backgroundColor = .htCalendarUnk
         
         guard let habit = habit, let days = habit.days?.allObjects as? [Day] else { return }
         let total = Double(habit.days?.allObjects.count ?? 1)
@@ -48,14 +48,15 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
             }
         }
         
-        let completeValue = PieSliceModel(value: complete / total, color: UIColor.green)
-        let incompleteValue = PieSliceModel(value: incomplete / total, color: UIColor.red)
-        let unchecked = PieSliceModel(value: unknown / total, color: UIColor.darkGray)
+        let completeValue = PieSliceModel(value: complete / total, color: .htCalendarYes)
+        let incompleteValue = PieSliceModel(value: incomplete / total, color: .htCalendarNo)
+        let unchecked = PieSliceModel(value: unknown / total, color: .htCalendarUnk)
         
         habitsPieChart.models = [completeValue, incompleteValue, unchecked]
         
         let textLayerSettings = PieLineTextLayerSettings()
         textLayerSettings.label.font = UIFont.boldSystemFont(ofSize: 16)
+        textLayerSettings.label.textColor = UIColor.borderColor
 
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 1
@@ -67,5 +68,11 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
         textLayer.settings = textLayerSettings
         
         habitsPieChart.layers = [textLayer]
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        PieLineTextLayerSettings().label.textColor = UIColor.borderColor
+//        textLayer.settings = textLayerSettings
     }
 }
