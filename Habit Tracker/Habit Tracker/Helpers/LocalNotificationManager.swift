@@ -65,10 +65,10 @@ class LocalNotificationManager {
         for notification in notifications {
             let notificationCenter = UNUserNotificationCenter.current()
             let completeAction = UNNotificationAction(identifier: "COMPLETE_ACTION",
-                                                      title: "Mark as completed",
+                                                      title: "Yes",
                                                       options: [.foreground])
             let failAction = UNNotificationAction(identifier: "FAIL_ACTION",
-                                                  title: "Mark as failed",
+                                                  title: "No",
                                                   options: [.foreground])
             let habitCategory = UNNotificationCategory(identifier: reuseId,
                                                        actions: [completeAction, failAction],

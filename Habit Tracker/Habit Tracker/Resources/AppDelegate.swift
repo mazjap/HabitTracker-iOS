@@ -84,49 +84,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
-        
+        let habitID = userInfo["HABBIT_ID"] as? String
+        if habitID != "COMPLETE_ACTION" && habitID != "FAIL_ACTION" {
+            return
+        }
         let frc = fetchHabits()
         
-        let habitID = userInfo["HABBIT_ID"] as? String
+        
         let arr = frc.fetchedObjects?.filter { $0.id?.uuidString == habitID }
-        var day: Day?
         guard let habit = arr?.first else { return }
         let today = Calendar.current.dateComponents([.day, .month, .year], from: Date())
-        var shouldCreateDay = true
         if let days = habit.days?.allObjects as? [Day] {
             let arr = days.filter({ Calendar.current.dateComponents([.day, .month, .year], from: $0.date ?? Date(timeIntervalSince1970: 0)) == today })
             if arr.isEmpty {
-                shouldCreateDay = false
+                performSwitchWithoutDay(with: response, habit: habit)
             } else {
-                day = arr.first
-            }
-        }
-        
-        switch response.actionIdentifier {
-        case "COMPLETE_ACTION":
-            if shouldCreateDay {
-                HabitController.shared.updateNewDayStatus(habit: habit, status: .yes)
-            } else {
-                if let thisDay = day {
-                    HabitController.shared.updateDayStatus(day: thisDay, status: .yes)
-                } else {
+                guard let day = arr.first else {
                     NSLog("Error, day existed but was invalid!")
+                    return
                 }
+                performSwitchWithDay(with: response, habit: habit, day: day)
             }
-            NSLog("Notification was marked as complete")
-        case "FAIL_ACTION":
-            if shouldCreateDay {
-                HabitController.shared.updateNewDayStatus(habit: habit, status: .no)
-            } else {
-                if let thisDay = day {
-                    HabitController.shared.updateDayStatus(day: thisDay, status: .no)
-                } else {
-                    NSLog("Error, day existed but was invalid!")
-                }
-            }
-            NSLog("Notification was marked as failed")
-        default:
-            HabitController.shared.updateNewDayStatus(habit: habit, status: .unset)
         }
         
         completionHandler()
@@ -147,5 +125,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         return frc
+    }
+    
+    func performSwitchWithoutDay(with response: UNNotificationResponse, habit: Habit) {
+        switch response.actionIdentifier {
+        case "COMPLETE_ACTION":
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .yes)
+            NSLog("Notification was marked as complete")
+        case "FAIL_ACTION":
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .no)
+            NSLog("Notification was marked as failed")
+        default:
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .unset)
+            NSLog("No response was given from notification")
+        }
+    }
+    
+    func performSwitchWithDay(with response: UNNotificationResponse, habit: Habit, day: Day) {
+        switch response.actionIdentifier {
+        case "COMPLETE_ACTION":
+            HabitController.shared.updateDayStatus(day: day, status: .yes)
+            NSLog("Notification was marked as complete")
+        case "FAIL_ACTION":
+            HabitController.shared.updateDayStatus(day: day, status: .no)
+            NSLog("Error, day existed but was invalid!")
+        default:
+            HabitController.shared.updateDayStatus(day: day, status: .unset)
+            NSLog("Error, day existed but was invalid!")
+        }
     }
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CloudKit
 
 class CoreDataStack {
     static let shared = CoreDataStack()
@@ -15,8 +16,8 @@ class CoreDataStack {
     private init() {
     }
     
-    lazy var container: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: coreDataModelName)
+    lazy var container: NSPersistentCloudKitContainer = {
+        let container = NSPersistentCloudKitContainer(name: coreDataModelName)
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error {
                 fatalError("Unable to load persistent store! Error: \(error)")
