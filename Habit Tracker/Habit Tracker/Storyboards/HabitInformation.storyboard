@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Habit Detail View Controller-->
+        <!--Habit-->
         <scene sceneID="cor-AL-c7M">
             <objects>
-                <viewController id="IvX-d2-00i" customClass="HabitDetailViewController" customModule="Habit_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Habit" id="IvX-d2-00i" customClass="HabitDetailViewController" customModule="Habit_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gw4-zp-MZC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,11 +120,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7NR-m4-UT1"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Habit Details" image="square.and.pencil" catalog="system" id="LpK-BL-QzH"/>
                     <navigationItem key="navigationItem" id="j8C-R3-arF"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="descriptionTV" destination="8r5-sR-5iN" id="O6v-fM-DKt"/>
                         <outlet property="habitNameTF" destination="STO-4c-DOZ" id="Onj-lc-mJh"/>
+                        <outlet property="navBar" destination="lhz-y2-Aa1" id="Fkq-MN-cFz"/>
                         <outlet property="notifySwitch" destination="PKf-Eh-adB" id="nSm-Zs-yED"/>
                         <outlet property="notifyTime" destination="V9y-Q5-TVg" id="t5x-T7-0xt"/>
                         <outlet property="pickerView" destination="zBm-ZB-qkN" id="gJ9-cl-Mil"/>
@@ -132,7 +134,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEI-n5-4YP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="286.95652173913044" y="46.875"/>
+            <point key="canvasLocation" x="-242" y="58"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="square.and.pencil" catalog="system" width="64" height="58"/>
+    </resources>
 </document>

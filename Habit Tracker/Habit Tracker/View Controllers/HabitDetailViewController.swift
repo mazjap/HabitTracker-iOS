@@ -21,10 +21,12 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     @IBOutlet private weak var descriptionTV: UITextField!
     @IBOutlet private weak var notifySwitch: UISwitch!
     @IBOutlet private weak var notifyTime: UIDatePicker!
+    @IBOutlet weak var navBar: UINavigationItem!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Habit Details"
         updateViews()
         pickerView.dataSource = self
         pickerView.delegate = self
@@ -46,7 +48,8 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     }
     
     @IBAction func switchChanged(_ sender: Any) {
-        
+        guard let habit = habit else { return }
+        HabitController.shared.updateHabitNotifications(habit: habit, notify: notifySwitch.isOn)
         updateViews()
     }
     
@@ -55,17 +58,18 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     
     private func updateViews() {
         if let habit = habit {
-            title = "Editing: \(habit.title ?? "")"
+            navBar.title = "Editing: \(habit.title ?? "")"
             habitNameTF.text = habit.title
             descriptionTV.text = habit.desc
             pickerView.selectedRow(inComponent: (Int(habit.goalDays - 21)))
             notifySwitch.isOn = habit.notify
-            notifyTime.isHidden = !habit.notify
+            notifyTime.isHidden = !notifySwitch.isOn
             if let time = habit.notifyTime {
                 notifyTime.date = time
             }
+        } else {
+            navBar.title = "Add New Habit"
         }
-        title = "Add New Habbit"
     }
     
     /*
