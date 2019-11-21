@@ -65,18 +65,17 @@ class LocalNotificationManager {
             let notificationCenter = UNUserNotificationCenter.current()
             let completeAction = UNNotificationAction(identifier: "COMPLETE_ACTION",
                                                       title: "Mark as completed",
-                                                      options: UNNotificationActionOptions(rawValue: 0))
+                                                      options: [.foreground])
             let failAction = UNNotificationAction(identifier: "FAIL_ACTION",
                                                   title: "Mark as failed",
-                                                  options: UNNotificationActionOptions(rawValue: 0))
-            let meetingInviteCategory =
-                UNNotificationCategory(identifier: reuseId,
-                                       actions: [completeAction, failAction],
-                                       intentIdentifiers: [],
-                                       hiddenPreviewsBodyPlaceholder: "",
-                                       options: .customDismissAction)
+                                                  options: [.foreground])
+            let habitCategory = UNNotificationCategory(identifier: reuseId,
+                                                       actions: [completeAction, failAction],
+                                                       intentIdentifiers: [],
+                                                       hiddenPreviewsBodyPlaceholder: "",
+                                                       options: .customDismissAction)
             
-            notificationCenter.setNotificationCategories([meetingInviteCategory])
+            notificationCenter.setNotificationCategories([habitCategory])
             
             let content = UNMutableNotificationContent()
             content.title = notification.title
@@ -86,9 +85,14 @@ class LocalNotificationManager {
             content.categoryIdentifier = reuseId
             content.userInfo = ["HABBIT_ID": notification.id]
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false) // For presentation
-//            let trigger = UNCalendarNotificationTrigger(dateMatching: notification.datetime, repeats: true)
-            let request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)
+            let request: UNNotificationRequest
+            if testing {
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
+                request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)
+            } else {
+                let trigger = UNCalendarNotificationTrigger(dateMatching: notification.datetime, repeats: true)
+                request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)
+            }
             
             notificationCenter.add(request) { error in
                 if let error = error {
@@ -103,8 +107,7 @@ class LocalNotificationManager {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler:
-        @escaping () -> Void) {
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         
         let request: NSFetchRequest<Habit> = Habit.fetchRequest()
@@ -137,10 +140,7 @@ class LocalNotificationManager {
         completionHandler()
     }
     
-    private init() {
-        //        let habitNotificationCategory = UNNotificationCategory(identifier: reuseId, actions: [], intentIdentifiers: [], options: [])
-        //        UNUserNotificationCenter.current().setNotificationCategories([habitNotificationCategory])
-    }
+    private init() {}
 }
 
 struct Notification {
