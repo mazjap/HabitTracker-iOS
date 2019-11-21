@@ -49,6 +49,17 @@ class HabitController {
         }
     }
     
+    func updateHabitNotifications(habit: Habit, notify: Bool) {
+        let previousHabitNotify = habit.notify
+        habit.notify = notify
+        CoreDataStack.shared.save()
+        if !previousHabitNotify && notify {
+            LocalNotificationManager.shared.scheduleNotification(for: habit)
+        } else if previousHabitNotify && !notify {
+            LocalNotificationManager.shared.deleteNotificiation(with: habit.id?.uuidString ?? "")
+        }
+    }
+    
     func delete(habit: Habit) {
         CoreDataStack.shared.mainContext.delete(habit)
         CoreDataStack.shared.save()
