@@ -46,6 +46,7 @@ class LocalNotificationManager {
     
     func deleteNotificiation(with id: String) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [id])
     }
     
     private func requestAuthorization() {
@@ -103,41 +104,6 @@ class LocalNotificationManager {
                 }
             }
         }
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        
-        let request: NSFetchRequest<Habit> = Habit.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-        let frc = NSFetchedResultsController(fetchRequest: request,
-                                             managedObjectContext: CoreDataStack.shared.mainContext,
-                                             sectionNameKeyPath: nil,
-                                             cacheName: nil)
-        frc.delegate = self as? NSFetchedResultsControllerDelegate
-        do {
-            try frc.performFetch()
-        } catch {
-            fatalError("Unable to fetch object: \(error)")
-        }
-        
-        let habitID = userInfo["HABBIT_ID"] as? String
-        let arr = frc.fetchedObjects?.filter { $0.id?.uuidString == habitID }
-        
-        guard let habit = arr?.first else { return }
-        
-        switch response.actionIdentifier {
-        case "ACCEPT_ACTION":
-            HabitController.shared.updateNewDayStatus(habit: habit, status: .yes)
-        case "DECLINE_ACTION":
-            HabitController.shared.updateNewDayStatus(habit: habit, status: .no)
-        default:
-            HabitController.shared.updateNewDayStatus(habit: habit, status: .unset)
-        }
-        
-        completionHandler()
     }
     
     private init() {}
