@@ -17,8 +17,8 @@
 		0E2472B4238467A500791524 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2472B3238467A500791524 /* LocalNotificationManager.swift */; };
 		0E42CB74238632C700065187 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E42CB73238632C700065187 /* CloudKit.framework */; };
 		0E5C3CCB2384C31800CAE47C /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5C3CCA2384C31800CAE47C /* PieChartViewController.swift */; };
-		0E860EC0238774910027B1F7 /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E860EBB2387746B0027B1F7 /* SideMenu.framework */; };
-		0E860EC1238774910027B1F7 /* SideMenu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E860EBB2387746B0027B1F7 /* SideMenu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0EC0C4FD2387AADD009B692C /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E860EBB2387746B0027B1F7 /* SideMenu.framework */; };
+		0EC0C4FE2387AADD009B692C /* SideMenu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E860EBB2387746B0027B1F7 /* SideMenu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0EFF26CC23832C1200487B00 /* ChartTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CB23832C1200487B00 /* ChartTab.storyboard */; };
 		0EFF26CE23832C3100487B00 /* CalendarTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CD23832C3100487B00 /* CalendarTab.storyboard */; };
 		0EFF26D023832E2800487B00 /* HabitInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CF23832E2800487B00 /* HabitInformation.storyboard */; };
@@ -111,7 +111,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0E860EC1238774910027B1F7 /* SideMenu.framework in Embed Frameworks */,
+				0EC0C4FE2387AADD009B692C /* SideMenu.framework in Embed Frameworks */,
 				0E24729923833E0000791524 /* PieCharts.framework in Embed Frameworks */,
 				0E24729B23833E0500791524 /* JTAppleCalendar.framework in Embed Frameworks */,
 			);
@@ -168,7 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E860EC0238774910027B1F7 /* SideMenu.framework in Frameworks */,
+				0EC0C4FD2387AADD009B692C /* SideMenu.framework in Frameworks */,
 				0E42CB74238632C700065187 /* CloudKit.framework in Frameworks */,
 				0E24729823833E0000791524 /* PieCharts.framework in Frameworks */,
 				0E24729A23833E0500791524 /* JTAppleCalendar.framework in Frameworks */,
