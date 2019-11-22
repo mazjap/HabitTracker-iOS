@@ -18,7 +18,7 @@ class HabitsTableViewController: UITableViewController {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         //fetchRequest.predicate = NSPredicate(format: "parent == %@", currentUser)
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                             managedObjectContext: context,
+                                             managedObjectContext: CoreDataStack.shared.mainContext,
                                              sectionNameKeyPath: nil,
                                              cacheName: nil)
         frc.delegate = self
