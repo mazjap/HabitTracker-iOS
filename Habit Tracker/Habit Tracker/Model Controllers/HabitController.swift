@@ -33,7 +33,12 @@ class HabitController {
         return habit
     }
     
-    func update(habit: Habit, title: String, desc: String, goalDays: Int, notify: Bool, notifyTime: Date) {
+    func update(habit: Habit,
+                title: String,
+                desc: String,
+                goalDays: Int,
+                notify: Bool,
+                notifyTime: Date) {
         let previousHabitNotify = habit.notify
         habit.title = title
         habit.desc = desc

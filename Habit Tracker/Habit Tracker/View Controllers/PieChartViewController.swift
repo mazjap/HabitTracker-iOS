@@ -6,8 +6,9 @@
 //  Copyright © 2019 Lambda School. All rights reserved.
 //
 
-import UIKit
 import PieCharts
+import SideMenu
+import UIKit
 
 class PieChartViewController: UIViewController, HabitHandlerProtocol {
     

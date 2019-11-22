@@ -17,6 +17,8 @@
 		0E2472B4238467A500791524 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2472B3238467A500791524 /* LocalNotificationManager.swift */; };
 		0E42CB74238632C700065187 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E42CB73238632C700065187 /* CloudKit.framework */; };
 		0E5C3CCB2384C31800CAE47C /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5C3CCA2384C31800CAE47C /* PieChartViewController.swift */; };
+		0E860EC0238774910027B1F7 /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E860EBB2387746B0027B1F7 /* SideMenu.framework */; };
+		0E860EC1238774910027B1F7 /* SideMenu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E860EBB2387746B0027B1F7 /* SideMenu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0EFF26CC23832C1200487B00 /* ChartTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CB23832C1200487B00 /* ChartTab.storyboard */; };
 		0EFF26CE23832C3100487B00 /* CalendarTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CD23832C3100487B00 /* CalendarTab.storyboard */; };
 		0EFF26D023832E2800487B00 /* HabitInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CF23832E2800487B00 /* HabitInformation.storyboard */; };
@@ -65,6 +67,27 @@
 			remoteGlobalIDString = 6AC1CD431E1C013900120720;
 			remoteInfo = PieCharts;
 		};
+		0E860EBA2387746B0027B1F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E860EB42387746B0027B1F7 /* SideMenu.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7B9DC9041DC6E8C1000D4007;
+			remoteInfo = SideMenu;
+		};
+		0E860EBC2387746B0027B1F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E860EB42387746B0027B1F7 /* SideMenu.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7B48A0D31DCB2487002990A1;
+			remoteInfo = Example;
+		};
+		0E860EBE2387746B0027B1F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E860EB42387746B0027B1F7 /* SideMenu.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8432CC0122FFBCF4003D2BBD;
+			remoteInfo = ExampleTests;
+		};
 		FB14DCDB237F66C600ED67E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FB14DCB9237F66C000ED67E2 /* Project object */;
@@ -88,6 +111,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0E860EC1238774910027B1F7 /* SideMenu.framework in Embed Frameworks */,
 				0E24729923833E0000791524 /* PieCharts.framework in Embed Frameworks */,
 				0E24729B23833E0500791524 /* JTAppleCalendar.framework in Embed Frameworks */,
 			);
@@ -106,6 +130,7 @@
 		0E42CB6F238632BC00065187 /* Habit Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Habit Tracker.entitlements"; sourceTree = "<group>"; };
 		0E42CB73238632C700065187 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		0E5C3CCA2384C31800CAE47C /* PieChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
+		0E860EB42387746B0027B1F7 /* SideMenu.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SideMenu.xcodeproj; path = ../../../SideMenu/SideMenu.xcodeproj; sourceTree = "<group>"; };
 		0EFF26CB23832C1200487B00 /* ChartTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChartTab.storyboard; sourceTree = "<group>"; };
 		0EFF26CD23832C3100487B00 /* CalendarTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarTab.storyboard; sourceTree = "<group>"; };
 		0EFF26CF23832E2800487B00 /* HabitInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitInformation.storyboard; sourceTree = "<group>"; };
@@ -143,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E860EC0238774910027B1F7 /* SideMenu.framework in Frameworks */,
 				0E42CB74238632C700065187 /* CloudKit.framework in Frameworks */,
 				0E24729823833E0000791524 /* PieCharts.framework in Frameworks */,
 				0E24729A23833E0500791524 /* JTAppleCalendar.framework in Frameworks */,
@@ -191,6 +217,16 @@
 				FBEE1C672384A20500F22C57 /* DayTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		0E860EB52387746B0027B1F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0E860EBB2387746B0027B1F7 /* SideMenu.framework */,
+				0E860EBD2387746B0027B1F7 /* Example.app */,
+				0E860EBF2387746B0027B1F7 /* ExampleTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		FB14DCB8237F66C000ED67E2 = {
@@ -319,6 +355,7 @@
 			children = (
 				0E42CB73238632C700065187 /* CloudKit.framework */,
 				0E24728F23833DE900791524 /* PieCharts.xcodeproj */,
+				0E860EB42387746B0027B1F7 /* SideMenu.xcodeproj */,
 				0E24728923833DDB00791524 /* JTAppleCalendar.xcodeproj */,
 			);
 			name = Frameworks;
@@ -426,6 +463,10 @@
 					ProductGroup = 0E24729023833DE900791524 /* Products */;
 					ProjectRef = 0E24728F23833DE900791524 /* PieCharts.xcodeproj */;
 				},
+				{
+					ProductGroup = 0E860EB52387746B0027B1F7 /* Products */;
+					ProjectRef = 0E860EB42387746B0027B1F7 /* SideMenu.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -456,6 +497,27 @@
 			fileType = wrapper.framework;
 			path = PieCharts.framework;
 			remoteRef = 0E24729623833DE900791524 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0E860EBB2387746B0027B1F7 /* SideMenu.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SideMenu.framework;
+			remoteRef = 0E860EBA2387746B0027B1F7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0E860EBD2387746B0027B1F7 /* Example.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Example.app;
+			remoteRef = 0E860EBC2387746B0027B1F7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0E860EBF2387746B0027B1F7 /* ExampleTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ExampleTests.xctest;
+			remoteRef = 0E860EBE2387746B0027B1F7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
