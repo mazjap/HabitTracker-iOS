@@ -152,6 +152,4 @@ class LocalNotificationManager {
             }
         }
     }
-    
-    private init() {}
 }

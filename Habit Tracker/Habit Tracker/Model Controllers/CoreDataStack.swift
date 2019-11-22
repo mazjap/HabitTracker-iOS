@@ -32,9 +32,6 @@ class CoreDataStack {
         return container.viewContext
     }
     
-    private init() {
-    }
-    
     // MARK: - Public Methods
     func save(context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         context.performAndWait {

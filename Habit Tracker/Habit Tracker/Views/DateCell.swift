@@ -40,7 +40,7 @@ class DateCell: JTACDayCell {
         selectedView.layer.borderWidth = 2
         selectedView.layer.borderColor = UIColor.blue.cgColor
         statusView.layer.borderWidth = 2
-        statusView.layer.borderColor = UIColor.borderColor.cgColor
+        //statusView.layer.borderColor = UIColor.borderColor.cgColor
         handleCellStatus()
     }
     
@@ -61,10 +61,9 @@ class DateCell: JTACDayCell {
         dateLabel.text = date
     }
     
-    // MARK: - Private Methods
-    private func handleCellStatus() {
+    func handleCellStatus() {
         guard let day = day else {
-            statusView.backgroundColor = .htCalenderCell
+            statusView.backgroundColor = .htBackground
             handleCellTextColor()
             return
         }
@@ -80,6 +79,7 @@ class DateCell: JTACDayCell {
         }
     }
     
+    // MARK: - Private Methods
     private func handleCellTextColor() {
         guard let state = state else {
             setTextColor(color: .black)
