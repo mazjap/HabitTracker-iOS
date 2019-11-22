@@ -90,7 +90,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         let frc = fetchHabits()
         
-        
         let arr = frc.fetchedObjects?.filter { $0.id?.uuidString == habitID }
         guard let habit = arr?.first else { return }
         let today = Calendar.current.dateComponents([.day, .month, .year], from: Date())
