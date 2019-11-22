@@ -30,7 +30,7 @@ class HabitsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.accessibilityIdentifier = "MyHabitsTableView" 
+        tableView.accessibilityIdentifier = "MyHabitsTableView"
     }
     
     override func viewWillAppear(_ animated: Bool) {
