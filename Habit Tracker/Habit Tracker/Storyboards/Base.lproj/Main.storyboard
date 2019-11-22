@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="S9j-ZX-seY">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Habits-->
+        <scene sceneID="Qcj-4k-OVU">
+            <objects>
+                <tableViewController id="a36-em-2N6" customClass="HabitsTableViewController" customModule="Habit_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xRc-tQ-fb5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HabitCell" id="eam-5x-gm7">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eam-5x-gm7" id="V3e-cQ-LXi">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="aUS-OH-WeK" kind="show" identifier="ShowHabitDetailSegue" id="la6-aQ-jSw"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="a36-em-2N6" id="ESg-ha-ulI"/>
+                            <outlet property="delegate" destination="a36-em-2N6" id="pfh-9H-T2J"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Habits" id="4JP-fa-CLi">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1ed-Xk-fya">
+                            <connections>
+                                <segue destination="aUS-OH-WeK" kind="show" identifier="AddHabitDetailSegue" id="0Uf-mp-4jw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8RA-ck-m9u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="666.66666666666674" y="-150"/>
+        </scene>
+        <!--Responses-->
+        <scene sceneID="7ox-JV-ofX">
+            <objects>
+                <tableViewController id="OtS-ME-rXA" customClass="DaysTableViewController" customModule="Habit_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FJ9-2I-Hri">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DaysCell" id="YYV-Xi-1Sc" customClass="DayTableViewCell" customModule="Habit_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="45.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YYV-Xi-1Sc" id="FTp-pT-NLA">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="45.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1d5-Cd-Wzm">
+                                            <rect key="frame" x="20" y="2" width="374" height="41.5"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="4NR-b5-Njf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="258" height="41.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Habit Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2BE-br-wPb">
+                                                            <rect key="frame" x="0.0" y="0.0" width="258" height="20.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20.5" id="fgy-q8-kpr"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nku-8w-Bev">
+                                                            <rect key="frame" x="0.0" y="20.5" width="36" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="2BE-br-wPb" firstAttribute="centerX" secondItem="4NR-b5-Njf" secondAttribute="centerX" id="fnh-NI-0xz"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1Bc-Wa-6MA">
+                                                    <rect key="frame" x="266" y="0.0" width="108" height="41.5"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEy-4p-JwD">
+                                                            <rect key="frame" x="0.0" y="6" width="50" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="wfr-SQ-NJ9"/>
+                                                            </constraints>
+                                                            <state key="normal" title="Yes"/>
+                                                            <connections>
+                                                                <action selector="buttonsTapped:" destination="YYV-Xi-1Sc" eventType="touchUpInside" id="NE5-Ex-eM9"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8o-3f-phh">
+                                                            <rect key="frame" x="58" y="6" width="50" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="HLM-WX-u7N"/>
+                                                            </constraints>
+                                                            <state key="normal" title="No"/>
+                                                            <connections>
+                                                                <action selector="buttonsTapped:" destination="YYV-Xi-1Sc" eventType="touchUpInside" id="tWL-gj-Fa9"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="1d5-Cd-Wzm" secondAttribute="trailing" constant="20" id="LEm-1D-zIi"/>
+                                        <constraint firstItem="1d5-Cd-Wzm" firstAttribute="leading" secondItem="FTp-pT-NLA" secondAttribute="leading" constant="20" id="QlT-Bf-13o"/>
+                                        <constraint firstAttribute="bottom" secondItem="1d5-Cd-Wzm" secondAttribute="bottom" constant="2" id="SwK-nK-41W"/>
+                                        <constraint firstItem="1d5-Cd-Wzm" firstAttribute="top" secondItem="FTp-pT-NLA" secondAttribute="top" constant="2" id="zxd-sn-sgr"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="habitDate" destination="Nku-8w-Bev" id="ZU6-kM-w9j"/>
+                                    <outlet property="habitName" destination="2BE-br-wPb" id="YDC-rt-CUn"/>
+                                    <outlet property="noButton" destination="e8o-3f-phh" id="8nd-6s-P2e"/>
+                                    <outlet property="yesButton" destination="rEy-4p-JwD" id="bNT-Pn-Ufy"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OtS-ME-rXA" id="Uw9-AL-1bp"/>
+                            <outlet property="delegate" destination="OtS-ME-rXA" id="dv5-GG-nZV"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Responses" image="checkmark" catalog="system" id="EKR-68-n6X"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cyq-CU-nsw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-227" y="574"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="hTs-4M-GKM">
+            <objects>
+                <tabBarController id="S9j-ZX-seY" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="eAT-Av-aMJ"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SiN-UF-3VS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="OtS-ME-rXA" kind="relationship" relationship="viewControllers" id="fi6-xV-Ssi"/>
+                        <segue destination="p0Q-EU-pCD" kind="relationship" relationship="viewControllers" id="Lgu-0a-eAm"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VOn-3z-IBO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1297" y="242"/>
+        </scene>
+        <!--HabitInformation-->
+        <scene sceneID="kmZ-Dl-dAC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HabitInformation" id="aUS-OH-WeK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Aqe-am-RpD"/>
+                    <navigationItem key="navigationItem" id="GGD-ge-asK"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bj4-2a-YuD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1531" y="-150"/>
+        </scene>
+        <!--Habits-->
+        <scene sceneID="zrS-gf-QjO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p0Q-EU-pCD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Habits" image="square.and.pencil" catalog="system" id="RKw-9p-hnu"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ufa-5l-4yd">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="a36-em-2N6" kind="relationship" relationship="rootViewController" id="X4I-dg-MNF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zCU-xh-F0x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-243.47826086956525" y="-150"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="checkmark" catalog="system" width="64" height="56"/>
+        <image name="square.and.pencil" catalog="system" width="64" height="58"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="la6-aQ-jSw"/>
+    </inferredMetricsTieBreakers>
+</document>
