@@ -21,7 +21,6 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     @IBOutlet private weak var descriptionTV: UITextView!
     @IBOutlet private weak var notifySwitch: UISwitch!
     @IBOutlet private weak var notifyTime: UIDatePicker!
-    @IBOutlet private weak var navBar: UINavigationItem!
     
     
     override func viewDidLoad() {
@@ -100,16 +99,16 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     func presentMenu() {
         performSegue(withIdentifier: "SideMenuModalSegue", sender: self)
     }
-    
-    /*
-     // MARK: - Navigation
      
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+        if segue.identifier == "SideMenuModalSegue" {
+            guard let vc = storyboard?.instantiateViewController(identifier: "SideMenuTableView") as? SideMenuTableViewController,
+                let navVC = segue.destination as? UINavigationController else { return }
+            
+            navVC.pushViewController(vc, animated: true)
+            vc.habit = habit
+        }
      }
-     */
     
 }
 

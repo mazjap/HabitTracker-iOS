@@ -77,7 +77,7 @@ class HabitsTableViewController: UITableViewController {
         switch segue.identifier {
         case "ShowHabitDetailSegue":
             guard   let indexPath = tableView.indexPathForSelectedRow,
-                    let vc = segue.destination as? HabitDetailTabBarController else { return }
+                    let vc = segue.destination as? HabitDetailViewController else { return }
             let habit = frc.object(at: indexPath)
             vc.habit = habit
         case "AddHabitDetailSegue":

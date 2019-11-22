@@ -19,6 +19,7 @@
 		0E5C3CCB2384C31800CAE47C /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5C3CCA2384C31800CAE47C /* PieChartViewController.swift */; };
 		0EC0C4FD2387AADD009B692C /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E860EBB2387746B0027B1F7 /* SideMenu.framework */; };
 		0EC0C4FE2387AADD009B692C /* SideMenu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E860EBB2387746B0027B1F7 /* SideMenu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0EC0C5062387B059009B692C /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC0C5052387B059009B692C /* SideMenuTableViewController.swift */; };
 		0EFF26CC23832C1200487B00 /* ChartTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CB23832C1200487B00 /* ChartTab.storyboard */; };
 		0EFF26CE23832C3100487B00 /* CalendarTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CD23832C3100487B00 /* CalendarTab.storyboard */; };
 		0EFF26D023832E2800487B00 /* HabitInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFF26CF23832E2800487B00 /* HabitInformation.storyboard */; };
@@ -131,6 +132,7 @@
 		0E42CB73238632C700065187 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		0E5C3CCA2384C31800CAE47C /* PieChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
 		0E860EB42387746B0027B1F7 /* SideMenu.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SideMenu.xcodeproj; path = ../../../SideMenu/SideMenu.xcodeproj; sourceTree = "<group>"; };
+		0EC0C5052387B059009B692C /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		0EFF26CB23832C1200487B00 /* ChartTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChartTab.storyboard; sourceTree = "<group>"; };
 		0EFF26CD23832C3100487B00 /* CalendarTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarTab.storyboard; sourceTree = "<group>"; };
 		0EFF26CF23832E2800487B00 /* HabitInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HabitInformation.storyboard; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				FBEE1C5B23835D3F00F22C57 /* HabitDetailViewController.swift */,
 				FBEE1C5723835A0A00F22C57 /* HabitsTableViewController.swift */,
 				FBEE1C6C2384A28D00F22C57 /* DaysTableViewController.swift */,
+				0EC0C5052387B059009B692C /* SideMenuTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				FBEE1C702384BB2F00F22C57 /* Habit_Tracker.xcdatamodeld in Sources */,
 				FBEE1C62238378B000F22C57 /* Habit_Convenience.swift in Sources */,
 				FBEE1C0D238332FB00F22C57 /* HabitController.swift in Sources */,
+				0EC0C5062387B059009B692C /* SideMenuTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -126,7 +126,7 @@
         <!--Root View Controller-->
         <scene sceneID="As4-xF-YLI">
             <objects>
-                <tableViewController id="DHn-9n-Kxf" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SideMenuTableView" id="DHn-9n-Kxf" customClass="SideMenuTableViewController" customModule="Habit_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wWk-bo-WCf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -156,7 +156,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="9zo-zL-sBO" kind="show" trigger="accessoryAction" id="cw6-vW-NwY"/>
+                                            <segue destination="9zo-zL-sBO" kind="show" identifier="CalendarShowSegue" id="e34-dz-8O0"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="MNk-59-QxZ" style="IBUITableViewCellStyleDefault" id="rPv-Nb-iMe">
@@ -176,7 +176,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Jk3-SB-ufE" kind="show" id="RGx-R1-Vg1"/>
+                                            <segue destination="Jk3-SB-ufE" kind="show" identifier="PieChartShowSegue" id="RGx-R1-Vg1"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
