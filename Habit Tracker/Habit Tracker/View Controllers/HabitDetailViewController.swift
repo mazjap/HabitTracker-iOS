@@ -36,6 +36,8 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
         pickerView.dataSource = self
         pickerView.delegate = self
         descriptionTV.delegate = self
+        habitNameTF.delegate = self
+        
     }
     
     @IBAction func saveTapped(_ sender: UIButton) {
@@ -100,7 +102,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
         performSegue(withIdentifier: "SideMenuModalSegue", sender: self)
     }
      
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SideMenuModalSegue" {
             guard let vc = storyboard?.instantiateViewController(identifier: "SideMenuTableView") as? SideMenuTableViewController,
                 let navVC = segue.destination as? UINavigationController else { return }
@@ -108,8 +110,11 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
             navVC.pushViewController(vc, animated: true)
             vc.habit = habit
         }
-     }
+    }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 }
 
 extension HabitDetailViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -130,7 +135,7 @@ extension HabitDetailViewController: UIPickerViewDataSource, UIPickerViewDelegat
     }
 }
 
-extension HabitDetailViewController: UITextViewDelegate {
+extension HabitDetailViewController: UITextViewDelegate, UITextFieldDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == .lightGray {
@@ -144,5 +149,10 @@ extension HabitDetailViewController: UITextViewDelegate {
             textView.text = "Other details"
             textView.textColor = .lightGray
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
