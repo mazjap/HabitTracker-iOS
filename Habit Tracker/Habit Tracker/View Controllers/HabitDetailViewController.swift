@@ -31,13 +31,12 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
                                          target: self,
                                          action: #selector(self.presentMenu))
         self.navigationItem.setRightBarButton(menuToggle, animated: true)
-        updateViews()
         setDescTextColor()
         pickerView.dataSource = self
         pickerView.delegate = self
         descriptionTV.delegate = self
         habitNameTF.delegate = self
-        
+        updateViews()
     }
     
     @IBAction func saveTapped(_ sender: UIButton) {
@@ -72,7 +71,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
             
             habitNameTF.text = habit.title
             descriptionTV.text = habit.desc
-            pickerView.selectedRow(inComponent: (Int(habit.goalDays - 21)))
+            pickerView.selectRow((Int(habit.goalDays - 21)), inComponent: 0, animated: true)
             notifySwitch.isOn = habit.notify
             notifyTime.isHidden = !notifySwitch.isOn
             if let time = habit.notifyTime {
@@ -130,9 +129,9 @@ extension HabitDetailViewController: UIPickerViewDataSource, UIPickerViewDelegat
         return pickerData[row]
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        updateViews()
-    }
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        updateViews()
+//    }
 }
 
 extension HabitDetailViewController: UITextViewDelegate, UITextFieldDelegate {
