@@ -16,7 +16,10 @@ class HabitsTableViewController: UITableViewController {
         let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         //fetchRequest.predicate = NSPredicate(format: "parent == %@", currentUser)
-        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                             managedObjectContext: CoreDataStack.shared.mainContext,
+                                             sectionNameKeyPath: nil,
+                                             cacheName: nil)
         frc.delegate = self
         do { try frc.performFetch() } catch { fatalError("NSFetchedResultsController failed: \(error)") }
         print("HabitsTableViewController: Habits fetched: \(String(describing: frc.fetchedObjects?.count))")

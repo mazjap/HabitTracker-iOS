@@ -109,7 +109,13 @@ public extension Date {
         return self.addComponentsToDate(seconds: 0, minutes: 0, hours: 0, days: 0, weeks: 0, months: 0, years: -Int(y))
     }
     
-    fileprivate func addComponentsToDate(seconds sec: Int, minutes min: Int, hours hrs: Int, days d: Int, weeks wks: Int, months mts: Int, years yrs: Int) -> Date {
+    fileprivate func addComponentsToDate(seconds sec: Int,
+                                         minutes min: Int,
+                                         hours hrs: Int,
+                                         days d: Int,
+                                         weeks wks: Int,
+                                         months mts: Int,
+                                         years yrs: Int) -> Date {
         var dc = DateComponents()
         dc.second = sec
         dc.minute = min

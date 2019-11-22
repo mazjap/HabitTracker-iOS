@@ -6,8 +6,9 @@
 //  Copyright © 2019 Lambda School. All rights reserved.
 //
 
-import UIKit
 import JTAppleCalendar
+import SideMenu
+import UIKit
 
 class CalenderViewController: UIViewController, HabitHandlerProtocol {
     
@@ -22,6 +23,7 @@ class CalenderViewController: UIViewController, HabitHandlerProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         habitMonthView.layer.borderColor = UIColor.borderColor.cgColor
         habitMonthView.layer.borderWidth = 2
         habitMonthView.layer.cornerRadius = 6

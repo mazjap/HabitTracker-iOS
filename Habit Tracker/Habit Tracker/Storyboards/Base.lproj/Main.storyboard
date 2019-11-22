@@ -23,7 +23,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="KFd-GX-TBF" kind="show" identifier="ShowHabitDetailSegue" id="AKO-Gx-mxw"/>
+                                    <segue destination="aUS-OH-WeK" kind="show" identifier="ShowHabitDetailSegue" id="la6-aQ-jSw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -35,7 +35,7 @@
                     <navigationItem key="navigationItem" title="My Habits" id="4JP-fa-CLi">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="1ed-Xk-fya">
                             <connections>
-                                <segue destination="KFd-GX-TBF" kind="show" identifier="AddHabitDetailSegue" id="gny-jV-qKj"/>
+                                <segue destination="aUS-OH-WeK" kind="show" identifier="AddHabitDetailSegue" id="0Uf-mp-4jw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -159,56 +159,16 @@
             </objects>
             <point key="canvasLocation" x="-1297" y="242"/>
         </scene>
-        <!--Habit Detail Tab Bar Controller-->
-        <scene sceneID="kr9-gJ-tbp">
-            <objects>
-                <tabBarController id="KFd-GX-TBF" customClass="HabitDetailTabBarController" customModule="Habit_Tracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="FWy-b7-Idq"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XE0-aU-bgB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <outlet property="myTabBar" destination="XE0-aU-bgB" id="Jr7-Ef-6k6"/>
-                        <segue destination="aUS-OH-WeK" kind="relationship" relationship="viewControllers" id="5Nh-C3-rj4"/>
-                        <segue destination="g5s-mC-Q9a" kind="relationship" relationship="viewControllers" id="hzw-ZN-cwA"/>
-                        <segue destination="gfG-pd-Riv" kind="relationship" relationship="viewControllers" id="ESX-7x-agI"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qks-HK-zkt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1513.0434782608697" y="-150"/>
-        </scene>
         <!--HabitInformation-->
         <scene sceneID="kmZ-Dl-dAC">
             <objects>
                 <viewControllerPlaceholder storyboardName="HabitInformation" id="aUS-OH-WeK" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Aqe-am-RpD"/>
+                    <navigationItem key="navigationItem" id="GGD-ge-asK"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bj4-2a-YuD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2336.9565217391305" y="-32.142857142857139"/>
-        </scene>
-        <!--ChartTab-->
-        <scene sceneID="3WW-yb-bvh">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ChartTab" id="gfG-pd-Riv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="aAh-sn-WnR"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iDL-ks-dDq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2302.898550724638" y="-268.52678571428572"/>
-        </scene>
-        <!--CalendarTab-->
-        <scene sceneID="mHc-sf-6NT">
-            <objects>
-                <viewControllerPlaceholder storyboardName="CalendarTab" id="g5s-mC-Q9a" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="9CD-G7-kAn"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B9z-5m-Vfe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2318.840579710145" y="-154.01785714285714"/>
+            <point key="canvasLocation" x="1531" y="-150"/>
         </scene>
         <!--Habits-->
         <scene sceneID="zrS-gf-QjO">
@@ -235,6 +195,6 @@
         <image name="square.and.pencil" catalog="system" width="64" height="58"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gny-jV-qKj"/>
+        <segue reference="la6-aQ-jSw"/>
     </inferredMetricsTieBreakers>
 </document>

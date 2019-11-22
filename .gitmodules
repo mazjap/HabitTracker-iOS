@@ -7,3 +7,6 @@
 [submodule "PieCharts"]
 	path = PieCharts
 	url = https://github.com/IOS9BW4/PieCharts.git
+[submodule "SideMenu"]
+	path = SideMenu
+	url = https://github.com/IOS9BW4/SideMenu.git
