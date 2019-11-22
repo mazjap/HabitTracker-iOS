@@ -23,6 +23,7 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Habit Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="STO-4c-DOZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Habit.Name"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -32,6 +33,7 @@
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="68f-3h-bXx">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="128"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="Habit.Description"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="128" id="3cH-u1-YpH"/>
                                                         </constraints>

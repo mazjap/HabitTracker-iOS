@@ -19,13 +19,26 @@ class HabitTrackerUITests: XCTestCase {
     }
 
     func testCreateNewHabit() {
+        // Please make sure "Connect Hardware Keyboard" is disabled in your simulator before running this
+        // (Hardware > Keyboard > Connect Hardware Keybard = Disabled)
+        
+        let title = "UI Test"
+        let desc = "Generic Desc"
+        
         app.tabBars.buttons["Habits"].tap()
         app.navigationBars["My Habits"].buttons["Add"].tap()
-        let habitNameTextField = app.textFields["Habit Name"]
+        let habitNameTextField = app.textFields["Habit.Name"]
         habitNameTextField.tap()
-        habitNameTextField.typeText("UI Test")
+        habitNameTextField.typeText(title)
         
-        let habitDescTextField = app.textViews["Other details"]
-//        habitDescTextField.tap()
+        let habitDescTextView = app.textViews["Habit.Description"]
+        habitDescTextView.tap()
+        habitDescTextView.typeText(desc)
+        
+        app.buttons["Save"].tap()
+        app.tables["MyHabitsTableView"].cells["HabitCell0"].tap()
+        
+        XCTAssertEqual(title, app.textFields["Habit.Name"].value as? String)
+        XCTAssertEqual(desc, app.textViews["Habit.Description"].value as? String)
     }
 }
