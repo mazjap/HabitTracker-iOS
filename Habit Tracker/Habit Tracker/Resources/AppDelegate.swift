@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         let habitID = userInfo["HABBIT_ID"] as? String
-        if habitID != "COMPLETE_ACTION" && habitID != "FAIL_ACTION" {
+        if response.actionIdentifier != "COMPLETE_ACTION" && response.actionIdentifier != "FAIL_ACTION" {
             return
         }
         let frc = fetchHabits()
