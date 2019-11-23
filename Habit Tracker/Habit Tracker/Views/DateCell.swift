@@ -59,7 +59,7 @@ class DateCell: JTACDayCell {
     
     func handleCellStatus() {
         guard let day = day else {
-            statusView.backgroundColor = .htBackground
+            statusView.backgroundColor = .darkGray
             handleCellTextColor()
             return
         }

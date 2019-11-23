@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,15 +16,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="QwJ-c2-nw9">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QwJ-c2-nw9" secondAttribute="trailing" id="3cW-Fe-jPE"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QwJ-c2-nw9" secondAttribute="bottom" id="7Yo-vP-8bj"/>
+                            <constraint firstAttribute="bottom" secondItem="QwJ-c2-nw9" secondAttribute="bottom" id="7Yo-vP-8bj"/>
                             <constraint firstItem="QwJ-c2-nw9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="J8F-Cp-Pmy"/>
-                            <constraint firstItem="QwJ-c2-nw9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="taa-DH-8vs"/>
+                            <constraint firstItem="QwJ-c2-nw9" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="taa-DH-8vs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

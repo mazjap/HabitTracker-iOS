@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U2J-aq-mKk">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -93,16 +93,16 @@
                                 </connections>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kgH-18-ans">
-                                <rect key="frame" x="20" y="435" width="374" height="31"/>
+                                <rect key="frame" x="55" y="435" width="304" height="31"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date: Was \(habit) Completed?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrq-VU-qmj">
-                                        <rect key="frame" x="0.0" y="0.0" width="305" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="235" height="31"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Po-XJ-G6o">
-                                        <rect key="frame" x="325" y="0.0" width="51" height="31"/>
+                                        <rect key="frame" x="255" y="0.0" width="51" height="31"/>
                                         <connections>
                                             <action selector="toggleDayStatus:" destination="U2J-aq-mKk" eventType="valueChanged" id="dcr-LR-rCm"/>
                                         </connections>
@@ -123,13 +123,14 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="xJq-s7-HVV" firstAttribute="trailing" secondItem="kgH-18-ans" secondAttribute="trailing" constant="20" id="0r1-RZ-P3t"/>
+                            <constraint firstItem="xJq-s7-HVV" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kgH-18-ans" secondAttribute="trailing" constant="20" id="0r1-RZ-P3t"/>
                             <constraint firstItem="0rA-eh-BZz" firstAttribute="top" secondItem="kgH-18-ans" secondAttribute="bottom" constant="12" id="8sI-k0-Idn"/>
                             <constraint firstItem="sGT-Kb-Idn" firstAttribute="top" secondItem="xJq-s7-HVV" secondAttribute="top" constant="20" id="LSz-vK-5T5"/>
+                            <constraint firstItem="kgH-18-ans" firstAttribute="centerX" secondItem="sGT-Kb-Idn" secondAttribute="centerX" id="Rt1-eY-FaE"/>
                             <constraint firstItem="xJq-s7-HVV" firstAttribute="trailing" secondItem="sGT-Kb-Idn" secondAttribute="trailing" constant="20" id="XbW-UJ-YPc"/>
                             <constraint firstItem="sGT-Kb-Idn" firstAttribute="height" secondItem="bTQ-fz-QqC" secondAttribute="width" multiplier="0.8" id="euX-e2-u7f"/>
                             <constraint firstItem="kgH-18-ans" firstAttribute="top" secondItem="sGT-Kb-Idn" secondAttribute="bottom" constant="40" id="i2a-np-x2X"/>
-                            <constraint firstItem="kgH-18-ans" firstAttribute="leading" secondItem="xJq-s7-HVV" secondAttribute="leading" constant="20" id="twW-34-nHQ"/>
+                            <constraint firstItem="kgH-18-ans" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xJq-s7-HVV" secondAttribute="leading" constant="20" id="twW-34-nHQ"/>
                             <constraint firstItem="sGT-Kb-Idn" firstAttribute="leading" secondItem="xJq-s7-HVV" secondAttribute="leading" constant="20" id="uwZ-2i-6B9"/>
                             <constraint firstItem="0rA-eh-BZz" firstAttribute="centerX" secondItem="kgH-18-ans" secondAttribute="centerX" id="yby-Bl-hyF"/>
                         </constraints>

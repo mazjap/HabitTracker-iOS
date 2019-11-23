@@ -34,6 +34,7 @@ class DaysTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        title = "Unset Days"
     }
 
     // MARK: - Table view data source

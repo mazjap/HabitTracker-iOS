@@ -87,7 +87,7 @@ class HabitController {
         return days
     }
     
-    @discardableResult func addDay(habit: Habit) -> Day {
+    @discardableResult func addToday(habit: Habit) -> Day {
         let currentDate = Date()
         let day = Day(date: currentDate)
         habit.addToDays(day)
@@ -101,8 +101,25 @@ class HabitController {
     }
     
     func updateNewDayStatus(habit: Habit, status: DayStatus) {
-        let day = addDay(habit: habit)
+        let day = addToday(habit: habit)
         day.status = status.rawValue
         CoreDataStack.shared.save()
+    }
+    
+    func addDay(to habit: Habit, with date: Date) {
+        habit.days?.adding(Day(date: date, status: .unset))
+    }
+    
+    func updateHabitDays(habit: Habit) {
+        guard let lastUpdated = habit.lastUpdated else { return }
+        let today = Date()
+        if Calendar.current.dateComponents([.day, .month, .year], from: lastUpdated) !=
+        Calendar.current.dateComponents([.day, .month, .year], from: today) && today.isGreaterThan(lastUpdated) {
+            let count = Date.daysBetween(date1: today, date2: lastUpdated)
+            for i in 0..<count {
+                HabitController.shared.addDay(to: habit, with: today.minus(days: UInt(i)))
+            }
+        }
+        habit.lastUpdated = today
     }
 }

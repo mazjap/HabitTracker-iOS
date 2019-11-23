@@ -66,7 +66,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     private func updateViews() {
         setTextViewBorder(for: descriptionTV)
         if let habit = habit {
-            title = "Editing: \(habit.title ?? "")"
+            title = "\(habit.title ?? "")"
             self.navigationItem.rightBarButtonItem?.isEnabled = true
             
             habitNameTF.text = habit.title

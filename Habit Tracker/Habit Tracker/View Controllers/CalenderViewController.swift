@@ -43,6 +43,7 @@ class CalenderViewController: UIViewController, HabitHandlerProtocol {
         completedLabel.isHidden = true
         isCompletedSwitch.isHidden = true
         saveButton.isHidden = true
+        title = "Calender"
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

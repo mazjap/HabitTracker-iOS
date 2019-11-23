@@ -51,17 +51,14 @@ class HabitsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HabitCell", for: indexPath)
         cell.accessibilityIdentifier = "HabitCell\(indexPath.row)"
         let habit = frc.object(at: indexPath)
+        updateHabitDays(habit: habit)
         cell.textLabel?.text = habit.title
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -70,6 +67,13 @@ class HabitsTableViewController: UITableViewController {
             //tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+    
+    private func updateHabitDays(habit: Habit) {
+        let bcx = CoreDataStack.shared.container.newBackgroundContext()
+        bcx.perform {
+            HabitController.shared.updateHabitDays(habit: habit)
         }
     }
 

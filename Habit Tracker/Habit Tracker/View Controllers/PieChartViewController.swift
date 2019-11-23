@@ -30,7 +30,7 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
     
     func updateViews() {
         habitsPieChart.clear()
-        
+        title = "Pie Chart"
         completeColorView.backgroundColor = .htCalendarYes
         incompleteColorView.backgroundColor = .htCalendarNo
         unknownColorView.backgroundColor = .htCalendarUnk

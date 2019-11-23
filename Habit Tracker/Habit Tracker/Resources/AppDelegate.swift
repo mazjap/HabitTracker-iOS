@@ -145,12 +145,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         case "COMPLETE_ACTION":
             HabitController.shared.updateDayStatus(day: day, status: .yes)
             NSLog("Notification was marked as complete")
+            habit.lastUpdated = day.date ?? habit.lastUpdated
         case "FAIL_ACTION":
             HabitController.shared.updateDayStatus(day: day, status: .no)
             NSLog("Error, day existed but was invalid!")
+            habit.lastUpdated = day.date ?? habit.lastUpdated
         default:
             HabitController.shared.updateDayStatus(day: day, status: .unset)
             NSLog("Error, day existed but was invalid!")
+            habit.lastUpdated = day.date ?? habit.lastUpdated
         }
     }
 }

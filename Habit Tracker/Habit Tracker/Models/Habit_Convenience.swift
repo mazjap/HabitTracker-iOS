@@ -28,6 +28,7 @@ extension Habit {
         }
         self.notify = notify
         self.notifyTime = notifyTime
+        self.lastUpdated = Date()
     }
     
     func getDay(with date: DateComponents) -> Day? {

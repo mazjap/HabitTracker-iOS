@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IvX-d2-00i">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -134,7 +134,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="n27-bq-JBB">
-                            <rect key="frame" x="0.0" y="144" width="414" height="0.0"/>
+                            <rect key="frame" x="0.0" y="188" width="414" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         </view>
@@ -181,6 +181,26 @@
                                             <segue destination="Jk3-SB-ufE" kind="show" identifier="PieChartShowSegue" id="RGx-R1-Vg1"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="8Bt-yN-osc" style="IBUITableViewCellStyleDefault" id="ZqQ-KZ-pMU">
+                                        <rect key="frame" x="0.0" y="116" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZqQ-KZ-pMU" id="ugd-QU-Xaz">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Unmarked Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Bt-yN-osc">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="3ak-wy-X7R" kind="show" id="s1w-HA-sJa"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -203,7 +223,103 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NjL-Gv-9Sc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2391" y="32"/>
+            <point key="canvasLocation" x="3267" y="-489"/>
+        </scene>
+        <!--Days Table View Controller-->
+        <scene sceneID="BAx-l7-Z5a">
+            <objects>
+                <tableViewController id="3ak-wy-X7R" customClass="DaysTableViewController" customModule="Habit_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NUD-es-hv7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DaysCell" id="5Ca-J9-x3C" customClass="DayTableViewCell" customModule="Habit_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="45.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Ca-J9-x3C" id="3pH-sg-qoJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="45.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pUk-BS-xfF">
+                                            <rect key="frame" x="20" y="2" width="374" height="41.5"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="DLf-hL-fun">
+                                                    <rect key="frame" x="0.0" y="0.0" width="258" height="41.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Habit Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idC-UM-lQW">
+                                                            <rect key="frame" x="0.0" y="0.0" width="258" height="20.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20.5" id="bCC-fZ-3Nx"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XvP-ZD-XSp">
+                                                            <rect key="frame" x="0.0" y="20.5" width="36" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="idC-UM-lQW" firstAttribute="centerX" secondItem="DLf-hL-fun" secondAttribute="centerX" id="Ig3-P7-pMw"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="h1s-mn-1IZ">
+                                                    <rect key="frame" x="266" y="0.0" width="108" height="41.5"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8o-L0-IVP">
+                                                            <rect key="frame" x="0.0" y="6" width="50" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="vJQ-kx-qjB"/>
+                                                            </constraints>
+                                                            <state key="normal" title="Yes"/>
+                                                            <connections>
+                                                                <action selector="buttonsTapped:" destination="5Ca-J9-x3C" eventType="touchUpInside" id="JqP-Mx-bVh"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79Y-Hs-xlk">
+                                                            <rect key="frame" x="58" y="6" width="50" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="gYG-e0-wdf"/>
+                                                            </constraints>
+                                                            <state key="normal" title="No"/>
+                                                            <connections>
+                                                                <action selector="buttonsTapped:" destination="5Ca-J9-x3C" eventType="touchUpInside" id="aaM-Tr-ihr"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pUk-BS-xfF" firstAttribute="leading" secondItem="3pH-sg-qoJ" secondAttribute="leading" constant="20" id="2NZ-Nk-MPh"/>
+                                        <constraint firstItem="pUk-BS-xfF" firstAttribute="top" secondItem="3pH-sg-qoJ" secondAttribute="top" constant="2" id="DCE-cL-SjQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="pUk-BS-xfF" secondAttribute="bottom" constant="2" id="MdO-PJ-QQO"/>
+                                        <constraint firstAttribute="trailing" secondItem="pUk-BS-xfF" secondAttribute="trailing" constant="20" id="NNR-sP-r8F"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="habitDate" destination="XvP-ZD-XSp" id="au3-jL-pjc"/>
+                                    <outlet property="habitName" destination="idC-UM-lQW" id="CZ0-1t-aAD"/>
+                                    <outlet property="noButton" destination="79Y-Hs-xlk" id="aaT-SJ-okH"/>
+                                    <outlet property="yesButton" destination="A8o-L0-IVP" id="vlJ-vQ-wsj"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3ak-wy-X7R" id="5id-NH-opn"/>
+                            <outlet property="delegate" destination="3ak-wy-X7R" id="wkF-2m-u5y"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="dZu-EY-JtP"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8J7-8a-WrB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3491" y="590"/>
         </scene>
         <!--ChartTab-->
         <scene sceneID="8Di-5c-Rbg">
@@ -213,7 +329,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cOC-mq-fBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2377" y="65"/>
+            <point key="canvasLocation" x="3252" y="48"/>
         </scene>
         <!--Side Menu Navigation Controller-->
         <scene sceneID="Dq4-RU-sE0">
