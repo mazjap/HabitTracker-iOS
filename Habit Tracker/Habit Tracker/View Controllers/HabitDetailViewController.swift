@@ -21,6 +21,8 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     @IBOutlet private weak var descriptionTextView: UITextView!
     @IBOutlet private weak var notifySwitch: UISwitch!
     @IBOutlet private weak var notifyTimeDatePicker: UIDatePicker!
+    @IBOutlet private weak var notifyLabel: UILabel!
+    @IBOutlet private weak var completionLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -97,6 +99,9 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
         navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.htTextColor]
         navigationController?.navigationBar.tintColor = UIColor.htTextColor
+        titleTextField.textColor = .htTextColor
+        notifyLabel.textColor = .htTextColor
+        completionLabel.textColor = .htTextColor
         
         notifyTimeDatePicker.setValue(UIColor.htTextColor, forKeyPath: "textColor")
         notifySwitch.layer.borderColor = UIColor.htTextColor.cgColor
@@ -104,9 +109,10 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     
     private func setDescTextColor() {
         if habit == nil {
-            
             descriptionTextView.text = "Goal Description"
             descriptionTextView.textColor = .lightGray
+        } else {
+            descriptionTextView.textColor = .htTextColor
         }
     }
     
@@ -156,7 +162,7 @@ extension HabitDetailViewController: UITextViewDelegate, UITextFieldDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == .lightGray {
             textView.text = ""
-            textView.textColor = .borderColor
+            textView.textColor = .htTextColor
         }
     }
     

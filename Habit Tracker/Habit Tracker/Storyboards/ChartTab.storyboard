@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="e0F-lc-rP5">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -111,9 +111,12 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="completeColorView" destination="Wpu-ux-d7L" id="vWX-NV-0rD"/>
+                        <outlet property="completeLabel" destination="pKD-LU-HaA" id="VjD-7g-gZS"/>
                         <outlet property="habitsPieChart" destination="z5k-gJ-pFC" id="oVk-VR-NZm"/>
                         <outlet property="incompleteColorView" destination="ECS-Qw-le1" id="cek-1f-l0D"/>
+                        <outlet property="incompleteLabel" destination="sh4-FZ-uYG" id="BAL-34-fde"/>
                         <outlet property="unknownColorView" destination="igI-xG-uLu" id="JN5-rj-p60"/>
+                        <outlet property="unknownLabel" destination="pYN-Q4-5O0" id="pQG-Dl-1r1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9q-Ne-vWF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

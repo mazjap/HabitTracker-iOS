@@ -17,6 +17,9 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
     @IBOutlet private weak var completeColorView: UIView!
     @IBOutlet private weak var incompleteColorView: UIView!
     @IBOutlet private weak var unknownColorView: UIView!
+    @IBOutlet private weak var completeLabel: UILabel!
+    @IBOutlet private weak var incompleteLabel: UILabel!
+    @IBOutlet private weak var unknownLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,10 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
         completeColorView.backgroundColor = .htCalendarYes
         incompleteColorView.backgroundColor = .htCalendarNo
         unknownColorView.backgroundColor = .htCalendarUnk
+        
+        completeLabel.textColor = .htTextColor
+        incompleteLabel.textColor = .htTextColor
+        unknownLabel.textColor = .htTextColor
         
         guard let habit = habit, let days = habit.days?.allObjects as? [Day] else { return }
         let total = Double(habit.days?.allObjects.count ?? 1)

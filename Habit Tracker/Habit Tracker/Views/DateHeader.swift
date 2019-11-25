@@ -12,16 +12,6 @@ import JTAppleCalendar
 class DateHeader: JTACMonthReusableView {
     @IBOutlet private weak var monthLabel: UILabel!
     
-    var borderColor: UIColor = {
-        UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-            if UITraitCollection.userInterfaceStyle == .dark {
-                return UIColor.white
-            } else {
-                return UIColor.black
-            }
-        }
-    }()
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -30,13 +20,14 @@ class DateHeader: JTACMonthReusableView {
         self.layer.cornerRadius = 6
     }
     
+    func setMonthLabel(with text: String) {
+        monthLabel.text = text
+        monthLabel.textColor = .htTextColor
+    }
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         self.layer.borderColor = UIColor.borderColor.cgColor
+        monthLabel.textColor = .htTextColor
     }
-    
-    func setMonthLabel(with text: String) {
-        monthLabel.text = text
-    }
-    
 }

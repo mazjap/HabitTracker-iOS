@@ -107,19 +107,22 @@ class HabitController {
     }
     
     func addDay(to habit: Habit, with date: Date) {
-        habit.days?.adding(Day(date: date, status: .unset))
+        let day = Day(date: date, status: .unset)
+        day.habit = habit
+//        habit.days?.adding(Day(date: date, status: .unset))
     }
     
     func updateHabitDays(habit: Habit) {
-//        guard let lastUpdated = habit.lastUpdated else { return }
-//        let today = Date()
-//        if Calendar.current.dateComponents([.day, .month, .year], from: lastUpdated) !=
-//        Calendar.current.dateComponents([.day, .month, .year], from: today) && today.isGreaterThan(lastUpdated) {
-//            let count = Date.daysBetween(date1: today, date2: lastUpdated)
-//            for i in 0..<count {
-//                HabitController.shared.addDay(to: habit, with: today.minus(days: UInt(i)))
-//            }
-//        }
-//        habit.lastUpdated = today
+        guard let lastUpdated = habit.lastUpdated else { return }
+        let today = Date()
+        let todayCalendar = Calendar.current.dateComponents([.day, .month, .year], from: today)
+        let lastUpdatedCalendar = Calendar.current.dateComponents([.day, .month, .year], from: lastUpdated)
+        if lastUpdatedCalendar != todayCalendar && today.isGreaterThan(lastUpdated) {
+            let count = (todayCalendar.day ?? 0) - (lastUpdatedCalendar.day ?? 0)
+            for i in 0...count {
+                HabitController.shared.addDay(to: habit, with: today.minus(days: UInt(i)))
+            }
+        }
+        habit.lastUpdated = today
     }
 }

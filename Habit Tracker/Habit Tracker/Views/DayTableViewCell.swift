@@ -59,21 +59,29 @@ class DayTableViewCell: UITableViewCell {
     private func updateViews() {
         guard let day = day else { return }
         habitName.text = day.habit?.title
+        habitName.textColor = .htTextColor
         habitDate.text = day.date?.formatted()
+        habitDate.textColor = .htTextColor
         let dayStatus = DayStatus(rawValue: day.status)
         switch dayStatus {
         case .no:
             noButton.backgroundColor = .systemBlue
-            yesButton.backgroundColor = .green
+            yesButton.backgroundColor = .htCalendarYes
         case .yes:
-            noButton.backgroundColor = .red
+            noButton.backgroundColor = .htCalendarNo
             yesButton.backgroundColor = .systemBlue
         case .unset:
-            yesButton.backgroundColor = .green
-            noButton.backgroundColor = .red
+            yesButton.backgroundColor = .htCalendarYes
+            yesButton.setTitleColor(.white, for: .normal)
+            noButton.backgroundColor = .htCalendarNo
+            noButton.setTitleColor(.white, for: .normal)
         case .none:
             break
         }
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        updateViews()
+    }
 }

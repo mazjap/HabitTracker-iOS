@@ -23,18 +23,14 @@ class HabitTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.updateViews()
-        self.frame.origin.x += 2.5
-        self.frame.origin.y += 2.5
-        self.frame.size.height -= 5
-        self.frame.size.width -= 2 * 2.5
     }
     
     override dynamic func layoutSubviews() {
         super.layoutSubviews()
-        self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 77.5, left: 8, bottom: 77.5, right: 8))
+        self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 77.5, left: 3, bottom: 77.5, right: 3))
         self.contentView.layer.cornerRadius = 13
         self.contentView.layer.borderWidth = 2
-        self.contentView.layer.borderColor = UIColor.htTextColor.cgColor
+        self.contentView.layer.borderColor = UIColor.borderColor.cgColor
         addSubview(contentView)
     }
     
@@ -61,9 +57,9 @@ class HabitTableViewCell: UITableViewCell {
             
             let status = habit.getDay(with: Calendar.current.dateComponents([.day, .month, .year], from: Date()))?.status
             if status == DayStatus.yes.rawValue {
-                habitTitleLabel.textColor = .green
+                habitTitleLabel.textColor = .htCalendarYes
             } else if status == DayStatus.no.rawValue {
-                habitTitleLabel.textColor = .red
+                habitTitleLabel.textColor = .htCalendarNo
             }
         }
     }

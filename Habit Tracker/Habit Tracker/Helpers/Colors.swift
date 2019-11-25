@@ -43,7 +43,7 @@ extension UIColor {
     static var htCalendarYes: UIColor = {
         UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
             if UITraitCollection.userInterfaceStyle == .dark {
-                return UIColor.black
+                return UIColor(red: 0.38, green: 0.75, blue: 0.38, alpha: 1.00)
             } else {
                 return UIColor.green
             }
@@ -53,7 +53,7 @@ extension UIColor {
     static var htCalendarNo: UIColor = {
         UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
             if UITraitCollection.userInterfaceStyle == .dark {
-                return UIColor.black
+                return UIColor(red: 0.75, green: 0.00, blue: 0.00, alpha: 1.00)
             } else {
                 return UIColor.red
             }
@@ -63,7 +63,7 @@ extension UIColor {
     static var htCalendarUnk: UIColor = {
         UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
             if UITraitCollection.userInterfaceStyle == .dark {
-                return UIColor.black
+                return UIColor.lightGray
             } else {
                 return UIColor.lightGray
             }
@@ -83,9 +83,9 @@ extension UIColor {
     static var borderColor: UIColor = {
         UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
             if UITraitCollection.userInterfaceStyle == .dark {
-                return UIColor.black
+                return UIColor(red: 0.36, green: 0.73, blue: 0.74, alpha: 1.00)
             } else {
-                return UIColor.white
+                return UIColor(red: 0.27, green: 0.42, blue: 0.78, alpha: 1.00)
             }
         }
     }()

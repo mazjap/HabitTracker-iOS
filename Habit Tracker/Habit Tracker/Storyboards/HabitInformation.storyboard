@@ -127,8 +127,10 @@
                     <navigationItem key="navigationItem" id="j8C-R3-arF"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="completionLabel" destination="QMg-dy-JCE" id="3Gc-LB-u9N"/>
                         <outlet property="descriptionTextView" destination="68f-3h-bXx" id="Vwr-Bg-Ti8"/>
                         <outlet property="goalDayPickerView" destination="zBm-ZB-qkN" id="gJ9-cl-Mil"/>
+                        <outlet property="notifyLabel" destination="xzH-dB-bAa" id="ii8-7I-75h"/>
                         <outlet property="notifySwitch" destination="PKf-Eh-adB" id="nSm-Zs-yED"/>
                         <outlet property="notifyTimeDatePicker" destination="V9y-Q5-TVg" id="t5x-T7-0xt"/>
                         <outlet property="titleTextField" destination="STO-4c-DOZ" id="Onj-lc-mJh"/>
@@ -224,6 +226,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="1vu-yX-fXm"/>
+                    <connections>
+                        <outlet property="calendarLabel" destination="iOT-8Z-UA2" id="F58-Gn-AJH"/>
+                        <outlet property="pieChartLabel" destination="MNk-59-QxZ" id="c9F-TM-yFB"/>
+                        <outlet property="unmarkedDaysLabel" destination="8Bt-yN-osc" id="t1i-vH-pLi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SNJ-Jd-L95" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
