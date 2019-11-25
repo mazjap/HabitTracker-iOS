@@ -15,7 +15,6 @@ class HabitsTableViewController: UITableViewController {
     lazy var frc: NSFetchedResultsController<Habit>! = {
         let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        //fetchRequest.predicate = NSPredicate(format: "parent == %@", currentUser)
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest,
                                              managedObjectContext: CoreDataStack.shared.mainContext,
                                              sectionNameKeyPath: nil,
@@ -29,13 +28,19 @@ class HabitsTableViewController: UITableViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.accessibilityIdentifier = "MyHabitsTableView"
+        guard let habits = frc.fetchedObjects else { return }
+        for habit in habits {
+            updateHabitDays(habit: habit)
+        }
+        self.tableView.rowHeight = 80.0
+        updateViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        updateColors()
     }
 
     // MARK: - Table view data source
@@ -48,11 +53,11 @@ class HabitsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HabitCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "HabitCell", for: indexPath) as? HabitTableViewCell else { return UITableViewCell() }
+        cell.clipsToBounds = true
         cell.accessibilityIdentifier = "HabitCell\(indexPath.row)"
         let habit = frc.object(at: indexPath)
-        updateHabitDays(habit: habit)
-        cell.textLabel?.text = habit.title
+        cell.habit = habit
         return cell
     }
 
@@ -60,14 +65,34 @@ class HabitsTableViewController: UITableViewController {
         return true
     }
 
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            HabitController.shared.delete(habit: frc.object(at: indexPath))
-            //tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        guard let cell = tableView.cellForRow(at: indexPath) as? HabitTableViewCell else { return }
+//        cell.layer.cornerRadius = 13
+//        if editingStyle == .delete {
+//            HabitController.shared.delete(habit: frc.object(at: indexPath))
+//        }
+//    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .normal, title: "Delete") { _, view, _ in
+            print("button pressed!")
+            HabitController.shared.delete(habit: self.frc.object(at: indexPath))
+            UIGraphicsBeginImageContext(view.frame.size)
+            UIGraphicsEndImageContext()
         }
+        deleteAction.backgroundColor = .red
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
+    override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? HabitTableViewCell else { return }
+        cell.layer.cornerRadius = 13
+    }
+    
+    override func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        guard let indexPath = indexPath else { return }
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
     private func updateHabitDays(habit: Habit) {
@@ -75,6 +100,22 @@ class HabitsTableViewController: UITableViewController {
         bcx.perform {
             HabitController.shared.updateHabitDays(habit: habit)
         }
+    }
+    
+    private func updateViews() {
+        updateColors()
+    }
+    
+    private func updateColors() {
+        view.backgroundColor = .backgroundColor
+        
+        navigationController?.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.htTextColor]
+        navigationController?.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.htTextColor]
+        navigationController?.navigationBar.tintColor = UIColor.htTextColor
+        
+        tableView.separatorColor = .clear
     }
 
     // MARK: - Navigation
@@ -90,6 +131,11 @@ class HabitsTableViewController: UITableViewController {
         default:
             break
         }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        updateColors()
     }
 }
 

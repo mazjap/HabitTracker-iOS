@@ -16,12 +16,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sm1-QK-XKG">
-                                <rect key="frame" x="20" y="64" width="374" height="318"/>
+                                <rect key="frame" x="20" y="64" width="374" height="448"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7XC-A9-qM9">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="172"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Habit Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="STO-4c-DOZ">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Habit Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="STO-4c-DOZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="Habit.Name"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -51,12 +51,11 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Days until completion:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMg-dy-JCE">
                                                 <rect key="frame" x="0.0" y="0.0" width="254" height="75"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.26666666666666666" green="0.41960784313725491" blue="0.7803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pickerView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="zBm-ZB-qkN">
                                                 <rect key="frame" x="274" y="0.0" width="100" height="75"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="fe3-kO-8iF"/>
                                                     <constraint firstAttribute="height" constant="75" id="iQD-sX-sCx"/>
@@ -70,7 +69,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Nofify me:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzH-dB-bAa">
                                                 <rect key="frame" x="0.0" y="2.5" width="98.5" height="26.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.26666666666666666" green="0.41960784313725491" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PKf-Eh-adB">
@@ -81,31 +80,46 @@
                                             </switch>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yzz-Gi-q5B">
+                                        <rect key="frame" x="0.0" y="338" width="374" height="110"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ds-gy-izg">
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="110"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" id="QAT-VA-xhV"/>
+                                                </constraints>
+                                            </stackView>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="V9y-Q5-TVg">
+                                                <rect key="frame" x="107" y="17.5" width="160" height="75"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="75" id="LsM-dW-HIE"/>
+                                                    <constraint firstAttribute="width" constant="160" id="Nzc-Nh-9j6"/>
+                                                </constraints>
+                                            </datePicker>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2r-zm-2FL">
+                                                <rect key="frame" x="374" y="0.0" width="0.0" height="110"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" id="laD-6C-yKM"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="V9y-Q5-TVg">
-                                <rect key="frame" x="127" y="402" width="160" height="75"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="4FQ-Lr-FNj"/>
-                                    <constraint firstAttribute="width" constant="160" id="oFa-EO-uDm"/>
-                                </constraints>
-                            </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rha-TL-umU">
-                                <rect key="frame" x="190" y="497" width="34" height="30"/>
+                                <rect key="frame" x="190" y="520" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveTapped:" destination="IvX-d2-00i" eventType="touchUpInside" id="KiC-Je-dtQ"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="sm1-QK-XKG" firstAttribute="top" secondItem="7NR-m4-UT1" secondAttribute="top" constant="20" id="7IR-fj-79K"/>
-                            <constraint firstItem="V9y-Q5-TVg" firstAttribute="top" secondItem="sm1-QK-XKG" secondAttribute="bottom" constant="20" id="B7q-C8-7vE"/>
                             <constraint firstItem="rha-TL-umU" firstAttribute="centerX" secondItem="gw4-zp-MZC" secondAttribute="centerX" id="E0i-ga-cqo"/>
-                            <constraint firstItem="V9y-Q5-TVg" firstAttribute="centerX" secondItem="sm1-QK-XKG" secondAttribute="centerX" id="ESe-pS-B98"/>
-                            <constraint firstItem="rha-TL-umU" firstAttribute="top" secondItem="V9y-Q5-TVg" secondAttribute="bottom" constant="20" id="EfS-2n-dFi"/>
                             <constraint firstAttribute="trailing" secondItem="sm1-QK-XKG" secondAttribute="trailing" constant="20" id="FXd-d0-NUv"/>
+                            <constraint firstItem="rha-TL-umU" firstAttribute="top" secondItem="sm1-QK-XKG" secondAttribute="bottom" constant="8" id="ZuJ-N7-W8p"/>
                             <constraint firstItem="sm1-QK-XKG" firstAttribute="leading" secondItem="7NR-m4-UT1" secondAttribute="leading" constant="20" id="m3X-0v-JuP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7NR-m4-UT1"/>
@@ -113,11 +127,11 @@
                     <navigationItem key="navigationItem" id="j8C-R3-arF"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="descriptionTV" destination="68f-3h-bXx" id="Vwr-Bg-Ti8"/>
-                        <outlet property="habitNameTF" destination="STO-4c-DOZ" id="Onj-lc-mJh"/>
+                        <outlet property="descriptionTextView" destination="68f-3h-bXx" id="Vwr-Bg-Ti8"/>
+                        <outlet property="goalDayPickerView" destination="zBm-ZB-qkN" id="gJ9-cl-Mil"/>
                         <outlet property="notifySwitch" destination="PKf-Eh-adB" id="nSm-Zs-yED"/>
-                        <outlet property="notifyTime" destination="V9y-Q5-TVg" id="t5x-T7-0xt"/>
-                        <outlet property="pickerView" destination="zBm-ZB-qkN" id="gJ9-cl-Mil"/>
+                        <outlet property="notifyTimeDatePicker" destination="V9y-Q5-TVg" id="t5x-T7-0xt"/>
+                        <outlet property="titleTextField" destination="STO-4c-DOZ" id="Onj-lc-mJh"/>
                         <segue destination="3zG-If-oFQ" kind="presentation" identifier="SideMenuModalSegue" id="1SV-MI-1Od"/>
                     </connections>
                 </viewController>

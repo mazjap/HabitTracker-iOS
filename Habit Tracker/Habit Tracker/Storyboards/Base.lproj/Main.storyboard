@@ -14,16 +14,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="qt8-5c-n94">
+                            <rect key="frame" x="0.0" y="136" width="414" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HabitCell" id="eam-5x-gm7">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HabitCell" rowHeight="80" id="ES9-Wv-82B" customClass="HabitTableViewCell" customModule="Habit_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eam-5x-gm7" id="V3e-cQ-LXi">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ES9-Wv-82B" id="8Mc-Ni-7yA">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Habit Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdH-AX-LmM">
+                                            <rect key="frame" x="20" y="19" width="79" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gxm-T4-rbG">
+                                            <rect key="frame" x="356" y="19" width="38" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PG-h8-Odz">
+                                            <rect key="frame" x="20" y="46" width="64" height="15"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Gxm-T4-rbG" firstAttribute="top" secondItem="UdH-AX-LmM" secondAttribute="top" id="9DF-SG-XO6"/>
+                                        <constraint firstItem="0PG-h8-Odz" firstAttribute="top" secondItem="UdH-AX-LmM" secondAttribute="bottom" constant="6" id="Ggp-JN-VcS"/>
+                                        <constraint firstItem="Gxm-T4-rbG" firstAttribute="trailing" secondItem="8Mc-Ni-7yA" secondAttribute="trailingMargin" id="H6o-SV-jVq"/>
+                                        <constraint firstItem="UdH-AX-LmM" firstAttribute="top" secondItem="8Mc-Ni-7yA" secondAttribute="topMargin" constant="8" id="LAZ-tM-NJi"/>
+                                        <constraint firstItem="Gxm-T4-rbG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UdH-AX-LmM" secondAttribute="trailing" constant="8" id="dTc-QU-mFv"/>
+                                        <constraint firstItem="UdH-AX-LmM" firstAttribute="leading" secondItem="8Mc-Ni-7yA" secondAttribute="leadingMargin" id="s5n-As-mli"/>
+                                        <constraint firstItem="0PG-h8-Odz" firstAttribute="leading" secondItem="UdH-AX-LmM" secondAttribute="leading" id="tNf-Dj-lhN"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="0PG-h8-Odz" secondAttribute="trailing" id="wyh-31-nvI"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="aUS-OH-WeK" kind="show" identifier="ShowHabitDetailSegue" id="la6-aQ-jSw"/>
+                                    <outlet property="habitDescLabel" destination="0PG-h8-Odz" id="BHC-t5-zxc"/>
+                                    <outlet property="habitTimeLabel" destination="Gxm-T4-rbG" id="l7r-Bw-Os7"/>
+                                    <outlet property="habitTitleLabel" destination="UdH-AX-LmM" id="gAD-1t-RU4"/>
+                                    <segue destination="aUS-OH-WeK" kind="show" identifier="ShowHabitDetailSegue" id="rtV-Qf-7Kn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -79,6 +117,6 @@
         <image name="square.and.pencil" catalog="system" width="64" height="58"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="la6-aQ-jSw"/>
+        <segue reference="rtV-Qf-7Kn"/>
     </inferredMetricsTieBreakers>
 </document>

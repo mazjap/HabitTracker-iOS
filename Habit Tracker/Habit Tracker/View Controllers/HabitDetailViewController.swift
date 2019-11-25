@@ -13,14 +13,14 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     
     var habit: Habit?
     let pickerData: [String] = {
-        Array(21...365).map { String($0) }
+        Array(1...365).map { String($0) }
     }()
     
-    @IBOutlet private weak var habitNameTF: UITextField!
-    @IBOutlet private weak var pickerView: UIPickerView!
-    @IBOutlet private weak var descriptionTV: UITextView!
+    @IBOutlet private weak var titleTextField: UITextField!
+    @IBOutlet private weak var goalDayPickerView: UIPickerView!
+    @IBOutlet private weak var descriptionTextView: UITextView!
     @IBOutlet private weak var notifySwitch: UISwitch!
-    @IBOutlet private weak var notifyTime: UIDatePicker!
+    @IBOutlet private weak var notifyTimeDatePicker: UIDatePicker!
     
     
     override func viewDidLoad() {
@@ -32,20 +32,20 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
                                          action: #selector(self.presentMenu))
         self.navigationItem.setRightBarButton(menuToggle, animated: true)
         setDescTextColor()
-        pickerView.dataSource = self
-        pickerView.delegate = self
-        descriptionTV.delegate = self
-        habitNameTF.delegate = self
+        goalDayPickerView.dataSource = self
+        goalDayPickerView.delegate = self
+        descriptionTextView.delegate = self
+        titleTextField.delegate = self
         updateViews()
     }
     
     @IBAction func saveTapped(_ sender: UIButton) {
-        guard let title = habitNameTF.text, !title.isEmpty,
-            let desc = descriptionTV.text, !desc.isEmpty
-            else { return }
-        let days = pickerView.selectedRow(inComponent: 0) + 21
+        guard let title = titleTextField.text,
+            let desc = descriptionTextView.text,
+            !title.isEmpty, !desc.isEmpty else { return }
+        let days = goalDayPickerView.selectedRow(inComponent: 0)
         let notify = notifySwitch.isOn
-        let time = notifyTime.date
+        let time = notifyTimeDatePicker.date
         if let habit = habit {
             HabitController.shared.update(habit: habit, title: title, desc: desc, goalDays: days, notify: notify, notifyTime: time)
         } else {
@@ -64,29 +64,49 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     // MARK: - Private Methods
     
     private func updateViews() {
-        setTextViewBorder(for: descriptionTV)
+        notifySwitch.layer.cornerRadius = 16
+        notifySwitch.layer.borderWidth = 2
+        
+        updateColors()
+        
+        setTextViewBorder(for: descriptionTextView)
         if let habit = habit {
             title = "\(habit.title ?? "")"
             self.navigationItem.rightBarButtonItem?.isEnabled = true
             
-            habitNameTF.text = habit.title
-            descriptionTV.text = habit.desc
-            pickerView.selectRow((Int(habit.goalDays - 21)), inComponent: 0, animated: true)
+            titleTextField.text = habit.title
+            descriptionTextView.text = habit.desc
+            goalDayPickerView.selectRow((Int(habit.goalDays)), inComponent: 0, animated: true)
             notifySwitch.isOn = habit.notify
-            notifyTime.isHidden = !notifySwitch.isOn
+            notifyTimeDatePicker.isHidden = !notifySwitch.isOn
             if let time = habit.notifyTime {
-                notifyTime.date = time
+                notifyTimeDatePicker.date = time
             }
         } else {
             title = "Add New Habit"
             self.navigationItem.rightBarButtonItem?.isEnabled = false
+            goalDayPickerView.selectRow(20, inComponent: 0, animated: true)
         }
+    }
+    
+    private func updateColors() {
+        view.backgroundColor = .backgroundColor
+        
+        navigationController?.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.htTextColor]
+        navigationController?.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.htTextColor]
+        navigationController?.navigationBar.tintColor = UIColor.htTextColor
+        
+        notifyTimeDatePicker.setValue(UIColor.htTextColor, forKeyPath: "textColor")
+        notifySwitch.layer.borderColor = UIColor.htTextColor.cgColor
     }
     
     private func setDescTextColor() {
         if habit == nil {
-            descriptionTV.text = "Other details"
-            descriptionTV.textColor = .lightGray
+            
+            descriptionTextView.text = "Goal Description"
+            descriptionTextView.textColor = .lightGray
         }
     }
     
@@ -94,6 +114,10 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
         textView.layer.borderWidth = 0.5
         textView.layer.borderColor = UIColor.lightGray.cgColor
         textView.layer.cornerRadius = 8
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     @objc
@@ -110,10 +134,6 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
             vc.habit = habit
         }
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
 }
 
 extension HabitDetailViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -125,13 +145,10 @@ extension HabitDetailViewController: UIPickerViewDataSource, UIPickerViewDelegat
         pickerData.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        return NSAttributedString(string: pickerData[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.htTextColor])
     }
-    
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        updateViews()
-//    }
 }
 
 extension HabitDetailViewController: UITextViewDelegate, UITextFieldDelegate {
@@ -145,7 +162,7 @@ extension HabitDetailViewController: UITextViewDelegate, UITextFieldDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Other details"
+            textView.text = "Goal Description"
             textView.textColor = .lightGray
         }
     }
@@ -153,5 +170,13 @@ extension HabitDetailViewController: UITextViewDelegate, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.placeholder = ""
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.placeholder = "Habit Title"
     }
 }
