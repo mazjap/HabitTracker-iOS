@@ -8,11 +8,12 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class HabitsTableViewController: UITableViewController {
 
     // MARK: - Properties
-    lazy var frc: NSFetchedResultsController<Habit>! = {
+    private lazy var frc: NSFetchedResultsController<Habit>! = {
         let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest,
@@ -29,30 +30,30 @@ class HabitsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.accessibilityIdentifier = "MyHabitsTableView"
-        guard let habits = frc.fetchedObjects else { return }
-        for habit in habits {
-            updateHabitDays(habit: habit)
-        }
+        UNUserNotificationCenter.current().delegate = self
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
         self.tableView.rowHeight = 80.0
-        updateViews()
+        refresh()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override internal func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
         updateColors()
     }
 
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override internal func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return frc.sections?[section].numberOfObjects ?? 0
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "HabitCell", for: indexPath) as? HabitTableViewCell else { return UITableViewCell() }
         cell.clipsToBounds = true
         cell.accessibilityIdentifier = "HabitCell\(indexPath.row)"
@@ -61,38 +62,19 @@ class HabitsTableViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    override internal func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        guard let cell = tableView.cellForRow(at: indexPath) as? HabitTableViewCell else { return }
-//        cell.layer.cornerRadius = 13
-//        if editingStyle == .delete {
-//            HabitController.shared.delete(habit: frc.object(at: indexPath))
-//        }
-//    }
     
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .normal, title: "Delete") { _, view, _ in
-            print("button pressed!")
+    override internal func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             HabitController.shared.delete(habit: self.frc.object(at: indexPath))
-            UIGraphicsBeginImageContext(view.frame.size)
-            UIGraphicsEndImageContext()
         }
-        deleteAction.backgroundColor = .red
-        
-        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
-    override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+    override internal func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? HabitTableViewCell else { return }
         cell.layer.cornerRadius = 13
-    }
-    
-    override func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
-        guard let indexPath = indexPath else { return }
-        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
     
     private func updateHabitDays(habit: Habit) {
@@ -117,9 +99,19 @@ class HabitsTableViewController: UITableViewController {
         
         tableView.separatorColor = .clear
     }
+    
+    @objc
+    private func refresh() {
+        tableView.reloadData()
+        guard let habits = frc.fetchedObjects else { return }
+        for habit in habits {
+            updateHabitDays(habit: habit)
+        }
+        refreshControl?.endRefreshing()
+    }
 
     // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override internal func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "ShowHabitDetailSegue":
             guard   let indexPath = tableView.indexPathForSelectedRow,
@@ -133,7 +125,7 @@ class HabitsTableViewController: UITableViewController {
         }
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override internal func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         updateColors()
     }
@@ -142,15 +134,15 @@ class HabitsTableViewController: UITableViewController {
 // MARK: - NSFetchedResultsControllerDelegate
 extension HabitsTableViewController: NSFetchedResultsControllerDelegate {
     
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    internal func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
     
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    internal func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+    internal func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange sectionInfo: NSFetchedResultsSectionInfo,
                     atSectionIndex sectionIndex: Int,
                     for type: NSFetchedResultsChangeType) {
@@ -164,7 +156,7 @@ extension HabitsTableViewController: NSFetchedResultsControllerDelegate {
         }
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+    internal func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange anObject: Any,
                     at indexPath: IndexPath?,
                     for type: NSFetchedResultsChangeType,
@@ -186,6 +178,85 @@ extension HabitsTableViewController: NSFetchedResultsControllerDelegate {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         @unknown default:
             fatalError("Unknown Change Type occured")
+        }
+    }
+}
+
+extension HabitsTableViewController: UNUserNotificationCenterDelegate {
+    internal func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        let habitID = userInfo["HABBIT_ID"] as? String
+        if response.actionIdentifier != "COMPLETE_ACTION" && response.actionIdentifier != "FAIL_ACTION" {
+            return
+        }
+        let frc = fetchHabits()
+        
+        let arr = frc.fetchedObjects?.filter { $0.id?.uuidString == habitID }
+        guard let habit = arr?.first else { return }
+        let today = Calendar.current.dateComponents([.day, .month, .year], from: Date())
+        if let days = habit.days?.allObjects as? [Day] {
+            let arr = days.filter({ Calendar.current.dateComponents([.day, .month, .year], from: $0.date ?? Date(timeIntervalSince1970: 0)) == today })
+            if arr.isEmpty {
+                performSwitchWithoutDay(with: response, habit: habit)
+            } else {
+                guard let day = arr.first else {
+                    NSLog("Error, day existed but was invalid!")
+                    return
+                }
+                performSwitchWithDay(with: response, habit: habit, day: day)
+            }
+        }
+        
+        completionHandler()
+    }
+    
+    private func fetchHabits() -> NSFetchedResultsController<Habit> {
+        let request: NSFetchRequest<Habit> = Habit.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        let frc = NSFetchedResultsController(fetchRequest: request,
+                                             managedObjectContext: CoreDataStack.shared.mainContext,
+                                             sectionNameKeyPath: nil,
+                                             cacheName: nil)
+        frc.delegate = self
+        do {
+            try frc.performFetch()
+        } catch {
+            fatalError("Unable to fetch object: \(error)")
+        }
+        
+        return frc
+    }
+    
+    private func performSwitchWithoutDay(with response: UNNotificationResponse, habit: Habit) {
+        switch response.actionIdentifier {
+        case "COMPLETE_ACTION":
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .yes)
+            NSLog("Notification was marked as complete")
+        case "FAIL_ACTION":
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .no)
+            NSLog("Notification was marked as failed")
+        default:
+            HabitController.shared.updateNewDayStatus(habit: habit, status: .unset)
+            NSLog("No response was given from notification")
+        }
+    }
+    
+    private func performSwitchWithDay(with response: UNNotificationResponse, habit: Habit, day: Day) {
+        switch response.actionIdentifier {
+        case "COMPLETE_ACTION":
+            HabitController.shared.updateDayStatus(day: day, status: .yes)
+            NSLog("Notification was marked as complete")
+            habit.lastUpdated = day.date ?? habit.lastUpdated
+        case "FAIL_ACTION":
+            HabitController.shared.updateDayStatus(day: day, status: .no)
+            NSLog("Error, day existed but was invalid!")
+            habit.lastUpdated = day.date ?? habit.lastUpdated
+        default:
+            HabitController.shared.updateDayStatus(day: day, status: .unset)
+            NSLog("Error, day existed but was invalid!")
+            habit.lastUpdated = day.date ?? habit.lastUpdated
         }
     }
 }

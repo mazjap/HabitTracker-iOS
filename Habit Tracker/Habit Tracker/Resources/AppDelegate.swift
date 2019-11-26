@@ -8,14 +8,12 @@
 
 import UIKit
 import CoreData
-import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        UNUserNotificationCenter.current().delegate = self
         return true
     }
 
@@ -77,83 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-        let habitID = userInfo["HABBIT_ID"] as? String
-        if response.actionIdentifier != "COMPLETE_ACTION" && response.actionIdentifier != "FAIL_ACTION" {
-            return
-        }
-        let frc = fetchHabits()
-        
-        let arr = frc.fetchedObjects?.filter { $0.id?.uuidString == habitID }
-        guard let habit = arr?.first else { return }
-        let today = Calendar.current.dateComponents([.day, .month, .year], from: Date())
-        if let days = habit.days?.allObjects as? [Day] {
-            let arr = days.filter({ Calendar.current.dateComponents([.day, .month, .year], from: $0.date ?? Date(timeIntervalSince1970: 0)) == today })
-            if arr.isEmpty {
-                performSwitchWithoutDay(with: response, habit: habit)
-            } else {
-                guard let day = arr.first else {
-                    NSLog("Error, day existed but was invalid!")
-                    return
-                }
-                performSwitchWithDay(with: response, habit: habit, day: day)
-            }
-        }
-        
-        completionHandler()
-    }
-    
-    func fetchHabits() -> NSFetchedResultsController<Habit> {
-        let request: NSFetchRequest<Habit> = Habit.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-        let frc = NSFetchedResultsController(fetchRequest: request,
-                                             managedObjectContext: CoreDataStack.shared.mainContext,
-                                             sectionNameKeyPath: nil,
-                                             cacheName: nil)
-        frc.delegate = self as? NSFetchedResultsControllerDelegate
-        do {
-            try frc.performFetch()
-        } catch {
-            fatalError("Unable to fetch object: \(error)")
-        }
-        
-        return frc
-    }
-    
-    func performSwitchWithoutDay(with response: UNNotificationResponse, habit: Habit) {
-        switch response.actionIdentifier {
-        case "COMPLETE_ACTION":
-            HabitController.shared.updateNewDayStatus(habit: habit, status: .yes)
-            NSLog("Notification was marked as complete")
-        case "FAIL_ACTION":
-            HabitController.shared.updateNewDayStatus(habit: habit, status: .no)
-            NSLog("Notification was marked as failed")
-        default:
-            HabitController.shared.updateNewDayStatus(habit: habit, status: .unset)
-            NSLog("No response was given from notification")
-        }
-    }
-    
-    func performSwitchWithDay(with response: UNNotificationResponse, habit: Habit, day: Day) {
-        switch response.actionIdentifier {
-        case "COMPLETE_ACTION":
-            HabitController.shared.updateDayStatus(day: day, status: .yes)
-            NSLog("Notification was marked as complete")
-            habit.lastUpdated = day.date ?? habit.lastUpdated
-        case "FAIL_ACTION":
-            HabitController.shared.updateDayStatus(day: day, status: .no)
-            NSLog("Error, day existed but was invalid!")
-            habit.lastUpdated = day.date ?? habit.lastUpdated
-        default:
-            HabitController.shared.updateDayStatus(day: day, status: .unset)
-            NSLog("Error, day existed but was invalid!")
-            habit.lastUpdated = day.date ?? habit.lastUpdated
         }
     }
 }

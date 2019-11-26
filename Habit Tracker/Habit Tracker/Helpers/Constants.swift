@@ -14,7 +14,6 @@ import UIKit
 typealias CompletionWithError = (_ error: Error?) -> Void
 
 let coreDataModelName: String = "Habit_Tracker"
-let debuging: Bool = false
 let testing: Bool = false
 
 let dateFormatter: DateFormatter = {

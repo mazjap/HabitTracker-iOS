@@ -26,12 +26,12 @@ class DayTableViewCell: UITableViewCell {
     
     
     // MARK: - View Lifecycle
-    override func awakeFromNib() {
+    override internal func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    override internal func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -39,7 +39,7 @@ class DayTableViewCell: UITableViewCell {
     
     // MARK: - IBActions
     
-    @IBAction func buttonsTapped(_ sender: UIButton) {
+    @IBAction private func buttonsTapped(_ sender: UIButton) {
         guard let day = day else { return }
         switch sender.titleLabel?.text {
         case "Yes":
@@ -80,7 +80,7 @@ class DayTableViewCell: UITableViewCell {
         }
     }
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override internal func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         updateViews()
     }

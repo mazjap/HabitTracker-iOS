@@ -16,7 +16,7 @@ class SideMenuTableViewController: UITableViewController, HabitHandlerProtocol {
     @IBOutlet private weak var pieChartLabel: UILabel!
     @IBOutlet private weak var unmarkedDaysLabel: UILabel!
     
-    override func viewDidLoad() {
+    override internal func viewDidLoad() {
         super.viewDidLoad()
         updateColors()
     }
@@ -27,7 +27,7 @@ class SideMenuTableViewController: UITableViewController, HabitHandlerProtocol {
         unmarkedDaysLabel.textColor = .htTextColor
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override internal func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CalendarShowSegue" {
             guard let detailVC = segue.destination as? CalenderViewController else { return }
             detailVC.habit = habit
@@ -37,7 +37,7 @@ class SideMenuTableViewController: UITableViewController, HabitHandlerProtocol {
         }
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override internal func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         updateColors()
     }

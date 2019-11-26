@@ -25,24 +25,9 @@ class DateCell: JTACDayCell {
     @IBOutlet private weak var selectedView: UIView!
     @IBOutlet private weak var statusView: UIView!
     
-    override func awakeFromNib() {
+    override internal func awakeFromNib() {
         super.awakeFromNib()
         self.updateViews()
-    }
-    
-    func updateViews() {
-        selectedView.isHidden = true
-        statusView.layer.cornerRadius = 13
-        selectedView.layer.cornerRadius = 13
-        selectedView.layer.borderWidth = 2
-        selectedView.layer.borderColor = UIColor.blue.cgColor
-        statusView.layer.borderWidth = 2
-        statusView.layer.borderColor = UIColor.borderColor.cgColor
-        handleCellStatus()
-    }
-    
-    func setTextColor(color: UIColor) {
-        dateLabel.textColor = color
     }
     
     func setNotSelected() {
@@ -75,7 +60,22 @@ class DateCell: JTACDayCell {
         }
     }
     
-    func handleCellTextColor() {
+    private func updateViews() {
+        selectedView.isHidden = true
+        statusView.layer.cornerRadius = 13
+        selectedView.layer.cornerRadius = 13
+        selectedView.layer.borderWidth = 2
+        selectedView.layer.borderColor = UIColor.blue.cgColor
+        statusView.layer.borderWidth = 2
+        statusView.layer.borderColor = UIColor.borderColor.cgColor
+        handleCellStatus()
+    }
+    
+    private func setTextColor(color: UIColor) {
+        dateLabel.textColor = color
+    }
+    
+    private func handleCellTextColor() {
         guard let state = state else {
             setTextColor(color: .black)
             return
@@ -87,7 +87,7 @@ class DateCell: JTACDayCell {
         }
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override internal func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         statusView.layer.borderColor = UIColor.borderColor.cgColor
     }

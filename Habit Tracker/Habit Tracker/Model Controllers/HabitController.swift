@@ -39,7 +39,6 @@ class HabitController {
                 goalDays: Int,
                 notify: Bool,
                 notifyTime: Date) {
-        let previousHabitNotify = habit.notify
         habit.title = title
         habit.desc = desc
         habit.goalDays = Int64(goalDays)
@@ -47,11 +46,8 @@ class HabitController {
         habit.notifyTime = notifyTime
         CoreDataStack.shared.save()
         
-        if !previousHabitNotify && notify {
-            LocalNotificationManager.shared.scheduleNotification(for: habit)
-        } else if previousHabitNotify && !notify {
-            LocalNotificationManager.shared.deleteNotificiation(with: habit.id?.uuidString ?? "")
-        }
+        LocalNotificationManager.shared.deleteNotificiation(with: habit.id?.uuidString ?? "")
+        LocalNotificationManager.shared.scheduleNotification(for: habit)
     }
     
     func updateHabitNotifications(habit: Habit, notify: Bool) {
@@ -76,7 +72,6 @@ class HabitController {
         let startDate = habit.startDate ?? Date()
         let currentDate = Date()
         let numDays = Date.daysBetween(date1: startDate, date2: currentDate)
-        if debuging { print("Start: \(startDate)  Now: \(currentDate) = \(numDays)") }
         for lcv in 0...numDays {
             let setDate = startDate.plus(days: UInt(lcv))
             let day = Day(date: setDate)
@@ -109,7 +104,6 @@ class HabitController {
     func addDay(to habit: Habit, with date: Date) {
         let day = Day(date: date, status: .unset)
         day.habit = habit
-//        habit.days?.adding(Day(date: date, status: .unset))
     }
     
     func updateHabitDays(habit: Habit) {

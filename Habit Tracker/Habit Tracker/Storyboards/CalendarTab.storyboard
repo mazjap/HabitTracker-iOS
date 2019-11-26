@@ -11,7 +11,6 @@
         <!--Ib Calendar Data Source-->
         <scene sceneID="did-gu-Stb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KPR-JS-sXP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="U2J-aq-mKk" customClass="CalenderViewController" customModule="Habit_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bTQ-fz-QqC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -105,7 +104,10 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date: Was \(habit) Completed?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrq-VU-qmj">
-                                <rect key="frame" x="20" y="433" width="235" height="20.5"/>
+                                <rect key="frame" x="20" y="433" width="317" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="317" id="Mxz-QX-dZN"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -123,7 +125,7 @@
                             <constraint firstItem="sGT-Kb-Idn" firstAttribute="top" secondItem="xJq-s7-HVV" secondAttribute="top" constant="20" id="LSz-vK-5T5"/>
                             <constraint firstItem="0rA-eh-BZz" firstAttribute="centerX" secondItem="bTQ-fz-QqC" secondAttribute="centerX" id="MBn-Fc-uN4"/>
                             <constraint firstItem="0rA-eh-BZz" firstAttribute="top" secondItem="nrq-VU-qmj" secondAttribute="bottom" constant="38" id="UbU-V3-6dZ"/>
-                            <constraint firstItem="0Po-XJ-G6o" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nrq-VU-qmj" secondAttribute="trailing" constant="8" id="VrJ-ac-COR"/>
+                            <constraint firstItem="0Po-XJ-G6o" firstAttribute="leading" secondItem="nrq-VU-qmj" secondAttribute="trailing" constant="8" id="VrJ-ac-COR"/>
                             <constraint firstItem="xJq-s7-HVV" firstAttribute="trailing" secondItem="sGT-Kb-Idn" secondAttribute="trailing" constant="20" id="XbW-UJ-YPc"/>
                             <constraint firstItem="0Po-XJ-G6o" firstAttribute="centerY" secondItem="nrq-VU-qmj" secondAttribute="centerY" id="Ykr-Q4-obT"/>
                             <constraint firstItem="nrq-VU-qmj" firstAttribute="leading" secondItem="sGT-Kb-Idn" secondAttribute="leading" id="edN-rd-sDM"/>
@@ -142,6 +144,7 @@
                         <outlet property="saveButton" destination="0rA-eh-BZz" id="gcy-Oe-Jt0"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KPR-JS-sXP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="122" y="145"/>
         </scene>

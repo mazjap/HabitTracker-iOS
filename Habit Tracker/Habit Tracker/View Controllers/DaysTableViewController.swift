@@ -12,7 +12,7 @@ import CoreData
 class DaysTableViewController: UITableViewController {
 
     // MARK: - Properties
-    lazy var frc: NSFetchedResultsController<Day>! = {
+    private lazy var frc: NSFetchedResultsController<Day>! = {
         let fetchRequest: NSFetchRequest<Day> = Day.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true), NSSortDescriptor(key: "habit.title", ascending: true)]
         fetchRequest.predicate = NSPredicate(format: "status == 0")
@@ -27,11 +27,11 @@ class DaysTableViewController: UITableViewController {
     }()
     
     // MARK: - View Lifecycle
-    override func viewDidLoad() {
+    override internal func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override internal func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
         title = "Unset Days"
@@ -39,15 +39,15 @@ class DaysTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override internal func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return frc.sections?[section].numberOfObjects ?? 0
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DaysCell", for: indexPath) as? DayTableViewCell else { return UITableViewCell() }
         cell.day = frc.object(at: indexPath)
         return cell
@@ -57,15 +57,15 @@ class DaysTableViewController: UITableViewController {
 // MARK: - NSFetchedResultsControllerDelegate
 extension DaysTableViewController: NSFetchedResultsControllerDelegate {
     
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    internal func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
     
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    internal func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+    internal func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange sectionInfo: NSFetchedResultsSectionInfo,
                     atSectionIndex sectionIndex: Int,
                     for type: NSFetchedResultsChangeType) {
@@ -79,7 +79,7 @@ extension DaysTableViewController: NSFetchedResultsControllerDelegate {
         }
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+    internal func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange anObject: Any,
                     at indexPath: IndexPath?,
                     for type: NSFetchedResultsChangeType,

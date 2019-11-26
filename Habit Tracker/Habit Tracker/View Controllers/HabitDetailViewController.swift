@@ -6,13 +6,16 @@
 //  Copyright © 2019 Lambda School. All rights reserved.
 //
 
+
+// Bug with datepicker and switch hiding said datepicker
+
 import UIKit
 import CoreData
 
 class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     
     var habit: Habit?
-    let pickerData: [String] = {
+    private let pickerData: [String] = {
         Array(1...365).map { String($0) }
     }()
     
@@ -25,7 +28,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     @IBOutlet private weak var completionLabel: UILabel!
     
     
-    override func viewDidLoad() {
+    override internal func viewDidLoad() {
         super.viewDidLoad()
         
         let menuToggle = UIBarButtonItem(image: UIImage(systemName: "rectangle.grid.1x2.fill"),
@@ -41,7 +44,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
         updateViews()
     }
     
-    @IBAction func saveTapped(_ sender: UIButton) {
+    @IBAction private func saveTapped(_ sender: UIButton) {
         guard let title = titleTextField.text,
             let desc = descriptionTextView.text,
             !title.isEmpty, !desc.isEmpty else { return }
@@ -56,7 +59,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
         navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func switchChanged(_ sender: UISwitch) {
+    @IBAction private func switchChanged(_ sender: UISwitch) {
         guard let habit = habit else { return }
         HabitController.shared.updateHabitNotifications(habit: habit, notify: notifySwitch.isOn)
         updateViews()
@@ -88,6 +91,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
             title = "Add New Habit"
             self.navigationItem.rightBarButtonItem?.isEnabled = false
             goalDayPickerView.selectRow(20, inComponent: 0, animated: true)
+            notifyTimeDatePicker.setDate(Date(), animated: false)
         }
     }
     
@@ -117,9 +121,9 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     }
     
     private func setTextViewBorder(for textView: UITextView) {
-        textView.layer.borderWidth = 0.5
-        textView.layer.borderColor = UIColor.lightGray.cgColor
-        textView.layer.cornerRadius = 8
+        textView.layer.borderWidth = 1.0
+        textView.layer.cornerRadius = 5
+        textView.layer.borderColor = UIColor(red: 0.74, green: 0.74, blue: 0.74, alpha: 0.75).cgColor
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -127,7 +131,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     }
     
     @objc
-    func presentMenu() {
+    private func presentMenu() {
         performSegue(withIdentifier: "SideMenuModalSegue", sender: self)
     }
      
@@ -143,15 +147,15 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
 }
 
 extension HabitDetailViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    internal func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    internal func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         pickerData.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+    internal func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
         return NSAttributedString(string: pickerData[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.htTextColor])
     }
@@ -159,30 +163,30 @@ extension HabitDetailViewController: UIPickerViewDataSource, UIPickerViewDelegat
 
 extension HabitDetailViewController: UITextViewDelegate, UITextFieldDelegate {
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
+    internal func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == .lightGray {
             textView.text = ""
             textView.textColor = .htTextColor
         }
     }
     
-    func textViewDidEndEditing(_ textView: UITextView) {
+    internal func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Goal Description"
             textView.textColor = .lightGray
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    internal func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.placeholder = ""
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    internal func textFieldDidEndEditing(_ textField: UITextField) {
         textField.placeholder = "Habit Title"
     }
 }

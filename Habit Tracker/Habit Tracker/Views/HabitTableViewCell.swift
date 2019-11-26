@@ -20,12 +20,12 @@ class HabitTableViewCell: UITableViewCell {
     @IBOutlet private weak var habitDescLabel: UILabel!
     @IBOutlet private weak var habitTimeLabel: UILabel!
     
-    override func awakeFromNib() {
+    override internal func awakeFromNib() {
         super.awakeFromNib()
         self.updateViews()
     }
     
-    override dynamic func layoutSubviews() {
+    override internal dynamic func layoutSubviews() {
         super.layoutSubviews()
         self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 77.5, left: 3, bottom: 77.5, right: 3))
         self.contentView.layer.cornerRadius = 13
@@ -34,11 +34,11 @@ class HabitTableViewCell: UITableViewCell {
         addSubview(contentView)
     }
     
-    override func dragStateDidChange(_ dragState: UITableViewCell.DragState) {
+    override internal func dragStateDidChange(_ dragState: UITableViewCell.DragState) {
         updateViews()
     }
     
-    func updateViews() {
+    private func updateViews() {
         backgroundColor = .backgroundColor
         habitTitleLabel.textColor = .htTextColor
         habitDescLabel.textColor = .htTextColor
@@ -64,7 +64,7 @@ class HabitTableViewCell: UITableViewCell {
         }
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override internal func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         updateViews()
     }

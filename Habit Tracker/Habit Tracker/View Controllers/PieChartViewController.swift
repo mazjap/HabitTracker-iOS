@@ -13,6 +13,7 @@ import UIKit
 class PieChartViewController: UIViewController, HabitHandlerProtocol {
     
     var habit: Habit?
+    
     @IBOutlet private weak var habitsPieChart: PieChart!
     @IBOutlet private weak var completeColorView: UIView!
     @IBOutlet private weak var incompleteColorView: UIView!
@@ -21,17 +22,17 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
     @IBOutlet private weak var incompleteLabel: UILabel!
     @IBOutlet private weak var unknownLabel: UILabel!
     
-    override func viewDidLoad() {
+    override internal func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override internal func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateViews()
     }
     
-    func updateViews() {
+    private func updateViews() {
         habitsPieChart.clear()
         title = "Pie Chart"
         completeColorView.backgroundColor = .htCalendarYes
@@ -78,9 +79,10 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
         habitsPieChart.layers = [textLayer]
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override internal func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        PieLineTextLayerSettings().label.textColor = UIColor.borderColor
-//        textLayer.settings = textLayerSettings
+        PieLineTextLayerSettings().label.textColor = UIColor.htTextColor
+//        PieLineTextLayerSettings().lineColor = UIColor.borderColor Not a set, only get
+//        textLayer.settings = textLayerSettingss
     }
 }
