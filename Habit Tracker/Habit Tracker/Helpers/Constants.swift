@@ -13,8 +13,11 @@ import UIKit
 
 typealias CompletionWithError = (_ error: Error?) -> Void
 
+let userDefaults = UserDefaults.standard
 let coreDataModelName: String = "Habit_Tracker"
-let testing: Bool = false
+var devSettings = userDefaults.bool(forKey: "devSettings")
+var devNotifications = userDefaults.bool(forKey: "devNotifications")
+var testData = userDefaults.bool(forKey: "testData")
 
 let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()

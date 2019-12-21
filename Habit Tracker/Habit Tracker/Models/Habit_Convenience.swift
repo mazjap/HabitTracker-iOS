@@ -21,7 +21,7 @@ extension Habit {
         self.title = title
         self.desc = desc
         self.goalDays = Int64(goalDays)
-        if testing {
+        if testData {
             self.startDate = Date().minus(weeks: 1)
         } else {
             self.startDate = Date()

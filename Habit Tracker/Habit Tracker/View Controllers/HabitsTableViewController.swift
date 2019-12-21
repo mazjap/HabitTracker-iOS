@@ -11,7 +11,9 @@ import CoreData
 import UserNotifications
 
 class HabitsTableViewController: UITableViewController {
-
+    
+    @IBOutlet private weak var settingsButton: UIBarButtonItem!
+    
     // MARK: - Properties
     private lazy var frc: NSFetchedResultsController<Habit>! = {
         let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
@@ -32,7 +34,6 @@ class HabitsTableViewController: UITableViewController {
         tableView.accessibilityIdentifier = "MyHabitsTableView"
         UNUserNotificationCenter.current().delegate = self
         refreshControl = UIRefreshControl()
-        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
         self.tableView.rowHeight = 80.0
         refresh()
@@ -42,6 +43,7 @@ class HabitsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         tableView.reloadData()
         updateColors()
+        refresh()
     }
 
     // MARK: - Table view data source
@@ -69,6 +71,7 @@ class HabitsTableViewController: UITableViewController {
     override internal func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             HabitController.shared.delete(habit: self.frc.object(at: indexPath))
+            refresh()
         }
     }
     
@@ -98,24 +101,44 @@ class HabitsTableViewController: UITableViewController {
         navigationController?.navigationBar.tintColor = UIColor.htTextColor
         
         tableView.separatorColor = .clear
+        
+        updateSettingsButton()
     }
     
     @objc
     private func refresh() {
         tableView.reloadData()
         guard let habits = frc.fetchedObjects else { return }
+        var dev = false
         for habit in habits {
             updateHabitDays(habit: habit)
+            if habit.title?.lowercased() == "dev" && habit.desc?.lowercased() == "settings" {
+                dev = true
+            }
         }
+        devSettings = dev
+        UserDefaults.standard.set(devSettings, forKey: "devSettings")
+//
+        updateSettingsButton()
         refreshControl?.endRefreshing()
+    }
+    
+    private func updateSettingsButton() {
+        if devSettings {
+            settingsButton.isEnabled = true
+            settingsButton.tintColor = .htTextColor
+        } else {
+            settingsButton.isEnabled = false
+            settingsButton.tintColor = .clear
+        }
     }
 
     // MARK: - Navigation
     override internal func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "ShowHabitDetailSegue":
-            guard   let indexPath = tableView.indexPathForSelectedRow,
-                    let vc = segue.destination as? HabitDetailViewController else { return }
+            guard let indexPath = tableView.indexPathForSelectedRow,
+                let vc = segue.destination as? HabitDetailViewController else { return }
             let habit = frc.object(at: indexPath)
             vc.habit = habit
         case "AddHabitDetailSegue":

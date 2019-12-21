@@ -44,9 +44,21 @@ class LocalNotificationManager {
         schedule()
     }
     
-    func deleteNotificiation(with id: String) {
+    func deleteNotification(with id: String) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [id])
+    }
+    
+    func deleteAllNotifications() {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
+            for notification in notifications {
+                let id = notification.identifier
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
+                UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [id])
+            }
+        }
+        
+        notifications = [Notification]()
     }
     
     private func requestAuthorization() {
@@ -87,7 +99,7 @@ class LocalNotificationManager {
             content.userInfo = ["HABBIT_ID": notification.id]
             
             let request: UNNotificationRequest
-            if testing {
+            if devNotifications {
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: false)
                 request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)
             } else {

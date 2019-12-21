@@ -18,9 +18,7 @@ enum DayStatus: Int16 {
 class HabitController {
     static let shared = HabitController()
     
-    private init() {
-        
-    }
+    private init() {}
     
     @discardableResult func add(title: String, desc: String, goalDays: Int, notify: Bool, notifyTime: Date) -> Habit {
         let habit = Habit(title: title, desc: desc, goalDays: goalDays, notify: notify, notifyTime: notifyTime)
@@ -46,7 +44,7 @@ class HabitController {
         habit.notifyTime = notifyTime
         CoreDataStack.shared.save()
         
-        LocalNotificationManager.shared.deleteNotificiation(with: habit.id?.uuidString ?? "")
+        LocalNotificationManager.shared.deleteNotification(with: habit.id?.uuidString ?? "")
         LocalNotificationManager.shared.scheduleNotification(for: habit)
     }
     
@@ -57,14 +55,14 @@ class HabitController {
         if !previousHabitNotify && notify {
             LocalNotificationManager.shared.scheduleNotification(for: habit)
         } else if previousHabitNotify && !notify {
-            LocalNotificationManager.shared.deleteNotificiation(with: habit.id?.uuidString ?? "")
+            LocalNotificationManager.shared.deleteNotification(with: habit.id?.uuidString ?? "")
         }
     }
     
     func delete(habit: Habit) {
         CoreDataStack.shared.mainContext.delete(habit)
         CoreDataStack.shared.save()
-        LocalNotificationManager.shared.deleteNotificiation(with: habit.id?.uuidString ?? "")
+        LocalNotificationManager.shared.deleteNotification(with: habit.id?.uuidString ?? "")
     }
     
     @discardableResult func addDays (habit: Habit) -> [Day] {
@@ -107,16 +105,18 @@ class HabitController {
     }
     
     func updateHabitDays(habit: Habit) {
-        guard let lastUpdated = habit.lastUpdated else { return }
-        let today = Date()
-        let todayCalendar = Calendar.current.dateComponents([.day, .month, .year], from: today)
-        let lastUpdatedCalendar = Calendar.current.dateComponents([.day, .month, .year], from: lastUpdated)
-        if lastUpdatedCalendar != todayCalendar && today.isGreaterThan(lastUpdated) {
-            let count = (todayCalendar.day ?? 0) - (lastUpdatedCalendar.day ?? 0)
-            for i in 0...count {
-                HabitController.shared.addDay(to: habit, with: today.minus(days: UInt(i)))
+        DispatchQueue.main.async {
+            guard let lastUpdated = habit.lastUpdated else { return }
+            let today = Date()
+            let todayCalendar = Calendar.current.dateComponents([.day, .month, .year], from: today)
+            let lastUpdatedCalendar = Calendar.current.dateComponents([.day, .month, .year], from: lastUpdated)
+            if lastUpdatedCalendar != todayCalendar && today.isGreaterThan(lastUpdated) {
+                let count = Calendar.current.dateComponents([.day], from: lastUpdated, to: today).day ?? 0
+                for i in 0...count {
+                    HabitController.shared.addDay(to: habit, with: today.minus(days: UInt(i)))
+                }
             }
+            habit.lastUpdated = today
         }
-        habit.lastUpdated = today
     }
 }

@@ -6,9 +6,6 @@
 //  Copyright © 2019 Lambda School. All rights reserved.
 //
 
-
-// Bug with datepicker and switch hiding said datepicker
-
 import UIKit
 import CoreData
 
@@ -48,9 +45,19 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
         guard let title = titleTextField.text,
             let desc = descriptionTextView.text,
             !title.isEmpty, !desc.isEmpty else { return }
+        if (title == "Dev" || title == "dev") && (desc == "Settings" || desc == "settings") {
+            devSettings = true
+            UserDefaults.standard.set(devSettings, forKey: "devSettings")
+        }
         let days = goalDayPickerView.selectedRow(inComponent: 0)
         let notify = notifySwitch.isOn
-        let time = notifyTimeDatePicker.date
+        let date = notifyTimeDatePicker.date
+        
+        let calendar = NSCalendar(calendarIdentifier: .gregorian)
+        let dc = Calendar.current.dateComponents([.minute, .hour, .day, .month, .year], from: date)
+        let newDc = DateComponents(year: dc.year, month: dc.month, day: dc.day, hour: dc.hour, minute: (((dc.minute ?? 0) / 15) * 15))
+        guard let cal = calendar, let time = cal.date(from: newDc) else { return }
+        
         if let habit = habit {
             HabitController.shared.update(habit: habit, title: title, desc: desc, goalDays: days, notify: notify, notifyTime: time)
         } else {
@@ -84,6 +91,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
             goalDayPickerView.selectRow((Int(habit.goalDays)), inComponent: 0, animated: true)
             notifySwitch.isOn = habit.notify
             notifyTimeDatePicker.isHidden = !notifySwitch.isOn
+            notifyTimeDatePicker.heightAnchor.constraint(equalToConstant: 75).isActive = true
             if let time = habit.notifyTime {
                 notifyTimeDatePicker.date = time
             }
@@ -92,6 +100,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
             self.navigationItem.rightBarButtonItem?.isEnabled = false
             goalDayPickerView.selectRow(20, inComponent: 0, animated: true)
             notifyTimeDatePicker.setDate(Date(), animated: false)
+            
         }
     }
     
