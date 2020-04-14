@@ -23,6 +23,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     @IBOutlet private weak var notifyTimeDatePicker: UIDatePicker!
     @IBOutlet private weak var notifyLabel: UILabel!
     @IBOutlet private weak var completionLabel: UILabel!
+    @IBOutlet private weak var saveButton: UIButton!
     
     
     override internal func viewDidLoad() {
@@ -78,6 +79,7 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     private func updateViews() {
         notifySwitch.layer.cornerRadius = 16
         notifySwitch.layer.borderWidth = 2
+        saveButton.layer.cornerRadius = 8
         
         updateColors()
         
@@ -118,6 +120,9 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
         
         notifyTimeDatePicker.setValue(UIColor.htTextColor, forKeyPath: "textColor")
         notifySwitch.layer.borderColor = UIColor.htTextColor.cgColor
+        
+        saveButton.backgroundColor = UIColor.htTextColor
+        saveButton.setTitleColor(.white, for: .normal)
     }
     
     private func setDescTextColor() {
