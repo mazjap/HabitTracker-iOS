@@ -24,7 +24,7 @@ class CalenderViewController: UIViewController, HabitHandlerProtocol {
     override internal func viewDidLoad() {
         super.viewDidLoad()
         
-        habitMonthView.layer.borderColor = UIColor.htTextColor.cgColor
+        habitMonthView.layer.borderColor = UIColor.htText.cgColor
         habitMonthView.layer.borderWidth = 2
         habitMonthView.layer.cornerRadius = 6
         
@@ -44,11 +44,14 @@ class CalenderViewController: UIViewController, HabitHandlerProtocol {
         isCompletedSwitch.isHidden = true
         saveButton.isHidden = true
         title = "Calender"
+        
+        view.backgroundColor = .background
+        habitMonthView.backgroundColor = .background
     }
     
     override internal func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        habitMonthView.layer.borderColor = UIColor.htTextColor.cgColor
+        habitMonthView.layer.borderColor = UIColor.htText.cgColor
     }
     
     @IBAction private func toggleDayStatus(_ sender: UISwitch) {

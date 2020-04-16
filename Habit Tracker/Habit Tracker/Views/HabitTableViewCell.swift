@@ -30,7 +30,7 @@ class HabitTableViewCell: UITableViewCell {
         self.contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 77.5, left: 3, bottom: 77.5, right: 3))
         self.contentView.layer.cornerRadius = 13
         self.contentView.layer.borderWidth = 2
-        self.contentView.layer.borderColor = UIColor.borderColor.cgColor
+        self.contentView.layer.borderColor = UIColor.border.cgColor
         addSubview(contentView)
     }
     
@@ -39,10 +39,10 @@ class HabitTableViewCell: UITableViewCell {
     }
     
     private func updateViews() {
-        backgroundColor = .backgroundColor
-        habitTitleLabel.textColor = .htTextColor
-        habitDescLabel.textColor = .htTextColor
-        habitTimeLabel.textColor = .htTextColor
+        backgroundColor = .background
+        habitTitleLabel.textColor = .htText
+        habitDescLabel.textColor = .htText
+        habitTimeLabel.textColor = .htText
         
         if let habit = habit, habitTitleLabel != nil, habitDescLabel != nil, habitTimeLabel != nil {
             habitTitleLabel.text = habit.title

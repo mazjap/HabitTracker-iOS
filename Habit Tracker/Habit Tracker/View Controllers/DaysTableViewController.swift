@@ -35,13 +35,16 @@ class DaysTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         tableView.reloadData()
         title = "Unset Days"
+        updateViews()
+    }
+    
+    private func updateViews() {
+        view.backgroundColor = .background
+        tableView.backgroundColor = .background
+        
     }
 
     // MARK: - Table view data source
-
-    override internal func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
 
     override internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return frc.sections?[section].numberOfObjects ?? 0
@@ -50,6 +53,7 @@ class DaysTableViewController: UITableViewController {
     override internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DaysCell", for: indexPath) as? DayTableViewCell else { return UITableViewCell() }
         cell.day = frc.object(at: indexPath)
+        cell.backgroundColor = .background
         return cell
     }
 }

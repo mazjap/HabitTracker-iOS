@@ -15,19 +15,19 @@ class DateHeader: JTACMonthReusableView {
     override internal func awakeFromNib() {
         super.awakeFromNib()
         
-        self.layer.borderColor = UIColor.borderColor.cgColor
+        self.layer.borderColor = UIColor.border.cgColor
         self.layer.borderWidth = 2
         self.layer.cornerRadius = 6
     }
     
     func setMonthLabel(with text: String) {
         monthLabel.text = text
-        monthLabel.textColor = .htTextColor
+        monthLabel.textColor = .htText
     }
     
     override internal func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        self.layer.borderColor = UIColor.borderColor.cgColor
-        monthLabel.textColor = .htTextColor
+        self.layer.borderColor = UIColor.border.cgColor
+        monthLabel.textColor = .htText
     }
 }

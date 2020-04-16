@@ -20,7 +20,8 @@ class HabitController {
     
     private init() {}
     
-    @discardableResult func add(title: String, desc: String, goalDays: Int, notify: Bool, notifyTime: Date) -> Habit {
+    @discardableResult
+    func add(title: String, desc: String, goalDays: Int, notify: Bool, notifyTime: Date) -> Habit {
         let habit = Habit(title: title, desc: desc, goalDays: goalDays, notify: notify, notifyTime: notifyTime)
         CoreDataStack.shared.save()
         addDays(habit: habit)
@@ -28,6 +29,7 @@ class HabitController {
         if notify {
             LocalNotificationManager.shared.scheduleNotification(for: habit)
         }
+        
         return habit
     }
     
@@ -44,7 +46,7 @@ class HabitController {
         habit.notifyTime = notifyTime
         CoreDataStack.shared.save()
         
-        LocalNotificationManager.shared.deleteNotification(with: habit.id?.uuidString ?? "")
+        LocalNotificationManager.shared.deleteNotification(with: habit)
         LocalNotificationManager.shared.scheduleNotification(for: habit)
     }
     
@@ -55,14 +57,14 @@ class HabitController {
         if !previousHabitNotify && notify {
             LocalNotificationManager.shared.scheduleNotification(for: habit)
         } else if previousHabitNotify && !notify {
-            LocalNotificationManager.shared.deleteNotification(with: habit.id?.uuidString ?? "")
+            LocalNotificationManager.shared.deleteNotification(with: habit)
         }
     }
     
     func delete(habit: Habit) {
+        LocalNotificationManager.shared.deleteNotification(with: habit)
         CoreDataStack.shared.mainContext.delete(habit)
         CoreDataStack.shared.save()
-        LocalNotificationManager.shared.deleteNotification(with: habit.id?.uuidString ?? "")
     }
     
     @discardableResult func addDays (habit: Habit) -> [Day] {

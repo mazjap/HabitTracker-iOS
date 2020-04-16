@@ -15,6 +15,10 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     private let pickerData: [String] = {
         Array(1...365).map { String($0) }
     }()
+    let options = [(name: "Calendar", segue: "CalendarShowSegue"),
+                   (name: "Pie Chart", segue: "PieChartShowSegue"),
+                   (name: "Unmarked Days", segue: "UnmarkedDaysShowSegue")]
+    private var fadeView = UIView()
     
     @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var goalDayPickerView: UIPickerView!
@@ -24,29 +28,42 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     @IBOutlet private weak var notifyLabel: UILabel!
     @IBOutlet private weak var completionLabel: UILabel!
     @IBOutlet private weak var saveButton: UIButton!
+    @IBOutlet private weak var navView: NavigationMenuView!
     
     
     override internal func viewDidLoad() {
         super.viewDidLoad()
         
-        let menuToggle = UIBarButtonItem(image: UIImage(systemName: "rectangle.grid.1x2.fill"),
+        let menuToggle = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"),
                                          style: .plain,
                                          target: self,
-                                         action: #selector(self.presentMenu))
+                                         action: #selector(self.toggleMenu))
         self.navigationItem.setRightBarButton(menuToggle, animated: true)
         setDescTextColor()
         goalDayPickerView.dataSource = self
         goalDayPickerView.delegate = self
         descriptionTextView.delegate = self
         titleTextField.delegate = self
+        navView.delegate = self
+        navView.dataSource = self
+        navView.setUp()
+        view.addSubview(fadeView)
         updateViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let indexPath = navView.indexPathForSelectedRow {
+            navView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     @IBAction private func saveTapped(_ sender: UIButton) {
         guard let title = titleTextField.text,
             let desc = descriptionTextView.text,
             !title.isEmpty, !desc.isEmpty else { return }
-        if (title == "Dev" || title == "dev") && (desc == "Settings" || desc == "settings") {
+        if title.lowercased() == "dev" && desc.lowercased() == "settings" {
             devSettings = true
             UserDefaults.standard.set(devSettings, forKey: "devSettings")
         }
@@ -81,11 +98,16 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
         notifySwitch.layer.borderWidth = 2
         saveButton.layer.cornerRadius = 8
         
+        view.bringSubviewToFront(navView)
+        fadeView.frame = view.frame
+        fadeView.isHidden = true
+        navView.tableFooterView = UIView()
+        
         updateColors()
         
         setTextViewBorder(for: descriptionTextView)
         if let habit = habit {
-            title = "\(habit.title ?? "")"
+            title = habit.title ?? ""
             self.navigationItem.rightBarButtonItem?.isEnabled = true
             
             titleTextField.text = habit.title
@@ -107,21 +129,23 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     }
     
     private func updateColors() {
-        view.backgroundColor = .backgroundColor
+        view.backgroundColor = .background
         
         navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.htTextColor]
+            [NSAttributedString.Key.foregroundColor: UIColor.htText]
         navigationController?.navigationBar.largeTitleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.htTextColor]
-        navigationController?.navigationBar.tintColor = UIColor.htTextColor
-        titleTextField.textColor = .htTextColor
-        notifyLabel.textColor = .htTextColor
-        completionLabel.textColor = .htTextColor
+            [NSAttributedString.Key.foregroundColor: UIColor.htText]
+        navigationController?.navigationBar.tintColor = UIColor.htText
+        titleTextField.textColor = .htText
+        titleTextField.backgroundColor = .background
+        descriptionTextView.backgroundColor = .background
+        notifyLabel.textColor = .htText
+        completionLabel.textColor = .htText
         
-        notifyTimeDatePicker.setValue(UIColor.htTextColor, forKeyPath: "textColor")
-        notifySwitch.layer.borderColor = UIColor.htTextColor.cgColor
+        notifyTimeDatePicker.setValue(UIColor.htText, forKeyPath: "textColor")
+        notifySwitch.layer.borderColor = UIColor.htText.cgColor
         
-        saveButton.backgroundColor = UIColor.htTextColor
+        saveButton.backgroundColor = UIColor.htText
         saveButton.setTitleColor(.white, for: .normal)
     }
     
@@ -130,14 +154,14 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
             descriptionTextView.text = "Goal Description"
             descriptionTextView.textColor = .lightGray
         } else {
-            descriptionTextView.textColor = .htTextColor
+            descriptionTextView.textColor = .htText
         }
     }
     
     private func setTextViewBorder(for textView: UITextView) {
-        textView.layer.borderWidth = 1.0
+        textView.layer.borderWidth = 0.75
         textView.layer.cornerRadius = 5
-        textView.layer.borderColor = UIColor(red: 0.74, green: 0.74, blue: 0.74, alpha: 0.75).cgColor
+        textView.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5).cgColor
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -145,18 +169,27 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
     }
     
     @objc
-    private func presentMenu() {
-        performSegue(withIdentifier: "SideMenuModalSegue", sender: self)
+    private func toggleMenu() {
+        if !navView.isToggled {
+            fadeView.isHidden = false
+            UIView.animate(withDuration: 0.3) {
+                self.fadeView.backgroundColor = .fade
+                self.navView.transform = CGAffineTransform(translationX: -self.navView.frame.width, y: 0)
+            }
+        } else {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.fadeView.backgroundColor = .clear
+                self.navView.transform = CGAffineTransform.identity
+            }, completion: { _ in
+                self.fadeView.isHidden = true
+            })
+        }
+        navView.toggleBool()
     }
      
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SideMenuModalSegue" {
-            guard let vc = storyboard?.instantiateViewController(identifier: "SideMenuTableView") as? SideMenuTableViewController,
-                let navVC = segue.destination as? UINavigationController else { return }
-            
-            navVC.pushViewController(vc, animated: true)
+        guard var vc = segue.destination as? HabitHandlerProtocol else { return }
             vc.habit = habit
-        }
     }
 }
 
@@ -171,36 +204,58 @@ extension HabitDetailViewController: UIPickerViewDataSource, UIPickerViewDelegat
     
     internal func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
-        return NSAttributedString(string: pickerData[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.htTextColor])
+        return NSAttributedString(string: pickerData[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.htText])
+    }
+}
+
+extension HabitDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return options.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NavTableViewCell", for: indexPath)
+        
+        cell.textLabel?.text = options[indexPath.row].name
+        cell.textLabel?.textColor = .htText
+        cell.backgroundColor = .background
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: options[indexPath.row].segue, sender: self)
+        toggleMenu()
     }
 }
 
 extension HabitDetailViewController: UITextViewDelegate, UITextFieldDelegate {
     
-    internal func textViewDidBeginEditing(_ textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == .lightGray {
             textView.text = ""
-            textView.textColor = .htTextColor
+            textView.textColor = .htText
         }
     }
     
-    internal func textViewDidEndEditing(_ textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Goal Description"
             textView.textColor = .lightGray
         }
     }
     
-    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    internal func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.placeholder = ""
     }
     
-    internal func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         textField.placeholder = "Habit Title"
     }
 }

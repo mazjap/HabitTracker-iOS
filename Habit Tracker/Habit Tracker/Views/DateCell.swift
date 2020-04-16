@@ -67,7 +67,7 @@ class DateCell: JTACDayCell {
         selectedView.layer.borderWidth = 2
         selectedView.layer.borderColor = UIColor.blue.cgColor
         statusView.layer.borderWidth = 2
-        statusView.layer.borderColor = UIColor.borderColor.cgColor
+        statusView.layer.borderColor = UIColor.border.cgColor
         handleCellStatus()
     }
     
@@ -89,6 +89,6 @@ class DateCell: JTACDayCell {
     
     override internal func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        statusView.layer.borderColor = UIColor.borderColor.cgColor
+        statusView.layer.borderColor = UIColor.border.cgColor
     }
 }

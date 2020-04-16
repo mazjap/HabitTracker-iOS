@@ -60,6 +60,7 @@ class HabitsTableViewController: UITableViewController {
         cell.clipsToBounds = true
         cell.accessibilityIdentifier = "HabitCell\(indexPath.row)"
         let habit = frc.object(at: indexPath)
+        print(habit.id?.uuidString ?? "NO UUID!")
         cell.habit = habit
         return cell
     }
@@ -70,7 +71,8 @@ class HabitsTableViewController: UITableViewController {
     
     override internal func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            HabitController.shared.delete(habit: self.frc.object(at: indexPath))
+            let habit = frc.object(at: indexPath)
+            HabitController.shared.delete(habit: habit)
             refresh()
         }
     }
@@ -92,13 +94,13 @@ class HabitsTableViewController: UITableViewController {
     }
     
     private func updateColors() {
-        view.backgroundColor = .backgroundColor
+        view.backgroundColor = .background
         
         navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.htTextColor]
+            [NSAttributedString.Key.foregroundColor: UIColor.htText]
         navigationController?.navigationBar.largeTitleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.htTextColor]
-        navigationController?.navigationBar.tintColor = UIColor.htTextColor
+            [NSAttributedString.Key.foregroundColor: UIColor.htText]
+        navigationController?.navigationBar.tintColor = UIColor.htText
         
         tableView.separatorColor = .clear
         
@@ -126,7 +128,7 @@ class HabitsTableViewController: UITableViewController {
     private func updateSettingsButton() {
         if devSettings {
             settingsButton.isEnabled = true
-            settingsButton.tintColor = .htTextColor
+            settingsButton.tintColor = .htText
         } else {
             settingsButton.isEnabled = false
             settingsButton.tintColor = .clear

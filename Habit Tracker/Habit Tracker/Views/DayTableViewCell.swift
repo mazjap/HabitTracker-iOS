@@ -58,10 +58,12 @@ class DayTableViewCell: UITableViewCell {
     // MARK: - Private Methods
     private func updateViews() {
         guard let day = day else { return }
+        setUp(button: yesButton)
+        setUp(button: noButton)
         habitName.text = day.habit?.title
-        habitName.textColor = .htTextColor
+        habitName.textColor = .htText
         habitDate.text = day.date?.formatted()
-        habitDate.textColor = .htTextColor
+        habitDate.textColor = .htText
         let dayStatus = DayStatus(rawValue: day.status)
         switch dayStatus {
         case .no:
@@ -78,6 +80,12 @@ class DayTableViewCell: UITableViewCell {
         case .none:
             break
         }
+    }
+    
+    func setUp(button: UIButton) {
+        button.layer.cornerRadius = 8
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.htText.cgColor
     }
 
     override internal func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

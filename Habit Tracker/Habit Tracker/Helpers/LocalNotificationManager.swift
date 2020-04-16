@@ -44,9 +44,14 @@ class LocalNotificationManager {
         schedule()
     }
     
-    func deleteNotification(with id: String) {
+    func deleteNotification(with habit: Habit) {
+        guard let id = habit.id?.uuidString else { return }
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [id])
+        
+        for (i, notification) in notifications.enumerated() where notification.id == id {
+            notifications.remove(at: i)
+        }
     }
     
     func deleteAllNotifications() {

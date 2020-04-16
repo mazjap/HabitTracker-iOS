@@ -35,13 +35,8 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
     private func updateViews() {
         habitsPieChart.clear()
         title = "Pie Chart"
-        completeColorView.backgroundColor = .htCalendarYes
-        incompleteColorView.backgroundColor = .htCalendarNo
-        unknownColorView.backgroundColor = .htCalendarUnk
         
-        completeLabel.textColor = .htTextColor
-        incompleteLabel.textColor = .htTextColor
-        unknownLabel.textColor = .htTextColor
+        updateColors()
         
         guard let habit = habit, let days = habit.days?.allObjects as? [Day] else { return }
         let total = Double(habit.days?.allObjects.count ?? 1)
@@ -57,15 +52,21 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
             }
         }
         
-        let completeValue = PieSliceModel(value: complete / total, color: .htCalendarYes)
-        let incompleteValue = PieSliceModel(value: incomplete / total, color: .htCalendarNo)
-        let unchecked = PieSliceModel(value: unknown / total, color: .htCalendarUnk)
+        var models = [PieSliceModel]()
         
-        habitsPieChart.models = [completeValue, incompleteValue, unchecked]
+        if complete != 0.0 {
+            models.append(PieSliceModel(value: complete / total, color: .htCalendarYes))
+        } else if incomplete != 0.0 {
+            models.append(PieSliceModel(value: incomplete / total, color: .htCalendarNo))
+        } else if unknown != 0.0 {
+            models.append(PieSliceModel(value: unknown / total, color: .htCalendarUnk))
+        }
+        
+        habitsPieChart.models = models
         
         let textLayerSettings = PieLineTextLayerSettings()
         textLayerSettings.label.font = UIFont.boldSystemFont(ofSize: 16)
-        textLayerSettings.label.textColor = UIColor.borderColor
+        textLayerSettings.label.textColor = UIColor.border
 
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 1
@@ -75,13 +76,24 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
 
         let textLayer = PieLineTextLayer()
         textLayer.settings = textLayerSettings
-        
         habitsPieChart.layers = [textLayer]
+    }
+    
+    func updateColors() {
+        view.backgroundColor = .background
+        completeColorView.backgroundColor = .htCalendarYes
+        incompleteColorView.backgroundColor = .htCalendarNo
+        unknownColorView.backgroundColor = .htCalendarUnk
+        habitsPieChart.backgroundColor = .background
+        
+        completeLabel.textColor = .htText
+        incompleteLabel.textColor = .htText
+        unknownLabel.textColor = .htText
     }
     
     override internal func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        PieLineTextLayerSettings().label.textColor = UIColor.htTextColor
+        PieLineTextLayerSettings().label.textColor = UIColor.htText
 //        PieLineTextLayerSettings().lineColor = UIColor.borderColor Not a set, only get
 //        textLayer.settings = textLayerSettingss
     }
