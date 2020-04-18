@@ -56,9 +56,11 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
         
         if complete != 0.0 {
             models.append(PieSliceModel(value: complete / total, color: .htCalendarYes))
-        } else if incomplete != 0.0 {
+        }
+        if incomplete != 0.0 {
             models.append(PieSliceModel(value: incomplete / total, color: .htCalendarNo))
-        } else if unknown != 0.0 {
+        }
+        if unknown != 0.0 {
             models.append(PieSliceModel(value: unknown / total, color: .htCalendarUnk))
         }
         
@@ -70,7 +72,7 @@ class PieChartViewController: UIViewController, HabitHandlerProtocol {
 
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 1
-        textLayerSettings.label.textGenerator = {slice in
+        textLayerSettings.label.textGenerator = { slice in
             formatter.string(from: slice.data.percentage * 100 as NSNumber).map { "\($0)%" } ?? ""
         }
 

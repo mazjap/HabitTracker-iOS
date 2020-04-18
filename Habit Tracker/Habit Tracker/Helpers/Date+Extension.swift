@@ -9,12 +9,12 @@
 import Foundation
 
 extension Date {
-    func formatted () -> String {
+    func formatted() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEE, MMM d, yyyy"
         return formatter.string(from: self)
     }
-    func iso8601 () -> String {
+    func iso8601() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         return formatter.string(from: self)
