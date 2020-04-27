@@ -99,18 +99,18 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vUb-wO-Sm2" customClass="NavigationMenuView" customModule="Habit_Tracker" customModuleProvider="target">
-                                <rect key="frame" x="414" y="0.0" width="165.66666666666663" height="736"/>
+                                <rect key="frame" x="414" y="0.0" width="207" height="736"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NavTableViewCell" textLabel="K1t-Zj-Bmk" style="IBUITableViewCellStyleDefault" id="nap-e7-n6X">
-                                        <rect key="frame" x="0.0" y="28" width="165.66666666666663" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="28" width="207" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nap-e7-n6X" id="7cP-qr-V4Q">
-                                            <rect key="frame" x="0.0" y="0.0" width="165.66666666666663" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="207" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K1t-Zj-Bmk">
-                                                    <rect key="frame" x="16" y="0.0" width="133.66666666666663" height="43.666667938232422"/>
+                                                    <rect key="frame" x="16" y="0.0" width="175" height="43.666667938232422"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -131,7 +131,7 @@
                             <constraint firstAttribute="trailing" secondItem="sm1-QK-XKG" secondAttribute="trailing" constant="20" id="FXd-d0-NUv"/>
                             <constraint firstItem="vUb-wO-Sm2" firstAttribute="leading" secondItem="7NR-m4-UT1" secondAttribute="trailing" id="NI0-pP-qXi"/>
                             <constraint firstItem="7NR-m4-UT1" firstAttribute="bottom" secondItem="rha-TL-umU" secondAttribute="bottom" constant="16" id="bQ4-Bf-XEG"/>
-                            <constraint firstItem="vUb-wO-Sm2" firstAttribute="width" secondItem="gw4-zp-MZC" secondAttribute="width" multiplier="0.4" id="cLS-vh-lxx"/>
+                            <constraint firstItem="vUb-wO-Sm2" firstAttribute="width" secondItem="gw4-zp-MZC" secondAttribute="width" multiplier="0.5" id="cLS-vh-lxx"/>
                             <constraint firstItem="rha-TL-umU" firstAttribute="height" secondItem="V9y-Q5-TVg" secondAttribute="height" multiplier="0.6" id="dS0-Qg-4zT"/>
                             <constraint firstItem="sm1-QK-XKG" firstAttribute="leading" secondItem="7NR-m4-UT1" secondAttribute="leading" constant="20" id="m3X-0v-JuP"/>
                             <constraint firstItem="vUb-wO-Sm2" firstAttribute="top" secondItem="gw4-zp-MZC" secondAttribute="top" id="qHK-2R-yAn"/>

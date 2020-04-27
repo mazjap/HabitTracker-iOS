@@ -7,7 +7,6 @@
 //
 
 import JTAppleCalendar
-import SideMenu
 import UIKit
 
 class CalenderViewController: UIViewController, HabitHandlerProtocol {

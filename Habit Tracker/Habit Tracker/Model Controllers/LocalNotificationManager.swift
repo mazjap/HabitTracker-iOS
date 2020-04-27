@@ -117,7 +117,7 @@ class LocalNotificationManager {
                     NSLog("Error adding notification: \(error)")
                     return
                 } else {
-                    print("Notification scheduled. ID: \(notification.id)")
+                    NSLog("Notification scheduled. ID: \(notification.id)")
                 }
             }
         }

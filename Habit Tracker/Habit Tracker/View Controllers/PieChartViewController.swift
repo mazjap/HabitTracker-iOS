@@ -7,7 +7,6 @@
 //
 
 import PieCharts
-import SideMenu
 import UIKit
 
 class PieChartViewController: UIViewController, HabitHandlerProtocol {

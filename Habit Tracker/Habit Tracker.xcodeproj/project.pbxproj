@@ -299,6 +299,7 @@
 		FB14DCFB237F6F0F00ED67E2 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0E2472B3238467A500791524 /* LocalNotificationManager.swift */,
 				FBEE1C0A2383322D00F22C57 /* CoreDataStack.swift */,
 				FBEE1C0C238332FB00F22C57 /* HabitController.swift */,
 			);
@@ -312,7 +313,6 @@
 				FBEE1C5F2383782200F22C57 /* Date+Extension.swift */,
 				FBEE1C082383321700F22C57 /* Constants.swift */,
 				FBEE1C5D238360CD00F22C57 /* HabitHandlerProtocol.swift */,
-				0E2472B3238467A500791524 /* LocalNotificationManager.swift */,
 				0EA15504238A104200B80639 /* Colors.swift */,
 				0E7DBF0F238CD4F20028CDB2 /* UIImage+Gif.swift */,
 			);
@@ -780,14 +780,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Habit Tracker/Habit Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VXUQXR6S56;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = HFR8F4BT7E;
 				INFOPLIST_FILE = "Habit Tracker/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lambda.IOS9.Habit-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mazjap.Habit-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -802,14 +803,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Habit Tracker/Habit Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VXUQXR6S56;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = HFR8F4BT7E;
 				INFOPLIST_FILE = "Habit Tracker/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lambda.IOS9.Habit-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mazjap.Habit-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
