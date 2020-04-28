@@ -8,7 +8,6 @@ target 'Habit Tracker' do
   # Pods for Habit Tracker
   pod 'JTAppleCalendar'
   pod 'PieCharts'
-  pod 'SideMenu'
 
   target 'Habit TrackerTests' do
     inherit! :search_paths

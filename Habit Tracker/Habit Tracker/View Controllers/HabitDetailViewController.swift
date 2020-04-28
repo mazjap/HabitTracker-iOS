@@ -174,15 +174,13 @@ class HabitDetailViewController: UIViewController, HabitHandlerProtocol {
             fadeView.isHidden = false
             UIView.animate(withDuration: 0.3) {
                 self.fadeView.backgroundColor = .fade
-//                self.navView.transform = CGAffineTransform(translationX: -self.navView.frame.width, y: 0)
-                self.view.transform = CGAffineTransform(translationX: -self.navView.frame.width, y: 0)
+                self.navView.transform = CGAffineTransform(translationX: -self.navView.frame.width, y: 0)
                 self.title = ""
             }
         } else {
             UIView.animate(withDuration: 0.3, animations: {
                 self.fadeView.backgroundColor = .clear
-//                self.navView.transform = CGAffineTransform.identity
-                self.view.transform = CGAffineTransform.identity
+                self.navView.transform = CGAffineTransform.identity
             }, completion: { _ in
                 self.fadeView.isHidden = true
                 self.title = self.habit?.title

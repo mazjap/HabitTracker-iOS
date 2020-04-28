@@ -1,24 +1,20 @@
 PODS:
   - JTAppleCalendar (8.0.3)
   - PieCharts (0.0.7)
-  - SideMenu (6.4.8)
 
 DEPENDENCIES:
   - JTAppleCalendar
   - PieCharts
-  - SideMenu
 
 SPEC REPOS:
   trunk:
     - JTAppleCalendar
     - PieCharts
-    - SideMenu
 
 SPEC CHECKSUMS:
   JTAppleCalendar: 932cadea40b1051beab10f67843451d48ba16c99
   PieCharts: 30e50dfa7dc19e5b84e9878d32089673ef5d0453
-  SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
 
-PODFILE CHECKSUM: dac32d1b85340323790dec99cf09621a55d4b432
+PODFILE CHECKSUM: 534b15625fb39e44737efcf33093580f8be81ca1
 
 COCOAPODS: 1.8.3

@@ -24,7 +24,7 @@ class HabitsTableViewController: UITableViewController {
                                              cacheName: nil)
         frc.delegate = self
         do { try frc.performFetch() } catch { fatalError("NSFetchedResultsController failed: \(error)") }
-        print("HabitsTableViewController: Habits fetched: \(String(describing: frc.fetchedObjects?.count))")
+        NSLog("HabitsTableViewController: Habits fetched: \(String(describing: frc.fetchedObjects?.count))")
         return frc
     }()
     
@@ -60,7 +60,6 @@ class HabitsTableViewController: UITableViewController {
         cell.clipsToBounds = true
         cell.accessibilityIdentifier = "HabitCell\(indexPath.row)"
         let habit = frc.object(at: indexPath)
-        print(habit.id?.uuidString ?? "NO UUID!")
         cell.habit = habit
         return cell
     }
@@ -110,6 +109,7 @@ class HabitsTableViewController: UITableViewController {
     @objc
     private func refresh() {
         tableView.reloadData()
+        refreshControl?.endRefreshing()
         guard let habits = frc.fetchedObjects else { return }
         var dev = false
         for habit in habits {
@@ -120,9 +120,8 @@ class HabitsTableViewController: UITableViewController {
         }
         devSettings = dev
         UserDefaults.standard.set(devSettings, forKey: "devSettings")
-//
+
         updateSettingsButton()
-        refreshControl?.endRefreshing()
     }
     
     private func updateSettingsButton() {
